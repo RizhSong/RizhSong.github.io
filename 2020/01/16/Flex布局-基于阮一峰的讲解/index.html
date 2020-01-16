@@ -1,0 +1,303 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Flex布局-基于阮一峰的讲解 - Hexo</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate">
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="什么是Flex？Flex是Flexbox的缩写，翻译成中文就是“弹性盒子”，用来为盒装模型提供最大的体积。任何一个容器都可以指定为Flex布局。
+12345678.box &amp;#123; displa,"> 
+    <meta name="author" content="John Doe"> 
+    <link rel="alternative" href="atom.xml" title="Hexo" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <link rel="stylesheet" href="/css/diaspora.css">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-8691406134231910",
+              enable_page_level_ads: true
+         });
+    </script>
+    <script async custom-element="amp-auto-ads" src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+    </script>
+</head>
+</html>
+<body class="loading">
+    <span id="config-title" style="display:none">Hexo</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="icon-home image-icon" href="javascript:;" data-url="http://yoursite.com"></a>
+    <div title="播放/暂停" class="icon-play"></div>
+    <h3 class="subtitle">Flex布局-基于阮一峰的讲解</h3>
+    <div class="social">
+        <!--<div class="like-icon">-->
+            <!--<a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+        <!--</div>-->
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">Flex布局-基于阮一峰的讲解</h1>
+        <div class="stuff">
+            <span>一月 16, 2020</span>
+            
+
+        </div>
+        <div class="content markdown">
+            <h2 id="什么是Flex？"><a href="#什么是Flex？" class="headerlink" title="什么是Flex？"></a>什么是Flex？</h2><p>Flex是Flexbox的缩写，翻译成中文就是“弹性盒子”，用来为盒装模型提供最大的体积。任何一个容器都可以指定为Flex布局。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">.box &#123; display：-webkit-flex; / *在webkit内核的浏览器上使用要加前缀* /     display：flex; //将对象作为弹性伸缩盒显示&#125;</span><br><span class="line">    </span><br><span class="line">.box &#123; 显示：inline-flex; / *将对象作为内联块级弹性伸缩盒显示* / &#125;</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">/ *兼容性写法* / </span><br><span class="line">.box &#123; 显示：flex || 在线弯曲 &#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><p>若某元素采用flex布局，则此元素被称为flex容器（flex container）。其所有的子元素自动成为Flex项目（flex item）。</p>
+<p><img src="https://howlcn1997.github.io/2018/04/18/Flex%E5%B8%83%E5%B1%80/%E4%BC%B8%E7%BC%A9%E7%9B%92%E5%AD%90.png" alt="伸缩盒子"></p>
+<p>在Flex布局中有两个轴</p>
+<p>1，主轴（主轴），水平方向，起始位置为主轴，终点位置为主轴；</p>
+<p>2，侧轴（又称交叉轴cross axis），垂直方向，起始位置为cross start，结束位置为cross end。</p>
+<p>其中主要尺寸为Flex项目在主轴方向上的大小，交叉尺寸为Flex项目在侧轴方向上的大小。</p>
+<h2 id="容器属性"><a href="#容器属性" class="headerlink" title="容器属性"></a>容器属性</h2><p>容器属性有六种</p>
+<ol>
+<li><code>flex-direction</code> 设置主轴方向</li>
+<li><code>flex-wrap</code> 是否换行</li>
+<li><code>flex-flow</code> flex-direction和flex-wrap的简写</li>
+<li><code>justify-content</code> 主轴方向对齐方式</li>
+<li><code>align-item</code> 侧轴方向对齐方式</li>
+<li><code>align-content</code> 多行时，侧轴的对齐方式</li>
+</ol>
+<h3 id="弹性方向"><a href="#弹性方向" class="headerlink" title="弹性方向"></a>弹性方向</h3><p><strong>决定主轴的方向</strong>（即项目的划分方向）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.box &#123; flex-direction：row | 反向行| 栏| 列反转 &#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>row（最大值）：主轴水平方向，起点在左端；</li>
+<li>row-reverse：主轴水平方向，起点在右端，分为顺序会颠倒；</li>
+<li>栏：主轴垂直方向，起点在上边沿；</li>
+<li>column-reverse：主轴垂直方向，起点在下边沿，分为顺序会颠倒。</li>
+</ul>
+<p><img src="https://howlcn1997.github.io/2018/04/18/Flex%E5%B8%83%E5%B1%80/flex-direction.png" alt="弹性方向"></p>
+<h3 id="柔性包装"><a href="#柔性包装" class="headerlink" title="柔性包装"></a>柔性包装</h3><p><strong>定义换行情况</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.box &#123; flex-wrap：nowrap | 包裹 绕回 &#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>nowrap（默认）：不换行；</p>
+</li>
+<li><p>包装：换行，第一行在上方；（从最上方开始排）</p>
+<p><img src="https://howlcn1997.github.io/2018/04/18/Flex%E5%B8%83%E5%B1%80/wrap.png" alt="包裹"></p>
+</li>
+<li><p>wrap-reverse：换行，第一行在下方。（从最下方开始排）</p>
+</li>
+</ul>
+<p><img src="https://howlcn1997.github.io/2018/04/18/Flex%E5%B8%83%E5%B1%80/wrap-reverse.png" alt="绕回"></p>
+<h3 id="柔性流"><a href="#柔性流" class="headerlink" title="柔性流"></a>柔性流</h3><p><strong>是flex-direction和flex-wrap的简写，另有行nowrap</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.box &#123; flex-flow：&lt;flex-direction&gt; || &lt;flex-wrap&gt;; &#125;</span><br></pre></td></tr></table></figure>
+
+<p>例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.box &#123; flex-flow：row-reverse wrap; &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="证明内容"><a href="#证明内容" class="headerlink" title="证明内容"></a>证明内容</h3><p><strong>定义项目在主轴上的对齐方式</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.box &#123; justify-content：flex-start | 柔性端| 中心| 间隔| 周围空间| 空间均匀 伸展 安全| 不安全| 基线| 第一基线| 最后基线；&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>弹性启动</p>
+<p><img src="https://howlcn1997.github.io/2018/04/18/Flex%E5%B8%83%E5%B1%80/flex-start.png" alt="弹性启动"></p>
+</li>
+<li><p>柔性端</p>
+<p><img src="https://howlcn1997.github.io/2018/04/18/Flex%E5%B8%83%E5%B1%80/flex-end.png" alt="柔性端"></p>
+</li>
+<li><p>中央</p>
+<p><img src="https://howlcn1997.github.io/2018/04/18/Flex%E5%B8%83%E5%B1%80/center.png" alt="中央"></p>
+</li>
+<li><p>间隔</p>
+<p><img src="https://howlcn1997.github.io/2018/04/18/Flex%E5%B8%83%E5%B1%80/space-between.png" alt="间隔"></p>
+</li>
+<li><p>周围空间</p>
+<p><img src="https://howlcn1997.github.io/2018/04/18/Flex%E5%B8%83%E5%B1%80/space-around.png" alt="1560854850528"></p>
+</li>
+<li><p>space-evenly（注意区别space-around，此状态下项目外的空隙大小是近似的）</p>
+<p><img src="https://howlcn1997.github.io/2018/04/18/Flex%E5%B8%83%E5%B1%80/Users/12037/Desktop/myNote/Flex%E5%B8%83%E5%B1%80/space-evenly.png" alt="1560854765366"></p>
+</li>
+<li><p>拉伸项目当前对齐方向上拉伸</p>
+</li>
+</ul>
+<h3 id="对齐项目"><a href="#对齐项目" class="headerlink" title="对齐项目"></a>对齐项目</h3><p><strong>定义项目在交叉轴上如何拆分</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.box &#123; align-items：flex-start | 柔性端| 中心| 基线| 伸展; &#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>flex-start</code>：交叉轴的起点对齐。</li>
+<li><code>flex-end</code>：交叉轴的终点对齐。</li>
+<li><code>center</code>：交叉轴的中点对齐。</li>
+<li><code>baseline</code>：项目的<strong>第一行</strong>文字的校准对齐。</li>
+<li><code>stretch</code>（最小值）：如果项目未设置高度或设置为auto，将占满整个容器的高度。</li>
+</ul>
+<p><img src="https://howlcn1997.github.io/2018/04/18/Flex%E5%B8%83%E5%B1%80/align-items.png" alt="对齐项目"></p>
+<h3 id="对齐内容"><a href="#对齐内容" class="headerlink" title="对齐内容"></a>对齐内容</h3><p><strong>定义了多根径向的对齐方式。如果项目只有一根串口，该属性不起作用</strong>（要有多行item）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.box &#123; align-content：flex-start | 柔性端| 中心| 间隔| 周围空间| 伸展; &#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>flex-start</code>：与交叉轴的起点对齐。</li>
+<li><code>flex-end</code>：与交叉轴的终点对齐。</li>
+<li><code>center</code>：与交叉轴的中点对齐。</li>
+<li><code>space-between</code>：与交叉轴对齐对齐，变量之间的间隔平均分布。</li>
+<li><code>space-around</code>：每根基线两端的间隔都替换。所以，变量之间的间隔比变量与边框的间隔大一倍。</li>
+<li><code>stretch</code>（给定的元素值高度：不设置高度效果是不一样的）</li>
+</ul>
+<p><img src="https://howlcn1997.github.io/2018/04/18/Flex%E5%B8%83%E5%B1%80/align-content.png" alt="对齐内容"></p>
+<h2 id="项目属性"><a href="#项目属性" class="headerlink" title="项目属性"></a>项目属性</h2><ul>
+<li><code>order</code></li>
+<li><code>flex-grow</code></li>
+<li><code>flex-shrink</code></li>
+<li><code>flex-basis</code></li>
+<li><code>flex</code></li>
+<li><code>align-self</code></li>
+</ul>
+<h3 id="订购"><a href="#订购" class="headerlink" title="订购"></a>订购</h3><p><strong>定义项目的划分顺序。数值越小，分开越靠前，交替为0</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.item &#123; order：&lt;整体&gt;; &#125;</span><br></pre></td></tr></table></figure>
+
+<p>此属性没搞明白。。。上图就完事了〜</p>
+<p><img src="https://howlcn1997.github.io/2018/04/18/Flex%E5%B8%83%E5%B1%80/order.png" alt="订购"></p>
+<h3 id="弹性成长"><a href="#弹性成长" class="headerlink" title="弹性成长"></a>弹性成长</h3><p><strong>定义项目的放大比例，最小为0，即如果存在剩余空间，也不放大。</strong></p>
+<p>给任意项目设置该属性时，该项目的宽度无效</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.item &#123; flex-grow：&lt;number&gt;; / *默认值0 * / &#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://howlcn1997.github.io/2018/04/18/Flex%E5%B8%83%E5%B1%80/flex-grow.png" alt="弹性成长"></p>
+<p>例：当存在容器宽度为800px，容器中存在三个项目，宽度尺寸为100px；即剩余500px的空间。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt; div  class = “容器” &gt; &lt; div class = “ item item1” &gt; &lt;/ div &gt; &lt; div class = “ item item2” &gt; &lt;/ div &gt; &lt; div class = “ item item3” &gt; &lt;/ div &gt; &lt;/ div &gt;</span><br><span class="line">     </span><br><span class="line">     </span><br><span class="line">     </span><br><span class="line">.container &#123; 宽度：800px ; &#125; .item &#123; width：100px ; &#125;</span><br></pre></td></tr></table></figure>
+
+<p>1，当给<code>item1</code>设置<code>flex-grow: 1</code>时，item1的宽度无效，剩余宽度由500px变为600px，又因为<code>item1</code>的<code>flex-grow: 1</code>则则<code>item1</code>全部重叠剩余宽度，<code>item1</code>的宽度为600px；</p>
+<p>此时三个item的宽度分别为600px，100px，100px。</p>
+<p>2，若再给<code>item2</code>设置<code>flex-grow: 3</code>时，<code>item2</code>的宽度无效，此时剩余宽度为700，<code>item1</code>和<code>item2</code>以1：3的比例多余空间，此时三个项目的宽度分别为175px，525px，100px。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">阮大佬的原话：如果所有项目的`flex-grow`属性都为1，则它们将等分剩余空间（如果有的话）。如果一个项目的`flex-grow`属性为2，其他项目都为1，则前者涵盖的剩余空间将比其他项多一倍。</span><br></pre></td></tr></table></figure>
+
+<h3 id="弯曲收缩"><a href="#弯曲收缩" class="headerlink" title="弯曲收缩"></a>弯曲收缩</h3><p><strong>定义了项目的缩小比例，最小为1，即如果空间不足，该项目将缩小。</strong></p>
+<p>注意区别flex-grow，flex-grow是容器空间多余的后动作，flex-shrink是容器空间被项目充满后起作用。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.item &#123; flex-shrink：&lt;number&gt;; / *默认值1 * / &#125;</span><br></pre></td></tr></table></figure>
+
+<p>1，当存在宽度为900px的容器，容器中有三个宽度为400px的项目，很明显项目总宽度大于900px；此时替换<code>flex-shrink</code>为1；则三个项目以1：1：1平分900px，每个项目宽度为300px；</p>
+<p>2，当给<code>item1</code>设置<code>flex-shrink:2</code>，<code>item2</code>设置<code>flex-shrink: 4</code>，此时三个项目会以2：4：1的比例平分900px；项目宽度分别为200px，400px，100px。</p>
+<h3 id="弹性基础"><a href="#弹性基础" class="headerlink" title="弹性基础"></a>弹性基础</h3><p><strong>定义了在分配多余空间之前，项目合并的主轴空间（主要尺寸）。浏览器根据这个属性，计算主轴是否有多余空间。它的尺寸有所改变auto，即项目的本来大小。</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.item &#123; flex-basis：&lt;length&gt; | 汽车; / *默认自动* / &#125;</span><br></pre></td></tr></table></figure>
+
+<p>它可以设为跟<code>width</code>或<code>height</code>属性一样的值（例如350px），则项目将替换固定空间。</p>
+<h3 id="柔性"><a href="#柔性" class="headerlink" title="柔性"></a>柔性</h3><p><strong>是flex-grow，flex-shrink和flex-basis的简写，替换变量0 1 auto。后两个属性可选。</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.item &#123; flex：无| [&lt; &apos;flex-grow&apos; &gt; &lt; &apos;flex-shrink&apos; &gt;？|| &lt; &apos;flex-basis&apos; &gt;] &#125;</span><br></pre></td></tr></table></figure>
+
+<p>该属性有两个快捷值：<code>auto</code>（<code>1 1 auto</code>）和无（<code>0 0 auto</code>）。</p>
+<p>建议优先使用这个属性，而不是单独写三个分离的属性，因为浏览器会推算相关值。</p>
+<h3 id="自我调整"><a href="#自我调整" class="headerlink" title="自我调整"></a>自我调整</h3><p><strong>属性允许分类项目有与其他项目不一样的对齐方式，可覆盖align-items属性。替代更改auto，表示继承父元素的align-items属性，如果没有父元素，则等同于stretch。</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.item &#123; align-self：auto | 弹性启动| 柔性端| 中心| 基线| 伸展; &#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://howlcn1997.github.io/2018/04/18/Flex%E5%B8%83%E5%B1%80/flex-start1.png" alt="弹性启动"></p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="true">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title='0' data-url='http://link.hhtjim.com/163/5146554.mp3'></li>
+                        
+                    
+                        
+                            <li title='1' data-url='http://link.hhtjim.com/qq/001faIUs4M2zna.mp3'></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id='gitalk-container' class="comment link"
+        data-ae='false'
+        data-ci=''
+        data-cs=''
+        data-r=''
+        data-o=''
+        data-a=''
+        data-d='false'
+    >查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/diaspora.js"></script>
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+</html>
