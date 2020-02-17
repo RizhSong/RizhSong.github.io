@@ -1,0 +1,206 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>ES6——async与await - Hexo</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate">
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="async/await的使用1. async/await的具体使用规则在我们处理异步的时候，比起回调函数，Promise的then方法会显得较为简洁和清晰，但是在处理多个彼此之间相互依赖的请求的时候,"> 
+    <meta name="author" content="John Doe"> 
+    <link rel="alternative" href="atom.xml" title="Hexo" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <link rel="stylesheet" href="/css/diaspora.css">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-8691406134231910",
+              enable_page_level_ads: true
+         });
+    </script>
+    <script async custom-element="amp-auto-ads" src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+    </script>
+</head>
+</html>
+<body class="loading">
+    <span id="config-title" style="display:none">Hexo</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="icon-home image-icon" href="javascript:;" data-url="http://yoursite.com"></a>
+    <div title="播放/暂停" class="icon-play"></div>
+    <h3 class="subtitle">ES6——async与await</h3>
+    <div class="social">
+        <!--<div class="like-icon">-->
+            <!--<a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+        <!--</div>-->
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">ES6——async与await</h1>
+        <div class="stuff">
+            <span>五月 20, 2019</span>
+            
+  <ul class="post-tags-list"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/ES6/">ES6</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h3 id="async-await的使用"><a href="#async-await的使用" class="headerlink" title="async/await的使用"></a><code>async</code>/<code>await</code>的使用</h3><h4 id="1-async-await的具体使用规则"><a href="#1-async-await的具体使用规则" class="headerlink" title="1. async/await的具体使用规则"></a>1. <code>async</code>/<code>await</code>的具体使用规则</h4><p>在我们处理异步的时候，比起回调函数，<code>Promise</code>的then方法会显得较为简洁和清晰，但是在处理多个<strong>彼此之间相互依赖的请求的时候</strong>，就会显的有些累赘。这时候，用<code>async</code>和<code>await</code>更加优雅</p>
+<h5 id="async-await使用规则一：凡是在前面添加了async的函数在执行后都会自动返回一个Promise对象"><a href="#async-await使用规则一：凡是在前面添加了async的函数在执行后都会自动返回一个Promise对象" class="headerlink" title="async/await使用规则一：凡是在前面添加了async的函数在执行后都会自动返回一个Promise对象"></a><strong><code>async/await</code>使用规则一：凡是在前面添加了async的函数在执行后都会自动返回一个Promise对象</strong></h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> result = test()</span><br><span class="line"><span class="built_in">console</span>.log(result); <span class="comment">//test()返回Promise对象</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="async-await使用规则二：await必须在async函数里使用，不能单独使用"><a href="#async-await使用规则二：await必须在async函数里使用，不能单独使用" class="headerlink" title="async/await使用规则二：await必须在async函数里使用，不能单独使用"></a><strong><code>async/await</code>使用规则二：await必须在async函数里使用，不能单独使用</strong></h5><p>错误的例子：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> result = <span class="keyword">await</span> <span class="built_in">Promise</span>.resolve(<span class="string">'success'</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(result);</span><br><span class="line">&#125;</span><br><span class="line">test();</span><br></pre></td></tr></table></figure>
+
+<p>正确的例子：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="keyword">let</span> result = <span class="keyword">await</span> <span class="built_in">Promise</span>.resolve(<span class="string">'success'</span>);</span><br><span class="line">      <span class="built_in">console</span>.log(result); <span class="comment">// success</span></span><br><span class="line">    &#125;</span><br><span class="line">    test();</span><br></pre></td></tr></table></figure>
+
+<p><strong><code>async/await</code>使用规则三：await后面需要跟Promise对象，不然就没有意义，而且await后面的Promise对象不必写then，因为await的作用之一就是获取后面Promise对象成功状态传递出来的参数</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> fn = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">        setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">          resolve(<span class="string">'success'</span>)</span><br><span class="line">        &#125;)</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> test = <span class="keyword">async</span> () =&gt; &#123;</span><br><span class="line">      <span class="keyword">let</span> result = <span class="keyword">await</span> fn() <span class="comment">//因为fn会返回一个Promise对象</span></span><br><span class="line">      <span class="built_in">console</span>.log(result) <span class="comment">//这里会打出Promise成功后传递过来的'success'</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    test()</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-async-await的错误处理方式一"><a href="#2-async-await的错误处理方式一" class="headerlink" title="2. async/await的错误处理方式一"></a>2. <code>async</code>/<code>await</code>的错误处理方式一</h4><blockquote>
+<p>关于错误处理，如规则三所说，await可以直接获取到后面Promise成功状态传递的参数，但是却捕捉不到失败状态。在这里，我们通过给包裹await的async函数添加then/catch方法来解决，因为根据规则一，async函数本身就会返回一个Promise对象</p>
+</blockquote>
+<p>包含错误处理的完整的例子：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> promiseDemo = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> random = <span class="built_in">Math</span>.random()</span><br><span class="line">        <span class="keyword">if</span> (random &gt;= <span class="number">0.5</span>) &#123;</span><br><span class="line">            resolve(<span class="string">'success'</span>)</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            reject(<span class="string">'failed'</span>)</span><br><span class="line">        &#125;   </span><br><span class="line">    &#125;, <span class="number">1000</span>)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> result = <span class="keyword">await</span> promiseDemo</span><br><span class="line">    <span class="keyword">return</span> result  <span class="comment">//这里的result是promiseDemo成功状态的值，如果失败了，代码就直接跳到下面的catch了</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">test().then(<span class="function"><span class="params">response</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(response) </span><br><span class="line">&#125;).catch(<span class="function"><span class="params">error</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(error)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>注意：<strong>一是async函数需要主动return一下，如果Promise的状态是成功的，那么return的这个值就会被下面的then方法捕捉到；二是，如果async函数有任何错误，都被catch捕捉到！</strong></p>
+<h4 id="3-async-await的错误处理方式二"><a href="#3-async-await的错误处理方式二" class="headerlink" title="3.async/await的错误处理方式二"></a>3.<code>async</code>/<code>await</code>的错误处理方式二</h4><blockquote>
+<p>使用<code>try{}catch(e){}</code>来捕获promise错误的时候</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> promiseDemo = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">        setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">          <span class="keyword">let</span> random = <span class="built_in">Math</span>.random()</span><br><span class="line">          <span class="keyword">if</span>(random &gt; <span class="number">0.5</span>) &#123;</span><br><span class="line">            resolve(<span class="string">'success'</span>);</span><br><span class="line">          &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            reject(<span class="string">'failed'</span>);</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;, <span class="number">0</span>)</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> result = <span class="keyword">await</span> promiseDemo();</span><br><span class="line">        <span class="built_in">console</span>.log(result);</span><br><span class="line">      &#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(e + <span class="string">'错误'</span>);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    test();</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-同步和异步"><a href="#4-同步和异步" class="headerlink" title="4. 同步和异步"></a>4. 同步和异步</h4><blockquote>
+<p>在async函数中使用await，那么await这里的代码就会变成同步的了，意思就是说只有等await后面的Promise执行完成得到结果才会继续下去，await就是等待，这样虽然避免了异步，但是它也会阻塞代码，所以使用的时候要考虑周全</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> fn = <span class="function">(<span class="params">name</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve,reject</span>) =&gt;</span> &#123;</span><br><span class="line">        setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">          resolve(<span class="string">`<span class="subst">$&#123;name&#125;</span>成功`</span>)</span><br><span class="line">        &#125;, <span class="number">1000</span>)</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> test = <span class="keyword">async</span> () =&gt; &#123;</span><br><span class="line">      <span class="keyword">let</span> p1 = <span class="keyword">await</span> fn(<span class="string">'小红'</span>);</span><br><span class="line">      <span class="keyword">let</span> p2 = <span class="keyword">await</span> fn(<span class="string">'小明'</span>);</span><br><span class="line">      <span class="keyword">let</span> p3 = <span class="keyword">await</span> fn(<span class="string">'小华'</span>);</span><br><span class="line">      <span class="keyword">return</span> [p1, p2, p3];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    test().then(<span class="function"><span class="params">result</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(result);</span><br><span class="line">    &#125;).catch(<span class="function"><span class="params">result</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(result);</span><br><span class="line">    &#125;)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> fn = <span class="function">(<span class="params">name</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve,reject</span>) =&gt;</span> &#123;</span><br><span class="line">        setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">          resolve(<span class="string">`<span class="subst">$&#123;name&#125;</span>成功`</span>)</span><br><span class="line">        &#125;, <span class="number">1000</span>)</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> test = <span class="keyword">async</span> () =&gt; &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">'xxxxxxxxxxxxxxxxxxx'</span>);</span><br><span class="line">      <span class="keyword">let</span> p1 = <span class="keyword">await</span> fn(<span class="string">'小红'</span>);</span><br><span class="line">      <span class="keyword">let</span> p2 = <span class="keyword">await</span> fn(<span class="string">'小明'</span>);</span><br><span class="line">      <span class="keyword">let</span> p3 = <span class="keyword">await</span> fn(<span class="string">'小华'</span>);</span><br><span class="line">      <span class="built_in">console</span>.log([p1,p2,p3]);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    test();</span><br></pre></td></tr></table></figure>
+
+<p>这样写虽然是可以的，但是这里await会阻塞代码，每个await都必须等后面的fn()执行完成才会执行下一行代码，所以test函数执行需要3秒。如果不是遇到特定的场景，最好还是不要这样用。</p>
+<h4 id="5-一个适合使用async-await的业务场景"><a href="#5-一个适合使用async-await的业务场景" class="headerlink" title="5. 一个适合使用async/await的业务场景"></a>5. 一个适合使用<code>async</code>/<code>await</code>的业务场景</h4><blockquote>
+<p>在前端编程中，我们偶尔会遇到这样一个场景：我们需要发送多个请求，而<strong>后面请求的发送总是需要依赖上一个请求返回的数据</strong>。对于这个问题，我们既可以用的Promise的链式调用来解决，也可以用<code>async/await</code>来解决，然而后者会更简洁些</p>
+</blockquote>
+<p>使用promise链式调用</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">request</span>(<span class="params">time</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">        setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">            resolve(time)</span><br><span class="line">        &#125;, time)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">request(<span class="number">500</span>).then(<span class="function"><span class="params">result</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> request(result + <span class="number">1000</span>)</span><br><span class="line">&#125;).then(<span class="function"><span class="params">result</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> request(result + <span class="number">1000</span>)</span><br><span class="line">&#125;).then(<span class="function"><span class="params">result</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(result)</span><br><span class="line">&#125;).catch(<span class="function"><span class="params">error</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(error)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>使用<code>async/await</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">request</span>(<span class="params">time</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">        setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">            resolve(time)</span><br><span class="line">        &#125;, time)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">getResult</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> p1 = <span class="keyword">await</span> request(<span class="number">500</span>)</span><br><span class="line">    <span class="keyword">let</span> p2 = <span class="keyword">await</span> request(p1 + <span class="number">1000</span>)</span><br><span class="line">    <span class="keyword">let</span> p3 = <span class="keyword">await</span> request(p2 + <span class="number">1000</span>)</span><br><span class="line">    <span class="keyword">return</span> p3</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">getResult().then(<span class="function"><span class="params">result</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(result)</span><br><span class="line">&#125;).catch(<span class="function"><span class="params">error</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(error)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>相对于使用then不停地进行链式调用， 使用<code>async/await</code>会显的更加易读一些。</p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="true">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title='0' data-url='http://link.hhtjim.com/163/5146554.mp3'></li>
+                        
+                    
+                        
+                            <li title='1' data-url='http://link.hhtjim.com/qq/001faIUs4M2zna.mp3'></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id='gitalk-container' class="comment link"
+        data-ae='false'
+        data-ci=''
+        data-cs=''
+        data-r=''
+        data-o=''
+        data-a=''
+        data-d='false'
+    >查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/diaspora.js"></script>
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+</html>

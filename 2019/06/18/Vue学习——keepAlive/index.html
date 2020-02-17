@@ -1,0 +1,229 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Vue学习——keepAlive - Hexo</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate">
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="Vue中的keepAlive的介绍与应用1. keep-alive是什么
+keep-alive是一个抽象组件：它自身不会渲染一个DOM元素，也不会出现在父组件链中；使用keep-alive包裹组件时,"> 
+    <meta name="author" content="John Doe"> 
+    <link rel="alternative" href="atom.xml" title="Hexo" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <link rel="stylesheet" href="/css/diaspora.css">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-8691406134231910",
+              enable_page_level_ads: true
+         });
+    </script>
+    <script async custom-element="amp-auto-ads" src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+    </script>
+</head>
+</html>
+<body class="loading">
+    <span id="config-title" style="display:none">Hexo</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="icon-home image-icon" href="javascript:;" data-url="http://yoursite.com"></a>
+    <div title="播放/暂停" class="icon-play"></div>
+    <h3 class="subtitle">Vue学习——keepAlive</h3>
+    <div class="social">
+        <!--<div class="like-icon">-->
+            <!--<a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+        <!--</div>-->
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">Vue学习——keepAlive</h1>
+        <div class="stuff">
+            <span>六月 18, 2019</span>
+            
+  <ul class="post-tags-list"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/Vue/">Vue</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h3 id="Vue中的keepAlive的介绍与应用"><a href="#Vue中的keepAlive的介绍与应用" class="headerlink" title="Vue中的keepAlive的介绍与应用"></a><code>Vue</code>中的<code>keepAlive</code>的介绍与应用</h3><h4 id="1-keep-alive是什么"><a href="#1-keep-alive是什么" class="headerlink" title="1. keep-alive是什么"></a>1. <code>keep-alive</code>是什么</h4><blockquote>
+<p>keep-alive是一个抽象组件：它自身不会渲染一个DOM元素，也不会出现在父组件链中；使用keep-alive包裹组件时，会缓存不活动的组件实例，而不是销毁它们。</p>
+</blockquote>
+<h4 id="2-keep-alive用法"><a href="#2-keep-alive用法" class="headerlink" title="2. keep-alive用法"></a>2. <code>keep-alive</code>用法</h4><ul>
+<li><p><strong>Props</strong>：</p>
+<ul>
+<li><code>include</code> - 字符串或正则表达式。只有名称匹配的组件会被缓存。</li>
+<li><code>exclude</code> - 字符串或正则表达式。任何名称匹配的组件都不会被缓存。</li>
+<li><code>max</code> - 数字。最多可以缓存多少组件实例。</li>
+</ul>
+<p><strong><code>include</code> 和 <code>exclude</code> 属性允许组件有条件地缓存。二者都可以用逗号分隔字符串、正则表达式或一个数组来表示：</strong></p>
+<p><strong>匹配首先检查组件自身的 <code>name</code> 选项，如果 <code>name</code> 选项不可用，则匹配它的局部注册名称 (父组件 <code>components</code> 选项的键值)。匿名组件不能被匹配</strong></p>
+<p><strong><code>max</code>最多可以缓存多少组件实例。一旦这个数字达到了，在新实例被创建之前，已缓存组件中最久没有被访问的实例会被销毁掉。</strong></p>
+</li>
+<li><p>用法：</p>
+<p><code>keep-alive</code> 包裹动态组件时，会缓存不活动的组件实例，而不是销毁它们。和 <code>transition</code> 相似，<code>keep-alive</code> 是一个抽象组件：它自身不会渲染一个 DOM 元素，也不会出现在组件的父组件链中。</p>
+<p>当组件在 <code>keep-alive</code> 内被切换，它的 <code>activated</code> 和 <code>deactivated</code> 这两个生命周期钩子函数将会被对应执行。</p>
+<ol>
+<li><p>在动态组件中的应用</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;keep-alive :include=<span class="string">"whiteList"</span> :exclude=<span class="string">"blackList"</span> :max=<span class="string">"amount"</span>&gt;</span><br><span class="line">  &lt;component :is=<span class="string">"currentComponent"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">component</span>&gt;</span></span></span><br><span class="line">&lt;<span class="regexp">/keep-alive&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在<code>vue-router</code>中的应用</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;keep-alive :include=<span class="string">"whiteList"</span> :exclude=<span class="string">"blackList"</span> :max=<span class="string">"amount"</span>&gt;</span><br><span class="line">  &lt;router-view&gt;<span class="xml"><span class="tag">&lt;/<span class="name">router-view</span>&gt;</span></span></span><br><span class="line">&lt;<span class="regexp">/keep-alive&gt;</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p>注意：<code>keep-alive</code> 是用在其一个直属的子组件被开关的情形。如果你在其中有 <code>v-for</code> 则不会工作。如果有上述的多个条件性的子元素，<code>keep-alive</code> 要求同时只有一个子元素被渲染。</p>
+</li>
+</ul>
+<h4 id="3-keepAlive解决条件缓存的例子"><a href="#3-keepAlive解决条件缓存的例子" class="headerlink" title="3. keepAlive解决条件缓存的例子"></a>3. <code>keepAlive</code>解决条件缓存的例子</h4><h5 id="需求："><a href="#需求：" class="headerlink" title="需求："></a>需求：</h5><p>主页 –&gt;前进 列表页–&gt;前进 详情页，详情页 –&gt;返回 列表页 –&gt;返回 主页</p>
+<h5 id="希望："><a href="#希望：" class="headerlink" title="希望："></a>希望：</h5><p>从 详情页 –&gt;返回 列表页 的时候页面的状态是缓存，不用重新请求数据，提升用户体验。</p>
+<p>从 列表页 –&gt;返回 主页 的时候页面，注销掉列表页，以在进入不同的列表页的时候，获取最新的数据。</p>
+<h5 id="解决方案："><a href="#解决方案：" class="headerlink" title="解决方案："></a>解决方案：</h5><ol>
+<li><p>思路</p>
+<p><img src="D:/Blog/HexoBlog/source/image/keepAlive/k1.png" alt="k1"></p>
+</li>
+<li><p>写2个 <code>router-view</code> 出口</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;keep-alive&gt;</span><br><span class="line">    &lt;!-- 需要缓存的视图组件 --&gt;</span><br><span class="line">  &lt;router-view v-<span class="keyword">if</span>=<span class="string">"$route.meta.keepAlive"</span>&gt;</span><br><span class="line">  &lt;<span class="regexp">/router-view&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>keep-alive&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- 不需要缓存的视图组件 --&gt;</span><br><span class="line">&lt;router-view v-<span class="keyword">if</span>=<span class="string">"!$route.meta.keepAlive"</span>&gt;</span><br><span class="line">&lt;<span class="regexp">/router-view&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在<code>Router</code>里定义好需要缓存的视图组件</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line"><span class="keyword">import</span> VueRouter <span class="keyword">from</span> <span class="string">'vue-router'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> Home = <span class="function"><span class="params">()</span> =&gt;</span> <span class="keyword">import</span>(<span class="string">'../components/Home'</span>)</span><br><span class="line"><span class="keyword">const</span> List = <span class="function"><span class="params">()</span> =&gt;</span> <span class="keyword">import</span>(<span class="string">'../components/List'</span>)</span><br><span class="line"><span class="keyword">const</span> Detail = <span class="function"><span class="params">()</span> =&gt;</span> <span class="keyword">import</span>(<span class="string">'../components/Detail'</span>)</span><br><span class="line"></span><br><span class="line">Vue.use(VueRouter)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> routes = [</span><br><span class="line">  &#123;</span><br><span class="line">    path: <span class="string">'/'</span>,</span><br><span class="line">    name: <span class="string">'App'</span>,</span><br><span class="line">    redirect: <span class="string">'/home'</span></span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    path: <span class="string">'/home'</span>,</span><br><span class="line">    name: <span class="string">'home'</span>,</span><br><span class="line">    component: Home,</span><br><span class="line">    meta: &#123;</span><br><span class="line">      deepth: <span class="number">0.5</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    path: <span class="string">'/home/list'</span>,</span><br><span class="line">    name: <span class="string">'list'</span>,</span><br><span class="line">    component: List,</span><br><span class="line">    meta: &#123;</span><br><span class="line">      deepth: <span class="number">1</span>,</span><br><span class="line">      keepAlive: <span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    path: <span class="string">'/home/list/detail'</span>,</span><br><span class="line">    name: <span class="string">'detail'</span>,</span><br><span class="line">    component: Detail,</span><br><span class="line">    meta: &#123;</span><br><span class="line">      deepth: <span class="number">2</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> router = <span class="keyword">new</span> VueRouter(&#123;</span><br><span class="line">  routes: routes</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> router</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>按需<code>keepAlive</code></p>
+<p><img src="D:/Blog/HexoBlog/source/image/keepAlive/k2.png" alt="k2"></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;keep-alive :include=<span class="string">"include"</span>&gt;</span><br><span class="line">    &lt;!-- 需要缓存的视图组件 --&gt;</span><br><span class="line">  &lt;router-view v-<span class="keyword">if</span>=<span class="string">"$route.meta.keepAlive"</span>&gt;</span><br><span class="line">  &lt;<span class="regexp">/router-view&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>keep-alive&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- 不需要缓存的视图组件 --&gt;</span><br><span class="line">&lt;router-view v-<span class="keyword">if</span>=<span class="string">"!$route.meta.keepAlive"</span>&gt;</span><br><span class="line">&lt;<span class="regexp">/router-view&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>在<code>app.vue</code>里监听路由的变化</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  name: <span class="string">"App"</span>,</span><br><span class="line">  data() &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      name: <span class="string">"app-left"</span>,</span><br><span class="line">      include: []</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">  watch: &#123;</span><br><span class="line">    $route(to, <span class="keyword">from</span>) &#123;</span><br><span class="line">      <span class="comment">//如果要 to(进入)的页面需要 keepAlive 缓存的 把 name push 进 include 数组</span></span><br><span class="line">      <span class="keyword">if</span> (to.meta.keepAlive) &#123;</span><br><span class="line">        !<span class="keyword">this</span>.include.includes(to.name) &amp;&amp; <span class="keyword">this</span>.include.push(to.name);</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="comment">// 如果要 from(离开) 的页面是 keepAlive 缓存的</span></span><br><span class="line">      <span class="comment">// 再根据 deepth 来判断是前进还是后退</span></span><br><span class="line">      <span class="comment">// 如果是后退</span></span><br><span class="line">      <span class="keyword">if</span> (<span class="keyword">from</span>.meta.keepAlive &amp;&amp; to.meta.deepth &lt; <span class="keyword">from</span>.meta.deepth) &#123;</span><br><span class="line">        <span class="keyword">let</span> index = <span class="keyword">this</span>.include.indexOf(<span class="keyword">from</span>.name);</span><br><span class="line">        <span class="built_in">console</span>.log(index);</span><br><span class="line">        index !== <span class="number">-1</span> &amp;&amp; <span class="keyword">this</span>.include.splice(index, <span class="number">1</span>);</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">const</span> toDepth = to.path.split(<span class="string">"/"</span>).length;</span><br><span class="line">      <span class="keyword">const</span> fromDepth = <span class="keyword">from</span>.path.split(<span class="string">"/"</span>).length;</span><br><span class="line">      <span class="keyword">this</span>.name = toDepth &lt; fromDepth ? <span class="string">"app-right"</span> : <span class="string">"app-left"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>这样就可以满足需求</p>
+</li>
+</ol>
+<h4 id="4-补充："><a href="#4-补充：" class="headerlink" title="4. 补充："></a>4. 补充：</h4><blockquote>
+<p>再<code>vue-router</code>的<code>过渡动效</code>中可以根据数组的<code>split</code>方法分割成数组的长度，达成左右切换的过渡效果</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">watch: &#123;</span><br><span class="line">    $route(to, from) &#123;</span><br><span class="line">      //如果要 to(进入)的页面需要 keepAlive 缓存的 把 name push 进 include 数组</span><br><span class="line">      if (to.meta.keepAlive) &#123;</span><br><span class="line">        !this.include.includes(to.name) &amp;&amp; this.include.push(to.name);</span><br><span class="line">      &#125;</span><br><span class="line">      // 如果要 from(离开) 的页面是 keepAlive 缓存的</span><br><span class="line">      // 再根据 deepth 来判断是前进还是后退</span><br><span class="line">      // 如果是后退</span><br><span class="line">      if (from.meta.keepAlive &amp;&amp; to.meta.deepth &lt; from.meta.deepth) &#123;</span><br><span class="line">        let index = this.include.indexOf(from.name);</span><br><span class="line">        console.log(index);</span><br><span class="line">        index !== -1 &amp;&amp; this.include.splice(index, 1);</span><br><span class="line">      &#125;</span><br><span class="line">      const toDepth = to.path.split(&quot;/&quot;).length;</span><br><span class="line">      const fromDepth = from.path.split(&quot;/&quot;).length;</span><br><span class="line">      this.name = toDepth &lt; fromDepth ? &quot;app-right&quot; : &quot;app-left&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    path: <span class="string">'/'</span>,</span><br><span class="line">    name: <span class="string">'App'</span>,</span><br><span class="line">    redirect: <span class="string">'/home'</span></span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    path: <span class="string">'/home'</span>,</span><br><span class="line">    name: <span class="string">'home'</span>,</span><br><span class="line">    component: Home,</span><br><span class="line">    meta: &#123;</span><br><span class="line">      deepth: <span class="number">0.5</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    path: <span class="string">'/home/list'</span>,</span><br><span class="line">    name: <span class="string">'list'</span>,</span><br><span class="line">    component: List,</span><br><span class="line">    meta: &#123;</span><br><span class="line">      deepth: <span class="number">1</span>,</span><br><span class="line">      keepAlive: <span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    path: <span class="string">'/home/list/detail'</span>,</span><br><span class="line">    name: <span class="string">'detail'</span>,</span><br><span class="line">    component: Detail,</span><br><span class="line">    meta: &#123;</span><br><span class="line">      deepth: <span class="number">2</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p>注意：需要搭配好路由</p>
+<h5 id="过渡效果实现"><a href="#过渡效果实现" class="headerlink" title="过渡效果实现"></a>过渡效果实现</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;transition :name=<span class="string">"name"</span>&gt;</span><br><span class="line">      &lt;keep-alive :include=<span class="string">"include"</span>&gt;</span><br><span class="line">        &lt;router-view v-<span class="keyword">if</span>=<span class="string">"$route.meta.keepAlive"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">router-view</span>&gt;</span></span></span><br><span class="line">      &lt;<span class="regexp">/keep-alive&gt;</span></span><br><span class="line"><span class="regexp">    &lt;/</span>transition&gt;</span><br><span class="line">    &lt;transition :name=<span class="string">"name"</span>&gt;</span><br><span class="line">      &lt;router-view v-<span class="keyword">if</span>=<span class="string">"!$route.meta.keepAlive"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">router-view</span>&gt;</span></span></span><br><span class="line">    &lt;<span class="regexp">/transition&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#app</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">overflow-x</span>: hidden;</span><br><span class="line">  <span class="selector-class">.app-left-enter-active</span>,</span><br><span class="line">  <span class="selector-class">.app-right-enter-active</span>,</span><br><span class="line">  <span class="selector-class">.app-left-leave-active</span>,</span><br><span class="line">  <span class="selector-class">.app-right-leave-active</span> &#123;</span><br><span class="line">    <span class="attribute">opacity</span>: <span class="number">1</span>;</span><br><span class="line">    <span class="attribute">transition</span>: <span class="number">0.3s</span>;</span><br><span class="line">    <span class="attribute">position</span>: absolute;</span><br><span class="line">    <span class="attribute">backface-visibility</span>: hidden;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="selector-class">.app-left-enter</span> &#123;</span><br><span class="line">    <span class="attribute">opacity</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">transform</span>: translateX(<span class="number">100%</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="selector-class">.app-left-leave-active-to</span> &#123;</span><br><span class="line">    <span class="attribute">opacity</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">transform</span>: translateX(-<span class="number">100%</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="selector-class">.app-right-enter</span> &#123;</span><br><span class="line">    <span class="attribute">opacity</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">transform</span>: translateX(-<span class="number">100%</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="selector-class">.app-right-leave-active-to</span> &#123;</span><br><span class="line">    <span class="attribute">opacity</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">transform</span>: translateX(<span class="number">100%</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="true">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title='0' data-url='http://link.hhtjim.com/163/5146554.mp3'></li>
+                        
+                    
+                        
+                            <li title='1' data-url='http://link.hhtjim.com/qq/001faIUs4M2zna.mp3'></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id='gitalk-container' class="comment link"
+        data-ae='false'
+        data-ci=''
+        data-cs=''
+        data-r=''
+        data-o=''
+        data-a=''
+        data-d='false'
+    >查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/diaspora.js"></script>
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+</html>

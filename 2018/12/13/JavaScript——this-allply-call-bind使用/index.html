@@ -1,0 +1,244 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>JavaScript——this,allply,call,bind使用 - Hexo</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate">
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="JS中this,apply,call,bind使用
+this
+
+this 代表函数运行时的环境。注意是函数，是函数，还有就是运行时!
+1234function hello()&amp;#123;    co,"> 
+    <meta name="author" content="John Doe"> 
+    <link rel="alternative" href="atom.xml" title="Hexo" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <link rel="stylesheet" href="/css/diaspora.css">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-8691406134231910",
+              enable_page_level_ads: true
+         });
+    </script>
+    <script async custom-element="amp-auto-ads" src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+    </script>
+</head>
+</html>
+<body class="loading">
+    <span id="config-title" style="display:none">Hexo</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="icon-home image-icon" href="javascript:;" data-url="http://yoursite.com"></a>
+    <div title="播放/暂停" class="icon-play"></div>
+    <h3 class="subtitle">JavaScript——this,allply,call,bind使用</h3>
+    <div class="social">
+        <!--<div class="like-icon">-->
+            <!--<a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+        <!--</div>-->
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">JavaScript——this,allply,call,bind使用</h1>
+        <div class="stuff">
+            <span>十二月 13, 2018</span>
+            
+  <ul class="post-tags-list"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h3 id="JS中this-apply-call-bind使用"><a href="#JS中this-apply-call-bind使用" class="headerlink" title="JS中this,apply,call,bind使用"></a><code>JS</code>中<code>this</code>,<code>apply</code>,<code>call</code>,<code>bind</code>使用</h3><ul>
+<li><h5 id="this"><a href="#this" class="headerlink" title="this"></a><code>this</code></h5></li>
+</ul>
+<p>this 代表<code>函数</code>运行时的环境。注意是函数，是函数，还有就是<code>运行时</code>!</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">hello</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>); <span class="comment">// window</span></span><br><span class="line">&#125;</span><br><span class="line">hello();</span><br></pre></td></tr></table></figure>
+
+<p>当 hello 函数执行时，在函数内部有个变量 this,代表这个函数运行环境，上述函数在全局环境下且在浏览器环境下运行，那么这个 this 就指向 window,这个比较好理解。但是许多现在许多 js 框架的设计都是使用<code>构造函数</code>方式设计的,例如下面构造函数：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Dog</span>(<span class="params">name,color</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">    <span class="keyword">this</span>.color = color;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> a = <span class="keyword">new</span> Dog(<span class="string">"阿黄"</span>,<span class="string">"黄色"</span>)</span><br></pre></td></tr></table></figure>
+
+<p>构造函数首先函数名称<code>首字母都会大写</code>，其次都会使用一个 <code>new</code> 来构造一个实例,new 的时候 构造函数就会运行一次，这个时候构造函数里的this就指向这个实例对象</p>
+<p>上述构造函数只是实现了一些属性，其实更多的时候构造函数内部应该根据传入的值来实现一些方法，从而体现良好的封装性。例如使得上述狗类增加一个方法:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Dog</span>(<span class="params">name,color</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.color = color;</span><br><span class="line">  <span class="keyword">this</span>.name = name;</span><br><span class="line">  <span class="keyword">this</span>.say = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`I am a <span class="subst">$&#123;<span class="keyword">this</span>.color&#125;</span> dog ,my name is <span class="subst">$&#123;<span class="keyword">this</span>.name&#125;</span>`</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> ahuang = <span class="keyword">new</span> Dog(<span class="string">"阿黄"</span>,<span class="string">"黄色"</span>)</span><br><span class="line">ahuang.say() <span class="comment">// I am a 黄色 dog ,my name is 阿黄</span></span><br></pre></td></tr></table></figure>
+
+<p>首先先实例出来一个对象 <code>ahuang</code>,再调用 <code>ahuang</code> 的 say 方法,say 方法内部可以获取到 color 和 name.</p>
+<p>现在稍作改动：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Dog</span>(<span class="params">name, color</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.color = color;</span><br><span class="line">  <span class="keyword">this</span>.name = name;</span><br><span class="line">  <span class="keyword">this</span>.say = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`I am a <span class="subst">$&#123;<span class="keyword">this</span>.color&#125;</span> dog ,my name is <span class="subst">$&#123;<span class="keyword">this</span>.name&#125;</span>`</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> ahuang = <span class="keyword">new</span> Dog(<span class="string">"阿黄"</span>, <span class="string">"黄色"</span>);</span><br><span class="line"><span class="keyword">let</span> a = ahuang.say;</span><br><span class="line">a(); <span class="comment">// I am a undefined dog ,my name is</span></span><br></pre></td></tr></table></figure>
+
+<p>a 变量只是获取了<code>ahuang</code>的 say 方法定义，还没有执行，此时的 a 定于在全局，如果直接这样执行，那么say方法的this自然也就指向了全局的 window 了，由于全局上没有color和name,所以就成 undefined了</p>
+<p>其实我的理解是：函数一个工具和机器，只负责执行，可以理解为函数独立于对象，犹如一个榨汁机，如果放入橙子，运行时自然就会榨出橙汁，如果放入苹果，自然就会榨出苹果汁。这里苹果和橙子就是运行环境。</p>
+<p>对于给定什么环境运行函数，就可能产生不同结果，这样虽然比较自由，但过分自由也会导致一些问题产生，例如上述 Dog 的 say 方法：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.say = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">   <span class="built_in">console</span>.log(<span class="string">`I am a <span class="subst">$&#123;<span class="keyword">this</span>.color&#125;</span> dog ,my name is <span class="subst">$&#123;<span class="keyword">this</span>.name&#125;</span>`</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>显然这个方法只有运行于狗这个对象才有意义，放在全局虽然也能运行，但却失去了这个方法的意义。 所以需要一种机制能够始终使得这个方法能够在狗对象中运行。</p>
+<h5 id="方案一：采用箭头函数来定义"><a href="#方案一：采用箭头函数来定义" class="headerlink" title="方案一：采用箭头函数来定义"></a>方案一：采用箭头函数来定义</h5><p>箭头函数绑定了运行环境，即定义在哪个对象内，则这个箭头函数内部 this 始终为这个对象</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Dog</span>(<span class="params">name,color</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.color = color;</span><br><span class="line">  <span class="keyword">this</span>.name = name;</span><br><span class="line">  <span class="keyword">this</span>.say = <span class="function"><span class="params">()</span>=&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`I am a <span class="subst">$&#123;<span class="keyword">this</span>.color&#125;</span> dog ,my name is <span class="subst">$&#123;<span class="keyword">this</span>.name&#125;</span>`</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> ahuang = <span class="keyword">new</span> Dog(<span class="string">"阿黄"</span>,<span class="string">"黄色"</span>)</span><br><span class="line"><span class="keyword">let</span> a = ahuang.say</span><br><span class="line">a() <span class="comment">// I am a 黄色 dog ,my name is 阿黄</span></span><br></pre></td></tr></table></figure>
+
+<p>上述函数，即使a在全局定义，但是 say 是箭头函数定义的，里面 this 依然指向 <code>ahuang.</code></p>
+<h5 id="方案二-使用-call-或者-apply-来实现。"><a href="#方案二-使用-call-或者-apply-来实现。" class="headerlink" title="方案二 使用 call 或者 apply 来实现。"></a>方案二 使用 call 或者 apply 来实现。</h5><ul>
+<li><h5 id="call-和-apply"><a href="#call-和-apply" class="headerlink" title="call 和 apply"></a>call 和 apply</h5><p>call和 apply 方法功能是一样的，只是传入的参数形式不一样，作用都是绑定（劫持）一个特定的执行环境：</p>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">func.call(<span class="keyword">this</span>, arg1, arg2,...);</span><br><span class="line">func.apply(<span class="keyword">this</span>, [arg1, arg2]);</span><br></pre></td></tr></table></figure>
+
+<p>call 第一个参数为执行环境，其余参数为 <code>func</code>的参数,可以有无数个参数，而apply只有两个参数，第一个为执行环境，第二个为其余数组，通过一个数组来传递</p>
+<p>例如上述狗的构造函数也可以使用call来实现箭头函数效果：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Dog</span>(<span class="params">name,color</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.color = color;</span><br><span class="line">  <span class="keyword">this</span>.name = name;</span><br><span class="line">  <span class="keyword">this</span>.say = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`I am a <span class="subst">$&#123;<span class="keyword">this</span>.color&#125;</span> dog ,my name is <span class="subst">$&#123;<span class="keyword">this</span>.name&#125;</span>`</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> ahuang = <span class="keyword">new</span> Dog(<span class="string">"阿黄"</span>,<span class="string">"黄色"</span>);</span><br><span class="line"><span class="keyword">let</span> b = ahuang.say;</span><br><span class="line">b.call(ahuang);<span class="comment">// 30 I am a 黄色 dog ,my name is 阿黄</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="使用call-和-apply-还有一些常用的应用"><a href="#使用call-和-apply-还有一些常用的应用" class="headerlink" title="使用call 和 apply 还有一些常用的应用"></a>使用call 和 apply 还有一些常用的应用</h5><ol>
+<li><p>求数组最大值</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line"><span class="comment">// 方法一：</span></span><br><span class="line"><span class="built_in">Math</span>.max(...arr)</span><br><span class="line"><span class="comment">// 方法二</span></span><br><span class="line"><span class="built_in">Math</span>.max.apply(<span class="built_in">Math</span>,arr) <span class="comment">// 巧妙地利用了第二个参数为数组特征</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>判断数组</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isArray</span>(<span class="params">obj</span>)</span>&#123; </span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Object</span>.prototype.toString.call(obj) === <span class="string">'[object Array]'</span> ;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ul>
+<li><h5 id="bind"><a href="#bind" class="headerlink" title="bind"></a>bind</h5><p>bind 和 call，apply 也有相似之处，bind()方法会创建一个新函数，称为绑定函数，当调用这个绑定函数时，绑定函数会以创建它时传入 bind()方法的第一个参数作为 this，传入 bind() 方法的第二个以及以后的参数加上绑定函数运行时本身的参数按照顺序作为原函数的参数来调用原函数。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Dog</span>(<span class="params">name,color</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.color = color;</span><br><span class="line">  <span class="keyword">this</span>.name = name;</span><br><span class="line">  <span class="keyword">this</span>.say = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`I am a <span class="subst">$&#123;<span class="keyword">this</span>.color&#125;</span> dog ,my name is <span class="subst">$&#123;<span class="keyword">this</span>.name&#125;</span>`</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> ahuang = <span class="keyword">new</span> Dog(<span class="string">"阿黄"</span>,<span class="string">"黄色"</span>);</span><br><span class="line"><span class="comment">// 使用bind后b返回的是一个函数，这个函数内的this永远是ahuang了</span></span><br><span class="line"><span class="keyword">let</span> b = ahuang.say.bind(ahuang); </span><br><span class="line">b(); <span class="comment">// I am a 黄色 dog ,my name is 阿黄</span></span><br></pre></td></tr></table></figure>
+
+<p>可见 bind 绑定执行环境是<code>静态</code>的，关键是在<code>定义时</code>就可以绑定，而不是像 call 那样需要调用时去绑定.有点类似于箭头函数。</p>
+<h5 id="bind-一般有几个经典的应用场景："><a href="#bind-一般有几个经典的应用场景：" class="headerlink" title="bind 一般有几个经典的应用场景："></a>bind 一般有几个经典的应用场景：</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>].forEach(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>) <span class="comment">// window</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>匿名的回调函数里面 this 一般为指向 window 假如我们要在这个函数内用到一些其他对象的值，则可以通过bind来改变回调函数的值，以<code>Vue</code>框架为例：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> vm = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  data()&#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      height:<span class="number">768</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  mounted()&#123;</span><br><span class="line">    <span class="built_in">window</span>.addEventListener(<span class="string">"resize"</span>,(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.height = <span class="built_in">document</span>.body.clientHeight</span><br><span class="line">    &#125;).bind(<span class="keyword">this</span>))</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>如果不绑定this,则回调函数内this为 window ,显然读取不到<code>this.height</code>,当然还可以使用箭头函数或者声明一个中间变量来解决：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">mounted()&#123;</span><br><span class="line">   <span class="built_in">window</span>.addEventListener(<span class="string">"resize"</span>,()=&gt;&#123;</span><br><span class="line">     <span class="keyword">this</span>.height = <span class="built_in">document</span>.body.clientHeight</span><br><span class="line">   &#125;)</span><br><span class="line">   <span class="comment">// 或者</span></span><br><span class="line">   <span class="keyword">let</span> _this =<span class="keyword">this</span></span><br><span class="line">    <span class="built_in">window</span>.addEventListener(<span class="string">"resize"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">     _this.height = <span class="built_in">document</span>.body.clientHeight</span><br><span class="line">   &#125;)</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<p>所以在 <code>Vue</code>框架内建议多用箭头函数来定义，<code>forEach</code>,<code>map</code>等方法也是如此</p>
+<h4 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a>实现原理</h4><blockquote>
+<p>关于call、bind实现原理</p>
+</blockquote>
+<ul>
+<li><h5 id="call"><a href="#call" class="headerlink" title="call"></a>call</h5><p>例如有个榨汁机现在在榨橙汁，现在我们想让榨汁机在苹果的环境中运行</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">榨汁机.call(<span class="string">"苹果"</span>)</span><br></pre></td></tr></table></figure>
+
+<p>调用 call 时会传入苹果对象，我们需要在苹果对象上增加榨汁机的方法，再执行一次，执行完毕后再把原属于榨汁机的方法给删掉即可！虽然有点牵强，但实际就是这么干的</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Function</span>.prototype.myCall = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> args = [...arguments];</span><br><span class="line">  <span class="keyword">let</span> ctx = args.length &gt; <span class="number">0</span> ? args.shift() : <span class="built_in">window</span>;</span><br><span class="line">  <span class="keyword">let</span> s = <span class="built_in">Symbol</span>(); <span class="comment">// 生成一个唯一值</span></span><br><span class="line">  <span class="comment">// 在被劫持者对象属性中加入这个属性</span></span><br><span class="line">  ctx[s] = <span class="keyword">this</span>;</span><br><span class="line">  <span class="keyword">let</span> result = ctx[s](...args);</span><br><span class="line">  <span class="keyword">delete</span> ctx[s];</span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><h5 id="bind-1"><a href="#bind-1" class="headerlink" title="bind"></a>bind</h5><p>bind 返回的是一个函数,或者说闭包</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Function</span>.prototype.myBind = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">let</span> args = [...arguments]</span><br><span class="line">  <span class="keyword">let</span> ctx = args.length&gt;<span class="number">0</span> ? args.shift() : <span class="built_in">window</span></span><br><span class="line">  <span class="keyword">let</span> s = <span class="built_in">Symbol</span>() <span class="comment">// 生成一个唯一值</span></span><br><span class="line">  <span class="comment">// 在被劫持者对象属性中加入这个属性</span></span><br><span class="line">  ctx[s] = <span class="keyword">this</span></span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> res = ctx[s](...args) <span class="comment">// 定义了在特定的上下文运行的结果，当执行时就能得到这个特定上下文的结果。</span></span><br><span class="line">    <span class="keyword">delete</span> ctx[s]</span><br><span class="line">    <span class="keyword">return</span> res</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ul>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="true">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title='0' data-url='http://link.hhtjim.com/163/5146554.mp3'></li>
+                        
+                    
+                        
+                            <li title='1' data-url='http://link.hhtjim.com/qq/001faIUs4M2zna.mp3'></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id='gitalk-container' class="comment link"
+        data-ae='false'
+        data-ci=''
+        data-cs=''
+        data-r=''
+        data-o=''
+        data-a=''
+        data-d='false'
+    >查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/diaspora.js"></script>
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+</html>

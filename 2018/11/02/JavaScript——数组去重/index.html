@@ -1,0 +1,250 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>JavaScript——数组去重 - Hexo</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate">
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="1. 数组的遍历方法
+Array.forEach()
+
+遍历数组，和普通的for循环使用类似
+
+
+Array.entries()
+
+返回一个Array Iterator对象，该对象包含数组中每一个索,"> 
+    <meta name="author" content="John Doe"> 
+    <link rel="alternative" href="atom.xml" title="Hexo" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <link rel="stylesheet" href="/css/diaspora.css">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-8691406134231910",
+              enable_page_level_ads: true
+         });
+    </script>
+    <script async custom-element="amp-auto-ads" src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+    </script>
+</head>
+</html>
+<body class="loading">
+    <span id="config-title" style="display:none">Hexo</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="icon-home image-icon" href="javascript:;" data-url="http://yoursite.com"></a>
+    <div title="播放/暂停" class="icon-play"></div>
+    <h3 class="subtitle">JavaScript——数组去重</h3>
+    <div class="social">
+        <!--<div class="like-icon">-->
+            <!--<a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+        <!--</div>-->
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">JavaScript——数组去重</h1>
+        <div class="stuff">
+            <span>十一月 02, 2018</span>
+            
+  <ul class="post-tags-list"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h3 id="1-数组的遍历方法"><a href="#1-数组的遍历方法" class="headerlink" title="1. 数组的遍历方法"></a>1. 数组的遍历方法</h3><ol>
+<li><p><code>Array.forEach()</code></p>
+<blockquote>
+<p>遍历数组，和普通的for循环使用类似</p>
+</blockquote>
+</li>
+<li><p><code>Array.entries()</code></p>
+<blockquote>
+<p>返回一个Array Iterator对象，该对象包含数组中每一个索引的键值对</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="string">"a"</span>, <span class="string">"b"</span>, <span class="string">"c"</span>];</span><br><span class="line"><span class="keyword">var</span> eArr = arr.entries();</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(eArr.next().value); <span class="comment">// [0, "a"]</span></span><br><span class="line"><span class="built_in">console</span>.log(eArr.next().value); <span class="comment">// [1, "b"]</span></span><br><span class="line"><span class="built_in">console</span>.log(eArr.next().value); <span class="comment">// [2, "c"]</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>Array.every()</code></p>
+<blockquote>
+<p>every()是对数组中每一项运行给定函数，如果该函数对<strong>每一项</strong>返回true,则返回true</p>
+</blockquote>
+</li>
+<li><p><code>Array.some()</code></p>
+<blockquote>
+<p>some()是对数组中每一项运行给定函数，如果该函数对<strong>任一项</strong>返回true,则返回true</p>
+</blockquote>
+</li>
+<li><p><code>Array.filter</code></p>
+<blockquote>
+<p>filter()方法使用指定的函数测试所有元素，并创建一个包含所有通过测试的元素的新数组</p>
+</blockquote>
+</li>
+<li><p><code>Array.map()</code></p>
+<blockquote>
+<p>遍历数组每一项，并且返回一个新数组</p>
+</blockquote>
+</li>
+<li><p><code>Array.find()</code></p>
+<blockquote>
+<p>find()方法，用于找出第一个符合条件的数组成员。它的参数是一个回调函数，所有数组成员依次执行该回调函数，直到找出第一个返回值为true的成员，然后返回该成员。如果没有符合条件的成员，则返回undefined。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> num = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">4</span>].find(<span class="function"><span class="params">item</span> =&gt;</span> item &gt; <span class="number">2</span>);</span><br><span class="line"><span class="built_in">console</span>.log(num); <span class="comment">//4</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>Array.findIndex()</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> num1 = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">4</span>].findIndex(<span class="function"><span class="params">item</span> =&gt;</span> item &gt; <span class="number">2</span>);</span><br><span class="line"><span class="built_in">console</span>.log(num1); <span class="comment">//2</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>Array.reduce((prev,cur,index,array){},init)</code></p>
+<blockquote>
+<p>该方法接收一个函数作为累加器（accumulator），数组中的每个值（从左到右）开始合并，最终为一个值</p>
+<p><strong>array</strong> 表示原数组；<br><strong>prev</strong> 表示上一次调用回调时的返回值，或者初始值 init;<br><strong>cur</strong> 表示当前正在处理的数组元素；<br><strong>index</strong> 表示当前正在处理的数组元素的索引，若提供 init 值，则索引为0，否则索引为1；<br><strong>init</strong> 表示初始值</p>
+</blockquote>
+</li>
+</ol>
+<h3 id="2-数组去重的几种方法"><a href="#2-数组去重的几种方法" class="headerlink" title="2. 数组去重的几种方法"></a>2. 数组去重的几种方法</h3><ol>
+<li><p>定义一个新数组，并存放原数组的第一个元素，然后将元素组一一和新数组的元素对比，若不同则存放在新数组中。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">unique</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">let</span> newArr = [];</span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">        <span class="keyword">let</span> repeat = <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">let</span> j = <span class="number">0</span>; j &lt; newArr.length; j++) &#123;</span><br><span class="line">          <span class="keyword">if</span> (arr[i] === newArr[j]) &#123;</span><br><span class="line">            repeat = <span class="literal">true</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (!repeat) &#123;</span><br><span class="line">          newArr.push(arr[i]);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> newArr;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">console</span>.log(unique([<span class="number">1</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">3</span>, <span class="number">1</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">4</span>]));</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>先将原数组排序，在与相邻的进行比较，如果不同则存入新数组。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">unique2</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">var</span> formArr = arr.sort();</span><br><span class="line">      <span class="keyword">var</span> newArr = [];</span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; formArr.length; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span>(formArr[i] !== formArr[i - <span class="number">1</span>]) &#123;</span><br><span class="line">          newArr.push(formArr[i]);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> newArr;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">console</span>.log(unique2([<span class="number">1</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">3</span>, <span class="number">1</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">4</span>]));</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>利用对象属性存在的特性，如果没有该属性则存入新数组</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">unique3</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">var</span> obj = &#123;&#125;</span><br><span class="line">      <span class="keyword">var</span> newArr = []</span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (!obj[arr[i]]) &#123;</span><br><span class="line">          obj[arr[i]] = <span class="number">1</span></span><br><span class="line">          newArr.push(arr[i])</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="comment">// console.log(obj);</span></span><br><span class="line">      <span class="keyword">return</span> newArr</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">console</span>.log(unique3([<span class="number">1</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">3</span>, <span class="number">1</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">4</span>]));</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>利用数组的<code>indexOf</code>下标属性来查询。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">unique4</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">var</span> newArr = [];</span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span>(newArr.indexOf(arr[i]) === <span class="number">-1</span>) &#123;</span><br><span class="line">          newArr.push(arr[i]);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> newArr;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">console</span>.log(unique4([<span class="number">1</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">3</span>, <span class="number">1</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">4</span>]));</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>利用数组原型对象上的includes方法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> unique5 = <span class="function">(<span class="params">arr</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">let</span> newArr = [];</span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span>(!newArr.includes(arr[i])) &#123;</span><br><span class="line">          newArr.push(arr[i]);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> newArr;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">console</span>.log(unique5([<span class="number">1</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">3</span>, <span class="number">1</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">4</span>]));</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>利用数组原型对象上的 filter 和 includes方法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">unique6</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">let</span> newArr = [];</span><br><span class="line">      newArr = arr.filter(<span class="function"><span class="params">item</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> newArr.includes(item) ? <span class="string">''</span> : newArr.push(item)</span><br><span class="line">      &#125;);</span><br><span class="line">      <span class="keyword">return</span> newArr;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">console</span>.log(unique6([<span class="number">1</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">3</span>, <span class="number">1</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">4</span>]));</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>利用数组原型对象上的 forEach 和 includes方法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">unique7</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">let</span> newArr = [];</span><br><span class="line">      arr.forEach(<span class="function"><span class="params">item</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">if</span>(!newArr.includes(item)) &#123;</span><br><span class="line">          newArr.push(item);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;);</span><br><span class="line">      <span class="keyword">return</span> newArr;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">console</span>.log(unique7([<span class="number">1</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">3</span>, <span class="number">1</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">4</span>]));</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>利用数组原型对象上的reduce和include方法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> unique8 = <span class="function">(<span class="params">arr</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> newArr = arr.reduce(<span class="function">(<span class="params">all, item</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">if</span>(!all.includes(item)) &#123;</span><br><span class="line">          all.push(item);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> all;</span><br><span class="line">      &#125;, [])</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="built_in">console</span>.log(unique8([<span class="number">1</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">3</span>, <span class="number">1</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">4</span>]));</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>ES6 set方法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">unique9</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="built_in">Array</span>.from(<span class="keyword">new</span> <span class="built_in">Set</span>(arr));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">console</span>.log(unique9([<span class="number">1</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">3</span>, <span class="number">1</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">4</span>]));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 或</span></span><br><span class="line"></span><br><span class="line"> <span class="function"><span class="keyword">function</span> <span class="title">unique10</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> [...new <span class="built_in">Set</span>(arr)];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">console</span>.log(unique10([<span class="number">1</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">3</span>, <span class="number">1</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">4</span>]));</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="true">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title='0' data-url='http://link.hhtjim.com/163/5146554.mp3'></li>
+                        
+                    
+                        
+                            <li title='1' data-url='http://link.hhtjim.com/qq/001faIUs4M2zna.mp3'></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id='gitalk-container' class="comment link"
+        data-ae='false'
+        data-ci=''
+        data-cs=''
+        data-r=''
+        data-o=''
+        data-a=''
+        data-d='false'
+    >查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/diaspora.js"></script>
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+</html>

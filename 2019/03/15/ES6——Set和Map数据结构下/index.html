@@ -1,0 +1,224 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>ES6——Set和Map数据结构下 - Hexo</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate">
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="ES6的Set和Map数据结构下2. 字典：在数据结构还有一种结构叫做字典，它就是实现基于ES6中的Map类的结构
+那么集合又和字典有什么区别呢：
+
+共同点：集合、字典可以存储不重复的值
+不同点：集,"> 
+    <meta name="author" content="John Doe"> 
+    <link rel="alternative" href="atom.xml" title="Hexo" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <link rel="stylesheet" href="/css/diaspora.css">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-8691406134231910",
+              enable_page_level_ads: true
+         });
+    </script>
+    <script async custom-element="amp-auto-ads" src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+    </script>
+</head>
+</html>
+<body class="loading">
+    <span id="config-title" style="display:none">Hexo</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="icon-home image-icon" href="javascript:;" data-url="http://yoursite.com"></a>
+    <div title="播放/暂停" class="icon-play"></div>
+    <h3 class="subtitle">ES6——Set和Map数据结构下</h3>
+    <div class="social">
+        <!--<div class="like-icon">-->
+            <!--<a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+        <!--</div>-->
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">ES6——Set和Map数据结构下</h1>
+        <div class="stuff">
+            <span>三月 15, 2019</span>
+            
+  <ul class="post-tags-list"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/ES6/">ES6</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h3 id="ES6的Set和Map数据结构下"><a href="#ES6的Set和Map数据结构下" class="headerlink" title="ES6的Set和Map数据结构下"></a>ES6的Set和Map数据结构下</h3><h4 id="2-字典："><a href="#2-字典：" class="headerlink" title="2. 字典："></a>2. 字典：</h4><p>在数据结构还有一种结构叫做<strong>字典</strong>，它就是实现基于ES6中的Map类的结构</p>
+<p>那么集合又和字典有什么区别呢：</p>
+<ul>
+<li>共同点：集合、字典可以存储不重复的值</li>
+<li>不同点：集合是以[值，值]的形式存储元素，字典是以[键，值]的形式存储</li>
+</ul>
+<p>Map其实的主要用途也是用于存储数据的，相比于Object只提供“字符串—值”的对应，Map提供了“键—值”的对应。也就是说如果你需要“键值对”的数据结构，Map比Object更合适</p>
+<p>下面来看一下基本使用：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> m = <span class="keyword">new</span> <span class="built_in">Map</span>();</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> o = &#123;</span><br><span class="line">  p: <span class="string">'Hello World'</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">m.set(o, <span class="string">'content'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(m);</span><br><span class="line"><span class="built_in">console</span>.log(m.get(o)); <span class="comment">// content</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(m.has(o)); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(m.delete(o)); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(m.has(o)); <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+
+<p>以上是Map的基本使用。</p>
+<h5 id="Map语法"><a href="#Map语法" class="headerlink" title="Map语法"></a>Map语法</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> <span class="built_in">Map</span>([iterable])</span><br></pre></td></tr></table></figure>
+
+<p><code>Iterable</code>参数可以是一个<code>数组</code>或者其他 <code>iterable</code>对象，其元素为键值对<strong><code>(两个元素的数组，例如: [[ 1, &#39;one&#39; ],[ 2, &#39;two&#39; ]])</code></strong>。 每个键值对都会添加到新的 Map。<code>null</code> 会被当做 <code>undefined。</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> m = <span class="keyword">new</span> <span class="built_in">Map</span>([[ <span class="number">1</span>, <span class="string">'one'</span> ],[ <span class="number">2</span>, <span class="string">'two'</span> ]]);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(m); <span class="comment">// Map &#123; 1 =&gt; 'one', 2 =&gt; 'two' &#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>一个Map对象在迭代时会根据对象中元素的插入顺序来进行 — 个  <code>for...of</code> 循环，在每次迭代后会返回一个形式为<code>[key，value]</code>的数组</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> m = <span class="keyword">new</span> <span class="built_in">Map</span>([[ <span class="number">1</span>, <span class="string">'one'</span> ],[ <span class="number">2</span>, <span class="string">'two'</span> ]]);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(m);</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> [key,value] <span class="keyword">of</span> m) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'key:'</span> + key + <span class="string">','</span> + <span class="string">'value:'</span> + value); <span class="comment">// key:1,value:one key:2,value:two</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="Map的属性和方法"><a href="#Map的属性和方法" class="headerlink" title="Map的属性和方法"></a>Map的属性和方法</h5><p>属性：</p>
+<ul>
+<li>size：返回字典所包含的元素个数</li>
+</ul>
+<p>操作方法：</p>
+<ul>
+<li>set(key, val): 向字典中添加新元素</li>
+<li>get(key):通过键值查找特定的数值并返回</li>
+<li>has(key):如果键存在字典中返回true,否则false</li>
+<li>delete(key): 通过键值从字典中移除对应的数据</li>
+<li>clear():将这个字典中的所有元素删除</li>
+</ul>
+<p>遍历方法：</p>
+<ul>
+<li>keys():将字典中包含的所有键名以数组形式返回</li>
+<li>values():将字典中包含的所有数值以数组形式返回</li>
+<li>forEach()：遍历字典的所有成员</li>
+</ul>
+<h5 id="创建一个字典"><a href="#创建一个字典" class="headerlink" title="创建一个字典"></a>创建一个字典</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Map</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> items = &#123;&#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = <span class="built_in">Map</span>();</span><br></pre></td></tr></table></figure>
+
+<p>创建好了字典这个骨架，那就开始添加一些方法了</p>
+<h5 id="has方法"><a href="#has方法" class="headerlink" title="has方法"></a>has方法</h5><p>首先是has了，因为在set和get里都会用到，实现思路和之前写的集合也很类似</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Map</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> items = &#123;&#125;;</span><br><span class="line">  <span class="comment">// has(key)方法</span></span><br><span class="line">  <span class="keyword">this</span>.has = <span class="function"><span class="keyword">function</span> (<span class="params">val</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> items.hasOwnProperty(val);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = <span class="built_in">Map</span>();</span><br></pre></td></tr></table></figure>
+
+<p>实现了has方法后，我们可以来判断字典中是否包含该属性了，继续来实现其他方法</p>
+<h5 id="set和get方法"><a href="#set和get方法" class="headerlink" title="set和get方法"></a>set和get方法</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Map</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> items = &#123;&#125;;</span><br><span class="line">  <span class="comment">// has(key)方法</span></span><br><span class="line">  <span class="keyword">this</span>.has = <span class="function"><span class="keyword">function</span> (<span class="params">val</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> items.hasOwnProperty(val);</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="comment">// set(key, val)方法</span></span><br><span class="line">  <span class="comment">// set相同key时，后面声明的会覆盖前面</span></span><br><span class="line">  <span class="keyword">this</span>.set = <span class="function"><span class="keyword">function</span> (<span class="params">key, val</span>) </span>&#123;</span><br><span class="line">    items[key] = val;</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="comment">// get(key)方法</span></span><br><span class="line">  <span class="keyword">this</span>.get = <span class="function"><span class="keyword">function</span> (<span class="params">key</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 判断是否有key，如果有的话直接返回对应的值</span></span><br><span class="line">    <span class="comment">// 如果读取一个未知的键，则返回undefined</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.has(key) ? items[key] : <span class="literal">undefined</span>;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = <span class="built_in">Map</span>();</span><br></pre></td></tr></table></figure>
+
+<p>set和get方法写好了，再接着搞delete和clear方法</p>
+<h5 id="delete和clear方法"><a href="#delete和clear方法" class="headerlink" title="delete和clear方法"></a>delete和clear方法</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// delete(key)方法</span></span><br><span class="line">  <span class="keyword">this</span>.delete = <span class="function"><span class="keyword">function</span> (<span class="params">key</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.has(key)) &#123;    <span class="comment">// 如果有key值</span></span><br><span class="line">      <span class="keyword">delete</span> items[key];  <span class="comment">// 直接删掉items上对应的属性</span></span><br><span class="line">      <span class="keyword">this</span>.size--;        <span class="comment">// 让size总数减1</span></span><br><span class="line">      <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="comment">// clear()方法</span></span><br><span class="line">  <span class="keyword">this</span>.clear = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    items = &#123;&#125;;</span><br><span class="line">    <span class="keyword">this</span>.size = <span class="number">0</span>;</span><br><span class="line">  &#125;;</span><br></pre></td></tr></table></figure>
+
+<h5 id="遍历方法-keys-values-forEach"><a href="#遍历方法-keys-values-forEach" class="headerlink" title="遍历方法(keys(),values(),forEach())"></a>遍历方法(keys(),values(),forEach())</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// keys()方法</span></span><br><span class="line">  <span class="keyword">this</span>.keys = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Object</span>.keys(items);</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="comment">// values()方法</span></span><br><span class="line">  <span class="keyword">this</span>.values = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Object</span>.values(items);</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="comment">// forEach(fn, context)方法</span></span><br><span class="line">  <span class="keyword">this</span>.forEach = <span class="function"><span class="keyword">function</span> (<span class="params">fn, context = this</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="keyword">this</span>.size; i++) &#123;</span><br><span class="line">      <span class="keyword">let</span> key = <span class="built_in">Object</span>.keys(items)[i];</span><br><span class="line">      <span class="keyword">let</span> value = <span class="built_in">Object</span>.values(items)[i];</span><br><span class="line">      fn.call(context, value, key, items);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br></pre></td></tr></table></figure>
+
+<h5 id="Map的完整代码"><a href="#Map的完整代码" class="headerlink" title="Map的完整代码"></a>Map的完整代码</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//map.js</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Map</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> items = &#123;&#125;;</span><br><span class="line">  <span class="comment">// 记录数量</span></span><br><span class="line">  <span class="keyword">this</span>.size = <span class="number">0</span>;</span><br><span class="line">  <span class="comment">// has(key)方法</span></span><br><span class="line">  <span class="keyword">this</span>.has = <span class="function"><span class="keyword">function</span> (<span class="params">val</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> items.hasOwnProperty(val);</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="comment">// set(key, val)方法</span></span><br><span class="line">  <span class="comment">// set相同key时，后面声明的会覆盖前面</span></span><br><span class="line">  <span class="keyword">this</span>.set = <span class="function"><span class="keyword">function</span> (<span class="params">key, val</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!<span class="keyword">this</span>.has(key)) &#123;</span><br><span class="line">      items[key] = val;</span><br><span class="line">      <span class="keyword">this</span>.size++;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="comment">// get(key)方法</span></span><br><span class="line">  <span class="keyword">this</span>.get = <span class="function"><span class="keyword">function</span> (<span class="params">key</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 判断是否有key，如果有的话直接返回对应的值</span></span><br><span class="line">    <span class="comment">// 如果读取一个未知的键，则返回undefined</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.has(key) ? items[key] : <span class="literal">undefined</span>;</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="comment">// delete(key)方法</span></span><br><span class="line">  <span class="keyword">this</span>.delete = <span class="function"><span class="keyword">function</span> (<span class="params">key</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.has(key)) &#123;    <span class="comment">// 如果有key值</span></span><br><span class="line">      <span class="keyword">delete</span> items[key];  <span class="comment">// 直接删掉items上对应的属性</span></span><br><span class="line">      <span class="keyword">this</span>.size--;        <span class="comment">// 让size总数减1</span></span><br><span class="line">      <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="comment">// clear()方法</span></span><br><span class="line">  <span class="keyword">this</span>.clear = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    items = &#123;&#125;;</span><br><span class="line">    <span class="keyword">this</span>.size = <span class="number">0</span>;</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="comment">// keys()方法</span></span><br><span class="line">  <span class="keyword">this</span>.keys = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Object</span>.keys(items);</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="comment">// values()方法</span></span><br><span class="line">  <span class="keyword">this</span>.values = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Object</span>.values(items);</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="comment">// forEach(fn, context)方法</span></span><br><span class="line">  <span class="keyword">this</span>.forEach = <span class="function"><span class="keyword">function</span> (<span class="params">fn, context = this</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="keyword">this</span>.size; i++) &#123;</span><br><span class="line">      <span class="keyword">let</span> key = <span class="built_in">Object</span>.keys(items)[i];</span><br><span class="line">      <span class="keyword">let</span> value = <span class="built_in">Object</span>.values(items)[i];</span><br><span class="line">      fn.call(context, value, key, items);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = <span class="built_in">Map</span>;</span><br></pre></td></tr></table></figure>
+
+<p>测试：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//index.js</span></span><br><span class="line"><span class="keyword">const</span> <span class="built_in">Map</span> = <span class="built_in">require</span>(<span class="string">'./map'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> map = <span class="keyword">new</span> <span class="built_in">Map</span>();</span><br><span class="line"></span><br><span class="line">map.set(<span class="string">'Jay'</span>, <span class="string">'Jay的值'</span>);</span><br><span class="line">map.set(<span class="string">'true'</span>, <span class="string">'真的'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(map.has(<span class="string">'Jay'</span>)); <span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(map.size); <span class="comment">// 2</span></span><br><span class="line"><span class="built_in">console</span>.log(map.keys()); <span class="comment">// [ 'Jay', 'true' ]</span></span><br><span class="line"><span class="built_in">console</span>.log(map.values()); <span class="comment">// [ 'Jay的值', '真的' ]</span></span><br><span class="line">map.forEach(<span class="function">(<span class="params">value, key</span>) =&gt;</span> <span class="built_in">console</span>.log(<span class="string">`value=<span class="subst">$&#123;value&#125;</span>,key=<span class="subst">$&#123;key&#125;</span>`</span>)); </span><br><span class="line"><span class="comment">// value=Jay的值,key=Jay value=真的,key=true</span></span><br><span class="line"></span><br><span class="line">map.delete(<span class="literal">true</span>);</span><br><span class="line"><span class="built_in">console</span>.log(map.keys()); <span class="comment">// [ 'Jay' ]</span></span><br><span class="line"><span class="built_in">console</span>.log(map.values()); <span class="comment">// [ 'Jay的值' ]</span></span><br></pre></td></tr></table></figure>
+
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="true">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title='0' data-url='http://link.hhtjim.com/163/5146554.mp3'></li>
+                        
+                    
+                        
+                            <li title='1' data-url='http://link.hhtjim.com/qq/001faIUs4M2zna.mp3'></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id='gitalk-container' class="comment link"
+        data-ae='false'
+        data-ci=''
+        data-cs=''
+        data-r=''
+        data-o=''
+        data-a=''
+        data-d='false'
+    >查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/diaspora.js"></script>
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+</html>

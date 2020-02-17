@@ -1,0 +1,198 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>ES6——class语法糖 - Hexo</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate">
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="ES6—class语法糖
+首先，ES6 的 class 属于一种“语法糖”，所以只是写法更加优雅，更加像面对对象的编程，其思想和 ES5 是一致的。
+
+例如：1234567891011functio,"> 
+    <meta name="author" content="John Doe"> 
+    <link rel="alternative" href="atom.xml" title="Hexo" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <link rel="stylesheet" href="/css/diaspora.css">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-8691406134231910",
+              enable_page_level_ads: true
+         });
+    </script>
+    <script async custom-element="amp-auto-ads" src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+    </script>
+</head>
+</html>
+<body class="loading">
+    <span id="config-title" style="display:none">Hexo</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="icon-home image-icon" href="javascript:;" data-url="http://yoursite.com"></a>
+    <div title="播放/暂停" class="icon-play"></div>
+    <h3 class="subtitle">ES6——class语法糖</h3>
+    <div class="social">
+        <!--<div class="like-icon">-->
+            <!--<a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+        <!--</div>-->
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">ES6——class语法糖</h1>
+        <div class="stuff">
+            <span>二月 17, 2019</span>
+            
+  <ul class="post-tags-list"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/ES6/">ES6</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h3 id="ES6—class语法糖"><a href="#ES6—class语法糖" class="headerlink" title="ES6—class语法糖"></a>ES6—class语法糖</h3><blockquote>
+<p>首先，ES6 的 <code>class</code> 属于一种“语法糖”，所以只是写法更加优雅，更加像面对对象的编程，其思想和 ES5 是一致的。</p>
+</blockquote>
+<h5 id="例如："><a href="#例如：" class="headerlink" title="例如："></a>例如：</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Point</span>(<span class="params">x, y</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.x = x;</span><br><span class="line">  <span class="keyword">this</span>.y = y;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Point.prototype.toString = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="string">`(<span class="subst">$&#123;<span class="keyword">this</span>.x&#125;</span>,<span class="subst">$&#123;<span class="keyword">this</span>.y&#125;</span>)`</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">point = <span class="keyword">new</span> Point(<span class="number">4</span>,<span class="number">5</span>);</span><br><span class="line"><span class="built_in">console</span>.log(point.toString());</span><br></pre></td></tr></table></figure>
+
+<p>等同于</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Point</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(x, y) &#123;</span><br><span class="line">    <span class="keyword">this</span>.x = x;</span><br><span class="line">    <span class="keyword">this</span>.y = y;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  toString() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">`(<span class="subst">$&#123;<span class="keyword">this</span>.x&#125;</span>,<span class="subst">$&#123;<span class="keyword">this</span>.y&#125;</span>)`</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> point = <span class="keyword">new</span> Point(<span class="number">1</span>,<span class="number">2</span>);</span><br><span class="line"><span class="built_in">console</span>.log(point.toString());</span><br></pre></td></tr></table></figure>
+
+<p>其中 <code>constructor</code> 方法是类的构造函数，是一个默认方法，通过 <code>new</code> 命令创建对象实例时，自动调用该方法。一个类必须有 <code>constructor</code> 方法，如果没有显式定义，一个默认的 <code>consructor</code> 方法会被默认添加。所以即使你没有添加构造函数，也是会有一个默认的构造函数的。一般 <code>constructor</code> 方法返回实例对象 <code>this</code> ，但是也可以指定  <code>constructor</code> 方法返回一个全新的对象，让返回的实例对象不是该类的实例。</p>
+<h5 id="super关键字"><a href="#super关键字" class="headerlink" title="super关键字"></a>super关键字</h5><p><code>super</code>关键字，既可以当做函数使用，也可以当作对象使用。这两种情况下，它的用法完全不用</p>
+<h5 id="1-当作函数使用"><a href="#1-当作函数使用" class="headerlink" title="1. 当作函数使用"></a>1. 当作函数使用</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span> <span class="keyword">extends</span> <span class="title">A</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>() &#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * ES6要求，子类的构造函数必须</span></span><br><span class="line"><span class="comment">     * 执行一次super()函数，否则会报错</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">super</span>();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>注：在 <code>constructor</code> 中必须调用 <code>super</code> 方法，因为子类没有自己的 <code>this</code> 对象，而是继承父类的 <code>this</code> 对象，然后对其进行加工,而 <code>super</code> 就代表了父类的构造函数。<code>super</code> 虽然代表了父类 A 的构造函数，但是返回的是子类 B 的实例，即 <code>super</code> 内部的 <code>this</code> 指的是 B，因此 <code>super()</code> 在这里相当于 <figure class="highlight plain"><figcaption><span>props)``。</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">```javascript</span><br><span class="line">class A &#123;</span><br><span class="line">  constructor() &#123;</span><br><span class="line">    console.log(new.target.name);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class B extends A &#123;</span><br><span class="line">  constructor() &#123;</span><br><span class="line">    super();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">new A(); // A</span><br><span class="line">new B(); // B</span><br></pre></td></tr></table></figure></p>
+<p>可以看到，在 <code>super()</code> 执行时，它指向的是 子类 B 的构造函数，而不是父类 A 的构造函数。也就是说，<code>super()</code> 内部的 <code>this</code> 指向的是 B。</p>
+<h5 id="2-当作普通对象使用"><a href="#2-当作普通对象使用" class="headerlink" title="2. 当作普通对象使用"></a>2. 当作普通对象使用</h5><p>在普通方法中，指向父类的原型对象；在静态方法中，指向父类。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span> </span>&#123;</span><br><span class="line">  c() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">2</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span> <span class="keyword">extends</span> <span class="title">A</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>() &#123;</span><br><span class="line">    <span class="keyword">super</span>();</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">super</span>.c()); <span class="comment">//2</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> b = <span class="keyword">new</span> B();</span><br></pre></td></tr></table></figure>
+
+<p>上面代码中，子类 B 当中的 <code>super.c()</code>，就是将 <code>super</code> 当作一个对象使用。这时，<code>super</code> 在普通方法之中，指向 <code>A.prototype</code>，所以 <code>super.c()</code> 就相当于 <code>A.prototype.c()</code>。</p>
+<p><strong>通过 <code>super</code> 调用父类的方法时，<code>super</code> 会绑定子类的 <code>this</code>。</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>() &#123;</span><br><span class="line">    <span class="keyword">this</span>.x = <span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  s() &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.x);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span> <span class="keyword">extends</span> <span class="title">A</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>() &#123;</span><br><span class="line">    <span class="keyword">super</span>();</span><br><span class="line">    <span class="keyword">this</span>.x = <span class="number">2</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  m() &#123;</span><br><span class="line">    <span class="keyword">super</span>.s();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> b = <span class="keyword">new</span> B();</span><br><span class="line">b.m(); <span class="comment">// 2</span></span><br></pre></td></tr></table></figure>
+
+<p>上面代码中，<code>super.s()</code> 虽然调用的是 <code>A.prototytpe.s()</code>，但是 <code>A.prototytpe.s()</code>会绑定子类 B 的 <code>this</code>，导致输出的是 2，而不是 1。也就是说，实际上执行的是 <code>super.s.call(this)</code>。</p>
+<p><strong>由于绑定子类的 <code>this</code>，所以如果通过 <code>super</code> 对某个属性赋值，这时 <code>super</code> 就是 <code>this</code>，赋值的属性会变成子类实例的属性。</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>() &#123;</span><br><span class="line">    <span class="keyword">this</span>.x = <span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span> <span class="keyword">extends</span> <span class="title">A</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>() &#123;</span><br><span class="line">    <span class="keyword">super</span>();</span><br><span class="line">    <span class="keyword">this</span>.x = <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">super</span>.x = <span class="number">3</span>;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">super</span>.x); <span class="comment">// undefined</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.x); <span class="comment">// 3</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> b = <span class="keyword">new</span> B();</span><br></pre></td></tr></table></figure>
+
+<p>上面代码中，<code>super.x</code> 赋值为 3，这时等同于对 <code>this.x</code> 赋值为 3。而当读取 <code>super.x</code> 的时候，调用的是 <code>A.prototype.x</code>，但并没有 <code>x</code> 方法，所以返回 undefined。</p>
+<p><strong>注意，使用 <code>super</code> 的时候，必须显式指定是作为函数，还是作为对象使用，否则会报错。</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span> </span>&#123;&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span> <span class="keyword">extends</span> <span class="title">A</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>() &#123;</span><br><span class="line">    <span class="keyword">super</span>();</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">super</span>); <span class="comment">// 报错</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上面代码中，<code>console.log(super);</code> 的当中的 <code>super</code>，无法看出是作为函数使用，还是作为对象使用，所以 JavaScript 引擎解析代码的时候就会报错。这是，如果能清晰的表明 <code>super</code> 的数据类型，就不会报错。</p>
+<p><strong>最后，由于对象总是继承其他对象的，所以可以在任意一个对象中，使用 <code>super</code> 关键字</strong></p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="true">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title='0' data-url='http://link.hhtjim.com/163/5146554.mp3'></li>
+                        
+                    
+                        
+                            <li title='1' data-url='http://link.hhtjim.com/qq/001faIUs4M2zna.mp3'></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id='gitalk-container' class="comment link"
+        data-ae='false'
+        data-ci=''
+        data-cs=''
+        data-r=''
+        data-o=''
+        data-a=''
+        data-d='false'
+    >查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/diaspora.js"></script>
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+</html>

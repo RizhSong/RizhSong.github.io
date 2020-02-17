@@ -1,0 +1,204 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>React学习——react hook实现redux的功能 - Hexo</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate">
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="React hook 实现 Redux功能![redux](D:/Blog/HexoBlog/source/image/react hooks实现redux/redux.png)
+1. useCon,"> 
+    <meta name="author" content="John Doe"> 
+    <link rel="alternative" href="atom.xml" title="Hexo" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <link rel="stylesheet" href="/css/diaspora.css">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-8691406134231910",
+              enable_page_level_ads: true
+         });
+    </script>
+    <script async custom-element="amp-auto-ads" src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+    </script>
+</head>
+</html>
+<body class="loading">
+    <span id="config-title" style="display:none">Hexo</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="icon-home image-icon" href="javascript:;" data-url="http://yoursite.com"></a>
+    <div title="播放/暂停" class="icon-play"></div>
+    <h3 class="subtitle">React学习——react hook实现redux的功能</h3>
+    <div class="social">
+        <!--<div class="like-icon">-->
+            <!--<a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+        <!--</div>-->
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">React学习——react hook实现redux的功能</h1>
+        <div class="stuff">
+            <span>十二月 21, 2019</span>
+            
+  <ul class="post-tags-list"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/react/">react</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h3 id="React-hook-实现-Redux功能"><a href="#React-hook-实现-Redux功能" class="headerlink" title="React hook 实现 Redux功能"></a>React hook 实现 Redux功能</h3><p>![redux](D:/Blog/HexoBlog/source/image/react hooks实现redux/redux.png)</p>
+<h4 id="1-useContext的使用"><a href="#1-useContext的使用" class="headerlink" title="1. useContext的使用"></a>1. <code>useContext</code>的使用</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; useState, useContext, useMemo, createContext &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> CountContext = createContext();</span><br><span class="line"></span><br><span class="line"><span class="comment">//子组件</span></span><br><span class="line"><span class="keyword">const</span> Count = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> &#123; count &#125; = useContext(CountContext);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> counts = useMemo(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(count);</span><br><span class="line">    <span class="keyword">return</span> count;</span><br><span class="line">  &#125;, [count]);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    &lt;React.Fragment&gt;</span><br><span class="line">      &lt;p&gt;&#123;counts&#125;&lt;<span class="regexp">/p&gt;</span></span><br><span class="line"><span class="regexp">    &lt;/</span>React.Fragment&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 子组件</span></span><br><span class="line"><span class="keyword">const</span> Num = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> &#123; num &#125; = useContext(CountContext);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> nums = useMemo(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(num);</span><br><span class="line">    <span class="keyword">return</span> num;</span><br><span class="line">  &#125;, [num]);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    &lt;React.Fragment&gt;</span><br><span class="line">      &lt;p&gt;&#123;nums&#125;&lt;<span class="regexp">/p&gt;</span></span><br><span class="line"><span class="regexp">    &lt;/</span>React.Fragment&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//父组件</span></span><br><span class="line"><span class="keyword">const</span> Example1 = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> [count, setCount] = useState(<span class="number">0</span>);</span><br><span class="line">  <span class="keyword">const</span> [num, setNum] = useState(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;div&gt;YOU CLICK ME &#123;count&#125; TIMES&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">      &lt;div&gt;YOU CLICK His &#123;num&#125; TIMES&lt;/</span>div&gt;</span><br><span class="line">      &lt;button onClick=&#123;() =&gt; &#123; setCount(count + <span class="number">1</span>) &#125;&#125;&gt;点击按钮+<span class="number">1</span>&lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp">      &lt;button onClick=&#123;() =&gt; &#123; setNum(num + 2) &#125;&#125;&gt;点击按钮+2&lt;/</span>button&gt;</span><br><span class="line">      &lt;CountContext.Provider value=&#123;&#123; count, num &#125;&#125;&gt;</span><br><span class="line">        &lt;Count /&gt;</span><br><span class="line">        &lt;Num /&gt;</span><br><span class="line">      &lt;<span class="regexp">/CountContext.Provider&gt;</span></span><br><span class="line"><span class="regexp">    &lt;/</span>div&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> Example1;</span><br></pre></td></tr></table></figure>
+
+<p>通过<code>createContext()</code>创建一个<code>contenxt</code>环境可以想子孙组件传值</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> CountContext = createContext();</span><br></pre></td></tr></table></figure>
+
+<p>通过在父组件注册：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;CountContext.Provider value=&#123;&#123; count, num &#125;&#125;&gt;</span><br><span class="line">  &lt;Count /&gt;</span><br><span class="line">  &lt;Num /&gt;</span><br><span class="line">&lt;<span class="regexp">/CountContext.Provider&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>在子组件中使用</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123; num &#125; = useContext(CountContext);</span><br><span class="line">...</span><br><span class="line"><span class="keyword">const</span> &#123; count &#125; = useContext(CountContext);</span><br></pre></td></tr></table></figure>
+
+<p>使用<code>useMemo</code>做性能优化</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">  <span class="keyword">const</span> counts = useMemo(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(count);</span><br><span class="line">    <span class="keyword">return</span> count;</span><br><span class="line">  &#125;, [count]);</span><br><span class="line"><span class="comment">//count数值没有改变时，缓存值，不渲染</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="2-useReducer使用"><a href="#2-useReducer使用" class="headerlink" title="2. useReducer使用"></a>2. <code>useReducer</code>使用</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; useReducer &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> Example2 = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> reducer = <span class="function">(<span class="params">state, action</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(state, action)</span><br><span class="line">    <span class="keyword">switch</span> (action) &#123;</span><br><span class="line">      <span class="keyword">case</span> <span class="string">'add'</span>:</span><br><span class="line">        <span class="keyword">return</span> state + <span class="number">1</span></span><br><span class="line">      <span class="keyword">case</span> <span class="string">'sub'</span>:</span><br><span class="line">        <span class="keyword">return</span> state - <span class="number">1</span></span><br><span class="line">      <span class="keyword">default</span>:</span><br><span class="line">        <span class="keyword">return</span> state</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> [count, dispatch] = useReducer(reducer, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;h1&gt;现在的数量是&#123;count&#125;&lt;<span class="regexp">/h1&gt;</span></span><br><span class="line"><span class="regexp">      &lt;button onClick=&#123;() =&gt; &#123; dispatch('add') &#125;&#125;&gt;Add&lt;/</span>button&gt;</span><br><span class="line">      &lt;button onClick=&#123;() =&gt; &#123; dispatch(<span class="string">'sub'</span>) &#125;&#125;&gt;Sub&lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp">    &lt;/</span>div&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> Example2;</span><br></pre></td></tr></table></figure>
+
+<p><code>useReducer</code> 接受一个 <code>reducer</code> 函数作为参数，<code>reducer</code> 接受两个参数一个是 <code>state</code> 另一个是 <code>action</code> 。然后返回一个状态<code>count</code>和 <code>dispath</code>，<code>count</code> 是返回状态中的值，而<code>dispatch</code> 是一个可以发布事件来更新 <code>state</code> 的。</p>
+<h4 id="3-Redux的功能的实现"><a href="#3-Redux的功能的实现" class="headerlink" title="3. Redux的功能的实现"></a>3. <code>Redux</code>的功能的实现</h4><blockquote>
+<p>对与<code>Redux</code>的实现，需要使用<code>useContext</code>、<code>useReducer</code>两个钩子函数</p>
+</blockquote>
+<ol>
+<li><p>首先</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> Color <span class="keyword">from</span> <span class="string">'./component/Color'</span>;</span><br><span class="line"><span class="keyword">import</span> Button <span class="keyword">from</span> <span class="string">'./component/Button'</span>;</span><br><span class="line"><span class="keyword">import</span> ShowArea <span class="keyword">from</span> <span class="string">'./component/ShowArea'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> Example3 = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">Color</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">Button</span> /&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">ShowArea</span> /&gt;</span></span></span><br><span class="line"><span class="xml">  <span class="tag">&lt;/<span class="name">Color</span>&gt;</span></span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> Example3;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>然后创建<code>Color</code>组件，其中<code>Color</code>组件充当<code>Provider</code>的作用，向其他<code>子组件</code>传值</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; useReducer &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; reducer &#125; <span class="keyword">from</span> <span class="string">'../store/reducer'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; ColorContext &#125; <span class="keyword">from</span> <span class="string">'../store/index'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> Color = <span class="function">(<span class="params">props</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> [color, dispatch] = useReducer(reducer, <span class="string">'pink'</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">ColorContext.Provider</span> <span class="attr">value</span>=<span class="string">&#123;&#123;</span> <span class="attr">color</span>, <span class="attr">dispatch</span> &#125;&#125;&gt;</span></span></span><br><span class="line"><span class="xml">    &#123;props.children&#125;</span></span><br><span class="line"><span class="xml">  <span class="tag">&lt;/<span class="name">ColorContext.Provider</span>&gt;</span></span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> Color;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>同时再创建<code>store</code>文件夹，再<code>store</code>文件夹下面创建<code>index.js</code>、<code>reducer.js</code>、<code>constants.js</code>、<code>actionCreators.js</code>文件</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//index.js</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> &#123; createContext &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> ColorContext = createContext(&#123;&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// reducer.js</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> &#123; UPDATE_COLOR &#125; <span class="keyword">from</span> <span class="string">'./constants'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> reducer = <span class="function">(<span class="params">state, action</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">switch</span> (action.type) &#123;</span><br><span class="line">    <span class="keyword">case</span> UPDATE_COLOR:</span><br><span class="line">      <span class="keyword">return</span> action.data</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">      <span class="keyword">return</span> state;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// contants.js</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> UPDATE_COLOR = <span class="string">'UPDATE_COLOR'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// actionCreators.js</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> &#123; UPDATE_COLOR &#125; <span class="keyword">from</span> <span class="string">'./constants'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> changeColor = <span class="function">(<span class="params">data</span>) =&gt;</span> (&#123;</span><br><span class="line">  type: UPDATE_COLOR,</span><br><span class="line">  data</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建<code>Button.js</code>提供<code>useReducer</code> 的 <code>dispatch</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; useContext &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; ColorContext &#125; <span class="keyword">from</span> <span class="string">'../store/index'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; changeColor &#125; <span class="keyword">from</span> <span class="string">'../store/actionCreators'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> Button = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> &#123; dispatch &#125; = useContext(ColorContext);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> handleRed = <span class="function">(<span class="params">data</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> dispatch(changeColor(data));</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> handleBlue = <span class="function">(<span class="params">data</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> dispatch(changeColor(data));</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;button onClick=&#123;() =&gt; &#123; handleRed(<span class="string">'red'</span>) &#125;&#125;&gt;红色&lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp">      &lt;button onClick=&#123;() =&gt; &#123; handleBlue('blue') &#125;&#125;&gt;蓝色&lt;/</span>button&gt;</span><br><span class="line">    &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">  );</span></span><br><span class="line"><span class="regexp">&#125;;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">export default Button;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建<code>ShowArea.js</code>提供<code>useReducer</code>提供的<code>color</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; useContext &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; ColorContext &#125; <span class="keyword">from</span> <span class="string">'../store/index'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> ShowArea = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> &#123; color &#125; = useContext(ColorContext);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    &lt;div style=&#123;&#123; <span class="attr">color</span>: color &#125;&#125;&gt;</span><br><span class="line">      字体颜色是&#123;color&#125;</span><br><span class="line">    &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">  );</span></span><br><span class="line"><span class="regexp">&#125;;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">export default ShowArea;</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h5 id="如何就能实现Redux的功能"><a href="#如何就能实现Redux的功能" class="headerlink" title="如何就能实现Redux的功能"></a>如何就能实现<code>Redux</code>的功能</h5><h4 id="4-Contenxt的性能问题"><a href="#4-Contenxt的性能问题" class="headerlink" title="4. Contenxt的性能问题"></a>4. <code>Contenxt</code>的性能问题</h4><img src="..\image\react hooks实现redux\性能.png" alt="性能" style="zoom:80%;">
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="true">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title='0' data-url='http://link.hhtjim.com/163/5146554.mp3'></li>
+                        
+                    
+                        
+                            <li title='1' data-url='http://link.hhtjim.com/qq/001faIUs4M2zna.mp3'></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id='gitalk-container' class="comment link"
+        data-ae='false'
+        data-ci=''
+        data-cs=''
+        data-r=''
+        data-o=''
+        data-a=''
+        data-d='false'
+    >查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/diaspora.js"></script>
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+</html>

@@ -1,0 +1,406 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>React学习———react与vue比较下 - Hexo</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate">
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="React与Vue的对比下1.核心思想
+vue与react都推崇组件式的开发理念，但是在设计的核心思想上有很大差别。
+
+vuevue的整体思想仍然式拥抱html(结构)+css(表现)+js(行为),"> 
+    <meta name="author" content="John Doe"> 
+    <link rel="alternative" href="atom.xml" title="Hexo" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <link rel="stylesheet" href="/css/diaspora.css">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-8691406134231910",
+              enable_page_level_ads: true
+         });
+    </script>
+    <script async custom-element="amp-auto-ads" src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+    </script>
+</head>
+</html>
+<body class="loading">
+    <span id="config-title" style="display:none">Hexo</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="icon-home image-icon" href="javascript:;" data-url="http://yoursite.com"></a>
+    <div title="播放/暂停" class="icon-play"></div>
+    <h3 class="subtitle">React学习———react与vue比较下</h3>
+    <div class="social">
+        <!--<div class="like-icon">-->
+            <!--<a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+        <!--</div>-->
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">React学习———react与vue比较下</h1>
+        <div class="stuff">
+            <span>十月 25, 2019</span>
+            
+  <ul class="post-tags-list"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/react/">react</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h3 id="React与Vue的对比下"><a href="#React与Vue的对比下" class="headerlink" title="React与Vue的对比下"></a>React与Vue的对比下</h3><h4 id="1-核心思想"><a href="#1-核心思想" class="headerlink" title="1.核心思想"></a>1.核心思想</h4><blockquote>
+<h5 id="vue与react都推崇组件式的开发理念，但是在设计的核心思想上有很大差别。"><a href="#vue与react都推崇组件式的开发理念，但是在设计的核心思想上有很大差别。" class="headerlink" title="vue与react都推崇组件式的开发理念，但是在设计的核心思想上有很大差别。"></a>vue与react都推崇组件式的开发理念，但是在设计的核心思想上有很大差别。</h5></blockquote>
+<ol>
+<li><h4 id="vue"><a href="#vue" class="headerlink" title="vue"></a>vue</h4><h5 id="vue的整体思想仍然式拥抱html-结构-css-表现-js-行为-的形式，vue鼓励开发者使用template模板，并提供指令供开发者使用-v-if、v-show、v-for等指令-，在组件数据上，vue2-0通过Object-defineProperty对数据做到了更细致的监听，精准实现组件级别的更新"><a href="#vue的整体思想仍然式拥抱html-结构-css-表现-js-行为-的形式，vue鼓励开发者使用template模板，并提供指令供开发者使用-v-if、v-show、v-for等指令-，在组件数据上，vue2-0通过Object-defineProperty对数据做到了更细致的监听，精准实现组件级别的更新" class="headerlink" title="vue的整体思想仍然式拥抱html(结构)+css(表现)+js(行为)的形式，vue鼓励开发者使用template模板，并提供指令供开发者使用(v-if、v-show、v-for等指令)，在组件数据上，vue2.0通过Object.defineProperty对数据做到了更细致的监听，精准实现组件级别的更新"></a>vue的整体思想仍然式拥抱html(结构)+css(表现)+js(行为)的形式，vue鼓励开发者使用template模板，并提供指令供开发者使用(v-if、v-show、v-for等指令)，在组件数据上，vue2.0通过<code>Object.defineProperty</code>对数据做到了更细致的监听，精准实现组件级别的更新</h5></li>
+<li><h4 id="react"><a href="#react" class="headerlink" title="react"></a>react</h4><h5 id="react整体上是函数式的思想，组件使用jsx语法，将html与css都融入javascript，jsx语法相对来说更加灵活。class组件调用setState或props变化的时候，组件内部render会重新渲染，子组件也会随之重新渲染，可以通过shouldComponentUpdate或者PureComponent避免不必要的重新渲染"><a href="#react整体上是函数式的思想，组件使用jsx语法，将html与css都融入javascript，jsx语法相对来说更加灵活。class组件调用setState或props变化的时候，组件内部render会重新渲染，子组件也会随之重新渲染，可以通过shouldComponentUpdate或者PureComponent避免不必要的重新渲染" class="headerlink" title="react整体上是函数式的思想，组件使用jsx语法，将html与css都融入javascript，jsx语法相对来说更加灵活。class组件调用setState或props变化的时候，组件内部render会重新渲染，子组件也会随之重新渲染，可以通过shouldComponentUpdate或者PureComponent避免不必要的重新渲染"></a>react整体上是函数式的思想，组件使用jsx语法，将html与css都融入javascript，jsx语法相对来说更加灵活。class组件调用setState或props变化的时候，组件内部render会重新渲染，子组件也会随之重新渲染，可以通过<code>shouldComponentUpdate</code>或者<code>PureComponent</code>避免不必要的重新渲染</h5></li>
+</ol>
+<h4 id="2-组件形式"><a href="#2-组件形式" class="headerlink" title="2. 组件形式"></a>2. 组件形式</h4><blockquote>
+<p>vue组件定义使用xx.vue文件来表示，vue组件将html、css、js组合到一起，模板部分使用<code>双括号</code>渲染数据，形式如下：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">// 模板(html)</span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;&#123;&#123;name&#125;&#125;&lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">// 数据管理(js)</span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">  name: &apos;NewComponent&apos;,</span><br><span class="line">  data() &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      name: &apos;xx&apos;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">// 样式(css)</span><br><span class="line">&lt;style scoped&gt;</span><br><span class="line"></span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>react推荐使用jsx或者js文件来表示组件，react支持class组件和function组件两种形式，react使用<code>{}</code>包裹变量</p>
+</blockquote>
+<ol>
+<li><h5 id="class组件"><a href="#class组件" class="headerlink" title="class组件"></a>class组件</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">App</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>(props) &#123;</span><br><span class="line">        <span class="keyword">super</span>(props);</span><br><span class="line">        <span class="keyword">this</span>.state = &#123;</span><br><span class="line">            name: <span class="string">'xx'</span></span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">    render() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml">          &#123;this.state.name&#125;    </span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> App;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>函数组件</p>
+<p>hooks的出现赋予了function组件管理state的能力</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123;useState&#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> App = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> [name, setName] = useState(<span class="string">''</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml">      &#123;name&#125;</span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> App;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h4 id="3-数据管理（props、data、state）"><a href="#3-数据管理（props、data、state）" class="headerlink" title="3.数据管理（props、data、state）"></a>3.数据管理（props、data、state）</h4><blockquote>
+<p>组件数据来自父组件的数据props与自身的数据</p>
+<p>vue与react中的props都是单向数据流的，父级props的更新会向下流动到子组件中，props用来接收父组件的数据</p>
+</blockquote>
+<h5 id="vue-1"><a href="#vue-1" class="headerlink" title="vue"></a>vue</h5><ol>
+<li><h6 id="props"><a href="#props" class="headerlink" title="props"></a>props</h6><blockquote>
+<p>vue中的props支持传递静态、动态props</p>
+</blockquote>
+<h5 id="静态："><a href="#静态：" class="headerlink" title="静态："></a>静态：</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="keyword">new</span>-component title=<span class="string">"study vue"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">new-component</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<h5 id="动态："><a href="#动态：" class="headerlink" title="动态："></a>动态：</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="keyword">new</span>-component :title=<span class="string">"title"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">new-component</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+</li>
+<li><h6 id="data"><a href="#data" class="headerlink" title="data"></a>data</h6><blockquote>
+<p>vue中使用data来管理组件的数据，vue 将会递归将 data 的属性转换为 getter/setter，从而让 data 的属性能够响应数据变化。对象必须是纯粹的对象 (含有零个或多个的 key/value 对)。一旦观察过，不需要再次在数据对象上添加响应式属性。因此推荐在创建实例之前，就声明所有的根级响应式属性。</p>
+</blockquote>
+<p>注意：当一个组件被定义，data必须声明为返回一个初始数据对象的函数。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  name: <span class="string">'NewComponent'</span>,</span><br><span class="line">  data() &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      name: <span class="string">'xxx'</span>,</span><br><span class="line">      age: <span class="number">12</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>当需要在组件内部修改数据时，可以直接通过vue实例修改：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">methods: &#123;</span><br><span class="line">  changeName() &#123;</span><br><span class="line">    <span class="keyword">this</span>.name = <span class="string">'new Name'</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h5 id="react-1"><a href="#react-1" class="headerlink" title="react"></a>react</h5><ol>
+<li><h6 id="props-1"><a href="#props-1" class="headerlink" title="props"></a>props</h6><blockquote>
+<p>react中的props也与vue一样可以传递静态或动态props，静态props一般传递字符串。</p>
+<p>函数组件和class组件都可以使用props，函数组件使用props参数获取父组件传下来的props。</p>
+<p>函数组件获取props：</p>
+</blockquote>
+<blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt; function Welcome(props) &#123;</span><br><span class="line">&gt; return &lt;h1&gt;Hello, &#123;props.name&#125;&lt;/h1&gt;;</span><br><span class="line">&gt; &#125;</span><br><span class="line">&gt; </span><br><span class="line">&gt; const element = &lt;Welcome name=&quot;Sara&quot; /&gt;;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p>class组件使用<code>this.props</code>获取组件<code>props</code>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&gt; class Welcome extends React.Component &#123;</span><br><span class="line">&gt; constructor(props) &#123;</span><br><span class="line">&gt;  super(props);</span><br><span class="line">&gt; &#125;</span><br><span class="line">&gt; render() &#123;</span><br><span class="line">&gt;  const &#123; name &#125; = this.props;</span><br><span class="line">&gt;  return &lt;div&gt;&#123;name&#125;&lt;/div&gt;;</span><br><span class="line">&gt; &#125;</span><br><span class="line">&gt; &#125;</span><br><span class="line">&gt; 复制代码</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p>动态props：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; &lt;Welcome name=&#123;name&#125; /&gt;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+</li>
+<li><h6 id="state"><a href="#state" class="headerlink" title="state"></a>state</h6><blockquote>
+<p>react中使用state来管理组件内的数据，hooks的出现使得函数组件也具备管理state的能力</p>
+</blockquote>
+<h5 id="class组件state"><a href="#class组件state" class="headerlink" title="class组件state"></a>class组件state</h5><p>class组件在构造函数（constructor）中定义组件内数据（state），修改数据必须通过setState修改，不能直接修改state，这点非常重要。</p>
+<p>class组件使用state：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Welcome</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(props) &#123;</span><br><span class="line">    <span class="keyword">super</span>(props);</span><br><span class="line">    <span class="keyword">this</span>.state = &#123;</span><br><span class="line">      name: <span class="string">'xx'</span></span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">this</span>.changeName = <span class="keyword">this</span>.changeName.bind(<span class="keyword">this</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  changeName() &#123;</span><br><span class="line">    <span class="keyword">this</span>.setState(&#123;</span><br><span class="line">      name: <span class="string">'new name'</span></span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123; <span class="keyword">this</span>.state.name &#125; = <span class="keyword">this</span>.state;</span><br><span class="line">    <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">onClick</span>=<span class="string">&#123;this.changeName&#125;</span>&gt;</span>&#123;name&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>关于class组建的setState有以下两点说明：</p>
+<ul>
+<li>1.setState更新是异步的，但是<strong>在setTimeout和原生事件中是同步的</strong>。</li>
+<li>2.setState更新的是组件的部分数据，react会自动将数据合并。</li>
+</ul>
+<p>当需要使用上一个state值时，可以让 setState() 接收一个函数而不是一个对象。这个函数用上一个 state 作为第一个参数，将此次更新被应用时的 props 做为第二个参数：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.setState(<span class="function">(<span class="params">state, props</span>) =&gt;</span> (&#123;</span><br><span class="line">  counter: state.counter + props.increment</span><br><span class="line">&#125;));</span><br></pre></td></tr></table></figure>
+
+<h5 id="函数组件useState"><a href="#函数组件useState" class="headerlink" title="函数组件useState"></a>函数组件useState</h5><p>react 16.8之前函数组件只是纯的渲染组件，hooks的出现赋予了函数组件管理state的能力。</p>
+<p>useState返回一个state，以及更新state的函数。如果新的 state 需要通过使用先前的 state 计算得出，那么可以将函数传递给 setState。该函数将接收先前的 state，并返回一个更新后的值。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; useState &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Counter</span>(<span class="params">&#123;initialCount&#125;</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> [count, setCount] = useState(initialCount);</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    &lt;&gt;</span><br><span class="line">      Count: &#123;count&#125;</span><br><span class="line">      &lt;button onClick=&#123;() =&gt; setCount(initialCount)&#125;&gt;Reset&lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp">      &lt;button onClick=&#123;() =&gt; setCount(prevCount =&gt; prevCount - 1)&#125;&gt;-&lt;/</span>button&gt;</span><br><span class="line">      &lt;button onClick=&#123;() =&gt; setCount(<span class="function"><span class="params">prevCount</span> =&gt;</span> prevCount + <span class="number">1</span>)&#125;&gt;+<span class="xml"><span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line">    &lt;<span class="regexp">/&gt;</span></span><br><span class="line"><span class="regexp">  );</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>关于setState有以下三点说明：</p>
+<ul>
+<li>1.与 class 组件中的 setState 方法不同，useState 不会自动合并更新对象。</li>
+<li>2.只能在函数最顶层调用 Hook。不要在循环、条件判断或者子函数中调用。</li>
+<li>3.只能在 React 的函数组件或自定义hook中调用 Hook。不要在其他 JavaScript 函数中调用。</li>
+</ul>
+</blockquote>
+</li>
+</ol>
+<h4 id="4-组件数据交互"><a href="#4-组件数据交互" class="headerlink" title="4.组件数据交互"></a>4.组件数据交互</h4><blockquote>
+<p>组件数据交互是指父子组件、兄弟组件、跨层组件之间传递数据。 兄弟组件之间可以通过事件总线或者通过父组件传递数据</p>
+</blockquote>
+<h5 id="4-1-父子组件数据交互-props-自定义事件-vs-props-回调"><a href="#4-1-父子组件数据交互-props-自定义事件-vs-props-回调" class="headerlink" title="4.1 父子组件数据交互(props+自定义事件 vs props+回调)"></a>4.1 父子组件数据交互(props+自定义事件 vs props+回调)</h5><p>对于父子组件数据交互，vue中使用prop+自定义事件实现，react通过props+回调</p>
+<h5 id="vue-2"><a href="#vue-2" class="headerlink" title="vue"></a>vue</h5><p>vue中父组件通过props传递数据给子组件，子组件使用<code>$emit</code>触发自定义事件，父组件中监听子组件的自定义事件获取子组件传递来的数据。</p>
+<p>子组件使用<code>$emit</code>传递自定义事件<code>myEvent</code>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div @click=&quot;changeName&quot;&gt;&#123;&#123;name&#125;&#125;&lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">  name: &apos;NewComponent&apos;,</span><br><span class="line">  data() &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      name: &apos;xxx&apos;,</span><br><span class="line">      age: 12</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    changeName() &#123;</span><br><span class="line">      this.name = &apos;new Name&apos;;</span><br><span class="line">      this.$emit(&apos;myEvent&apos;, this.name);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>父组件使用<code>@myEvent</code>监听自定义事件，回调函数参数是子组件传回的数据：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;new-component @myEvent=&quot;getName&quot;&gt;&lt;/new-component&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">import NewComponent from &apos;./NewComponent&apos;;</span><br><span class="line"></span><br><span class="line">export default &#123;</span><br><span class="line">  components: &#123;</span><br><span class="line">    NewComponent</span><br><span class="line">  &#125;,</span><br><span class="line">  data() &#123;</span><br><span class="line">    return &#123;&#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    getName(name) &#123;</span><br><span class="line">      console.log(name)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="react-2"><a href="#react-2" class="headerlink" title="react"></a>react</h4><p>react中父组件使用props传递数据和回调函数给子组件，子组件通过props传下来的回调函数返回数据，父组件通过回调函数获取子组件传递上来的数据。</p>
+<p>子组件通过props接收父组件传下来的回调事件：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; useState &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Children</span>(<span class="params">props</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> &#123; myEvent &#125; = props;</span><br><span class="line">  <span class="keyword">const</span> [name, setName] = useState(<span class="string">'xxx'</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> changeName = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    setName(<span class="string">'new name'</span>);</span><br><span class="line">    myEvent(<span class="string">'new name'</span>);<span class="comment">//回调</span></span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">onClick</span>=<span class="string">&#123;changeName&#125;</span>&gt;</span>&#123;name&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>父组件通过回调事件获取子组件传递的参数：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Parent</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> changeName = <span class="function"><span class="params">name</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(name);</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">Children</span> <span class="attr">myEvent</span>=<span class="string">&#123;changeName&#125;</span>&gt;</span><span class="tag">&lt;/<span class="name">Children</span>&gt;</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="4-2跨组件数据交互-provide-inject-vs-Context"><a href="#4-2跨组件数据交互-provide-inject-vs-Context" class="headerlink" title="4.2跨组件数据交互(provide/inject vs Context)"></a>4.2跨组件数据交互(provide/inject vs Context)</h5><blockquote>
+<p>vue和react都支持跨组件传递数据，vue中主要通过<code>provide / inject</code>实现，react中主要通过<code>Context</code>实现。</p>
+</blockquote>
+<h5 id="vue-3"><a href="#vue-3" class="headerlink" title="vue"></a>vue</h5><p>vue中通过<code>provide / inject</code>在祖先组件向所有子孙后代注入一个依赖，不论组件层次有多深，并在起上下游关系成立的时间里始终生效。</p>
+<p>祖先组件中定义provide选项，provide选项应该是一个对象或返回一个对象的函数。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;new-component @myEvent=&quot;getName&quot;&gt;&lt;/new-component&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">import NewComponent from &apos;./NewComponent&apos;;</span><br><span class="line"></span><br><span class="line">export default &#123;</span><br><span class="line">  provide: &#123; // 定义provide选项</span><br><span class="line">    message: &apos;This is a big news&apos;</span><br><span class="line">  &#125;,</span><br><span class="line">  components: &#123;</span><br><span class="line">    NewComponent</span><br><span class="line">  &#125;,</span><br><span class="line">  data() &#123;</span><br><span class="line">    return &#123;&#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    getName(name) &#123;</span><br><span class="line">      console.log(name)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>子组件通过inject选项获取祖先组件的provide选项值，inject选项应该是一个字符串数组或者对象。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;&#123;&#123;message&#125;&#125;&lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">  name: &apos;Children&apos;,</span><br><span class="line">  inject: [&apos;message&apos;],</span><br><span class="line">  data() &#123;</span><br><span class="line">    return &#123;&#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注意：provide 和 inject 绑定并不是可响应的。这是刻意为之的。然而，如果你传入了一个可监听的对象，那么其对象的属性还是可响应的。</p>
+</blockquote>
+<h5 id="react-3"><a href="#react-3" class="headerlink" title="react"></a>react</h5><p>Context 提供了一个无需为每层组件手动添加 props，就能在组件树间进行数据传递的方法。</p>
+<p>在父组件创建一个Context对象，通过<code>Context.provider</code>的value属性向消费组件传值。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; useState &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建Context对象</span></span><br><span class="line"><span class="keyword">const</span> MyContext = React.createContext(&#123; <span class="attr">theme</span>: <span class="string">'black'</span> &#125;);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Parent</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> changeName = <span class="function"><span class="params">name</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(name);</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="comment">// Context.provider向消费组件传值</span></span><br><span class="line">  <span class="keyword">return</span> (<span class="xml"><span class="tag">&lt;<span class="name">MyContext.Provider</span> <span class="attr">value</span>=<span class="string">&#123;&#123;</span> <span class="attr">theme:</span> '<span class="attr">white</span>' &#125;&#125;&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">Children</span> <span class="attr">myEvent</span>=<span class="string">&#123;changeName&#125;</span>&gt;</span><span class="tag">&lt;/<span class="name">Children</span>&gt;</span>;</span></span><br><span class="line"><span class="xml">  <span class="tag">&lt;/<span class="name">MyContext.Provider</span>&gt;</span></span>);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>消费组件获取Context有2种方式：</p>
+<p>（1）class组件通过contextType获取最近Context上的那个值。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DeepChildren1</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(props) &#123;</span><br><span class="line">    <span class="keyword">super</span>(props);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">static</span> contextType = MyContext;</span><br><span class="line"></span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>&#123;this.context.theme&#125;123<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（2）函数式组件通过<code>Context.Consumer</code>订阅到Context的变更。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">DeepChildren</span>(<span class="params">props</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> (<span class="xml"><span class="tag">&lt;<span class="name">MyContext.Consumer</span>&gt;</span></span></span><br><span class="line"><span class="xml">    &#123;</span></span><br><span class="line"><span class="xml">      (value) =&gt; (</span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">div</span>&gt;</span>&#123;value.theme&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml">      )</span></span><br><span class="line"><span class="xml">    &#125;</span></span><br><span class="line"><span class="xml">  <span class="tag">&lt;/<span class="name">MyContext.Consumer</span>&gt;</span></span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>关于Context需要注意：</p>
+<blockquote>
+<p>当Provider的父组件进行重渲染时，consumers组件会重新渲染，并且没有办法避免，应该尽量避免使用Context。</p>
+</blockquote>
+<h4 id="5-生命周期"><a href="#5-生命周期" class="headerlink" title="5. 生命周期"></a>5. 生命周期</h4><blockquote>
+<p>组件的生命周期一般包括：初始化、挂载、更新、卸载四大阶段，接下来分别看下vue和react的生命周期</p>
+</blockquote>
+<h5 id="vue-4"><a href="#vue-4" class="headerlink" title="vue"></a>vue</h5><p>vue生命周期图示:</p>
+<p><img src="D:/Blog/HexoBlog/source/image/Vue_React%E5%AF%B9%E6%AF%94/vue%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.png" alt="vue生命周期"></p>
+<p>vue生命周期包含:</p>
+<ul>
+<li>beforeCreate<br>实例组件刚创建，元素DOM和数据都还没有初始化，暂时不能在这个周期里面进行任何操作。</li>
+<li>created<br>数据data已经初始化完成，方法也已经可以调用，但是DOM未渲染。调用后台接口获取数据可以在这个阶段完成。</li>
+<li>beforeMount<br>DOM未完成挂载，数据也初始化完成，但是数据的双向绑定还是显示<code>双括号</code>，虚拟DOM结构已经生成。</li>
+<li>mounted<br>数据和DOM都完成挂载，在上一个周期占位的数据把值给渲染进去。这个周期适合执行初始化需要操作DOM的方法。</li>
+<li>beforeUpdate<br>页面数据改变了都会触发，在更新前触发，此时的数据还是未更新前的数据，没有数据改变则不执行。</li>
+<li>updated<br>页面数据改变都会触发，在更新完成之后触发，此时的数据是更新后的数据。</li>
+</ul>
+<blockquote>
+<p>注意：在这里操作数据很容易引起卡死。</p>
+</blockquote>
+<ul>
+<li>beforeDestroy<br>组件销毁之前执行，在这个周期里仍然可以访问data和method，多组件间通信需要发布信息时可以在该阶段完成。</li>
+<li>destroyed<br>当离开组件对应页面时组件销毁时触发，主要用于取消一些副作用（取消事件监听、取消定时器、取消不必要的请求等）</li>
+</ul>
+<h5 id="react-4"><a href="#react-4" class="headerlink" title="react"></a>react</h5><h5 id="16-3以前的生命周期"><a href="#16-3以前的生命周期" class="headerlink" title="16.3以前的生命周期"></a>16.3以前的生命周期</h5><p><img src="D:/Blog/HexoBlog/source/image/Vue_React%E5%AF%B9%E6%AF%94/react%E8%80%81%E7%89%88%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.png" alt="react老版生命周期"></p>
+<p>（1）初始化</p>
+<ul>
+<li>constructor<br>是class组件的默认方法，常用来初始化state或者设置属性等。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Counter</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">component</span></span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>(props)&#123;</span><br><span class="line">        <span class="keyword">super</span>(props); <span class="comment">// 声明constructor时必须调用super方法</span></span><br><span class="line">        <span class="keyword">this</span>.state = &#123;</span><br><span class="line">          count: <span class="number">0</span></span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（2）挂载阶段</p>
+<ul>
+<li>componentWillMount()<br>组件挂载之前调用，并且只会调用一次。</li>
+<li>render<br>render是一个React组件必须定义的生命周期函数，用来渲染DOM。 并必须 return 一个React元素（描述组件，即UI），不负责组件实际渲染工作，之后由React自身根据此元素去渲染出页面DOM。</li>
+</ul>
+<blockquote>
+<p>不要在render里面修改state,会引起死循环导致卡死。</p>
+</blockquote>
+<ul>
+<li>componentDidMount()<br>组件挂在完成之后调用，在这个阶段可以获取真实dom元素，常用来发起异步请求获取数据。</li>
+</ul>
+<p>（3）更新阶段</p>
+<p>当通过setState修改state或父组件重新render引起props更新，都会引起子组件的重新render。</p>
+<ul>
+<li>componentWillReceiveProps(nextProps)<br>props发生变化以及父组件重新渲染时都会触发该生命周期函数。在该阶段可以通过参数nextProps获取变化后的props参数， 通过this.props访问之前的props。该生命周期内可以进行setState。</li>
+<li>shouldComponentUpdate(nextProps,nextState)<br>组件每次setState或者父组件重新render都会引起子组件render，可以使用该钩子比较nextProps，nextState及当前组件的this.props，this.state的状态用来判断是否需要重新渲染。默认返回true，需要重新render，返回false则不触发渲染。</li>
+</ul>
+<blockquote>
+<p>一般我们通过该钩子来优化性能，避免子组件不必要的渲染。</p>
+</blockquote>
+<ul>
+<li>componentWillUpdate(nextProps, nextState)<br>当组件收到新的 props 或 state 时，会在渲染之前调用。使用此作为在更新发生之前执行准备更新的机会。初始渲染不会调用此方法。</li>
+</ul>
+<blockquote>
+<p>注意：不能在此方法中调用<code>this.setState</code></p>
+</blockquote>
+<ul>
+<li>componentDidUpdate(prevProps, prevState) 此方法在组件更新后被调用。首次渲染不会执行此方法。当组件更新后，可以在此处对DOM进行操作。</li>
+</ul>
+<blockquote>
+<p>注意：可以在<code>componentDidUpdate()</code>中直接调用<code>setState()</code>，但是它必需被包裹在一个条件语句里，否则会导致死循环。</p>
+</blockquote>
+<p>（4）卸载阶段</p>
+<ul>
+<li>componentWillUnmount()<br>会在组件卸载及销毁之前直接调用。在此方法中执行必要的清理操作，例如，清除 timer，取消网络请求或清除在<code>componentDidMount()</code> 中创建的订阅等。</li>
+</ul>
+<blockquote>
+<p>注意：componentWillUnmount() 中不应调用 setState()，因为该组件将永远不会重新渲染。</p>
+</blockquote>
+<h5 id="16-4之后"><a href="#16-4之后" class="headerlink" title="16.4之后"></a>16.4之后</h5><p>react 16.0之后移除的生命周期函数：</p>
+<ul>
+<li>componentWillMount</li>
+<li>componentWillReceiveProps</li>
+<li>componentWillUpdate</li>
+</ul>
+<p>但是为了向下兼容，react并未删除这三个生命周期，新增以 <code>UNSAFE_</code> 前缀为别名的三个函数 <code>UNSAFE_componentWillMount()</code>、<code>UNSAFE_componentWillReceiveProps()</code>、<code>UNSAFE_componentWillUpdate()</code>。</p>
+<p>新增的生命周期函数：</p>
+<ul>
+<li>static getDerivedStateFromProps(nextProps, prevState)</li>
+<li>getSnapshotBeforeUpdate(prevProps, prevState)</li>
+</ul>
+<p>生命周期如下：</p>
+<p><img src="D:/Blog/HexoBlog/source/image/Vue_React%E5%AF%B9%E6%AF%94/react%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.png" alt="react生命周期"></p>
+<blockquote>
+<p>总结：<br>初始化阶段保持不变 </p>
+<p>挂载阶段: getDerivedStateFromProps =&gt; render =&gt; componentDidMount </p>
+<p>更新阶段: getDerivedStateFromProps =&gt; shoudeComponentUpdate =&gt; render =&gt; getSnapshotBeforeUpdate  =&gt; componentDidUpdate </p>
+<p>卸载阶段保持不变</p>
+</blockquote>
+<h5 id="getDerivedStateFromProps、getSnapshotBeforeUpdate两个方法。"><a href="#getDerivedStateFromProps、getSnapshotBeforeUpdate两个方法。" class="headerlink" title="getDerivedStateFromProps、getSnapshotBeforeUpdate两个方法。"></a>getDerivedStateFromProps、getSnapshotBeforeUpdate两个方法。</h5><p>（1）static getDerivedStateFromProps(props, state)</p>
+<p>getDerivedStateFromProps 会在调用 render 方法之前调用，并且在初始挂载及后续更新时都会被调用。它应返回一个对象来更新 state，如果返回 null 则不更新任何内容。</p>
+<blockquote>
+<p>当state的值在任何时候都取决于props的时候适用该方法。</p>
+</blockquote>
+<p>示例如下：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ScrollingList</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(props) &#123;</span><br><span class="line">    <span class="keyword">super</span>(props);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">static</span> getDerivedStateFromProps(nextProps, prevState) &#123;</span><br><span class="line">    <span class="keyword">if</span> (nextProps.type !== prevState.type) &#123;</span><br><span class="line">        <span class="keyword">return</span> &#123;</span><br><span class="line">            type: nextProps.type,</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;div&gt;&#123;<span class="comment">/* ...contents... */</span>&#125;&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    );</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>（2）getSnapshotBeforeUpdate(prevProps, prevState)</p>
+<p>getSnapshotBeforeUpdate() 在最近一次渲染输出（提交到 DOM 节点）之前调用。它使得组件能在发生更改之前从 DOM 中捕获一些信息（例如，滚动位置）。此生命周期的任何返回值将作为参数传递给 <code>componentDidUpdate()</code>。此用法并不常见，但它可能出现在 UI 处理中，如需要以特殊方式处理滚动位置的聊天线程等。应返回 snapshot 的值（或 null）。</p>
+<p>示例如下：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ScrollingList</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(props) &#123;</span><br><span class="line">    <span class="keyword">super</span>(props);</span><br><span class="line">    <span class="keyword">this</span>.listRef = React.createRef();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  getSnapshotBeforeUpdate(prevProps, prevState) &#123;</span><br><span class="line">    <span class="comment">// 我们是否在 list 中添加新的 items ？</span></span><br><span class="line">    <span class="comment">// 捕获滚动位置以便我们稍后调整滚动位置。</span></span><br><span class="line">    <span class="keyword">if</span> (prevProps.list.length &lt; <span class="keyword">this</span>.props.list.length) &#123;</span><br><span class="line">      <span class="keyword">const</span> list = <span class="keyword">this</span>.listRef.current;</span><br><span class="line">      <span class="keyword">return</span> list.scrollHeight - list.scrollTop;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  componentDidUpdate(prevProps, prevState, snapshot) &#123;</span><br><span class="line">    <span class="comment">// 如果我们 snapshot 有值，说明我们刚刚添加了新的 items，</span></span><br><span class="line">    <span class="comment">// 调整滚动位置使得这些新 items 不会将旧的 items 推出视图。</span></span><br><span class="line">    <span class="comment">//（这里的 snapshot 是 getSnapshotBeforeUpdate 的返回值）</span></span><br><span class="line">    <span class="keyword">if</span> (snapshot !== <span class="literal">null</span>) &#123;</span><br><span class="line">      <span class="keyword">const</span> list = <span class="keyword">this</span>.listRef.current;</span><br><span class="line">      list.scrollTop = list.scrollHeight - snapshot;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;div ref=&#123;<span class="keyword">this</span>.listRef&#125;&gt;&#123;<span class="comment">/* ...contents... */</span>&#125;&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    );</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
+
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="true">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title='0' data-url='http://link.hhtjim.com/163/5146554.mp3'></li>
+                        
+                    
+                        
+                            <li title='1' data-url='http://link.hhtjim.com/qq/001faIUs4M2zna.mp3'></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id='gitalk-container' class="comment link"
+        data-ae='false'
+        data-ci=''
+        data-cs=''
+        data-r=''
+        data-o=''
+        data-a=''
+        data-d='false'
+    >查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/diaspora.js"></script>
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+</html>

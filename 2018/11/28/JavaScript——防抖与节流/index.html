@@ -1,0 +1,187 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>JavaScript——防抖与节流 - Hexo</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate">
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="JS防抖、节流的使用
+在项目中过程中，经常遇到一个按钮被点击多次并且多次调用对应处理函数的问题。有时也会遇到需要再某一规则内有规律的去触发对应的处理函数，所以就需要使用到函数防抖与节流来帮助我们实现,"> 
+    <meta name="author" content="John Doe"> 
+    <link rel="alternative" href="atom.xml" title="Hexo" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <link rel="stylesheet" href="/css/diaspora.css">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-8691406134231910",
+              enable_page_level_ads: true
+         });
+    </script>
+    <script async custom-element="amp-auto-ads" src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+    </script>
+</head>
+</html>
+<body class="loading">
+    <span id="config-title" style="display:none">Hexo</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="icon-home image-icon" href="javascript:;" data-url="http://yoursite.com"></a>
+    <div title="播放/暂停" class="icon-play"></div>
+    <h3 class="subtitle">JavaScript——防抖与节流</h3>
+    <div class="social">
+        <!--<div class="like-icon">-->
+            <!--<a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+        <!--</div>-->
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">JavaScript——防抖与节流</h1>
+        <div class="stuff">
+            <span>十一月 28, 2018</span>
+            
+  <ul class="post-tags-list"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h3 id="JS防抖、节流的使用"><a href="#JS防抖、节流的使用" class="headerlink" title="JS防抖、节流的使用"></a><code>JS</code>防抖、节流的使用</h3><blockquote>
+<p>在项目中过程中，经常遇到一个按钮被点击多次并且多次调用对应处理函数的问题。有时也会遇到需要再某一规则内有规律的去触发对应的处理函数，所以就需要使用到函数防抖与节流来帮助我们实现想要的场景以及避免不必要的问题。</p>
+</blockquote>
+<h4 id="1-函数防抖"><a href="#1-函数防抖" class="headerlink" title="1. 函数防抖"></a>1. 函数防抖</h4><h5 id="定义："><a href="#定义：" class="headerlink" title="定义："></a>定义：</h5><p>当持续触发事件时，一定时间段没有再触发事件，事件处理函数才会执行一次，如果设定的时间到来之前，有一次触发了事件，就重新开始延时。</p>
+<h5 id="原理："><a href="#原理：" class="headerlink" title="原理："></a>原理：</h5><p>维护一个定时器，规定在延时时间后触发函数，但是在延时时间内再次触发的话，就取消之前的定时器而重新设置，这样就能保证只有最后一次操作被触发。即将所有操作合并为一个操作进行，并且只有最后一次操作是有效的</p>
+<h5 id="使用场景："><a href="#使用场景：" class="headerlink" title="使用场景："></a>使用场景：</h5><ul>
+<li><code>文本框输入值的时候</code>，<code>search</code>搜索框的时候，用户在不断输入值时，用防抖来节约请求资源</li>
+<li>监听窗口滚动条<code>scroll</code>事件的时候，用户需要多次触发只执行最后一次</li>
+<li><code>window</code>触发<code>resize</code>的时候，不断的调整浏览器窗口大小会不断的触发这个事件，用防抖只触发一次</li>
+</ul>
+<h5 id="代码使用："><a href="#代码使用：" class="headerlink" title="代码使用："></a>代码使用：</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">debounce</span>(<span class="params">fn, delay=<span class="number">500</span></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> timer;</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> args = <span class="built_in">arguments</span>; <span class="comment">// dom</span></span><br><span class="line">    <span class="keyword">if</span>(timer) &#123;</span><br><span class="line">      clearTimeout(timer);</span><br><span class="line">    &#125;</span><br><span class="line">    timer = setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      timer = <span class="literal">null</span>;</span><br><span class="line">      fn.apply(<span class="keyword">this</span>,args);</span><br><span class="line">    &#125;, delay);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以把节流代码封装在自己<code>函数库</code>中，使用的时候调用即可。</p>
+<h4 id="2-函数节流"><a href="#2-函数节流" class="headerlink" title="2. 函数节流"></a>2. 函数节流</h4><h5 id="定义：-1"><a href="#定义：-1" class="headerlink" title="定义："></a>定义：</h5><p>当持续触发事件时，保证一定时间段内只调用一次事件处理函数，按照一定的规律在某个时间间隔内去处理函数。</p>
+<h5 id="原理：-1"><a href="#原理：-1" class="headerlink" title="原理："></a>原理：</h5><p>原理是通过判断是否到达一定时间来触发函数，使得一定时间内只触发一次函数。</p>
+<h5 id="使用场景：-1"><a href="#使用场景：-1" class="headerlink" title="使用场景："></a>使用场景：</h5><ul>
+<li><code>button</code>的<code>click</code>事件，用户点击按钮，让在间隔的时间内只触发一次</li>
+</ul>
+<h5 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Throttle = <span class="function">(<span class="params">fn, delay = <span class="number">500</span></span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">let</span> last;</span><br><span class="line">  <span class="keyword">let</span> timer;</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> args = <span class="built_in">arguments</span>;</span><br><span class="line">    <span class="keyword">let</span> now = +<span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line">    <span class="keyword">if</span> (last &amp;&amp; now - last &lt; delay) &#123;</span><br><span class="line">      clearTimeout(timer);</span><br><span class="line">      timer = setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">        last = now;</span><br><span class="line">        fn.apply(<span class="keyword">this</span>, args);</span><br><span class="line">      &#125;, delay)</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      last = now;</span><br><span class="line">      fn.apply(<span class="keyword">this</span>, args);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p><strong>总结：</strong></p>
+<p>防抖、节流在<code>vue</code>、<code>react</code>项目使用很常见。封装在<code>utils</code>文件中，使用的时候调用即可。</p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="true">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title='0' data-url='http://link.hhtjim.com/163/5146554.mp3'></li>
+                        
+                    
+                        
+                            <li title='1' data-url='http://link.hhtjim.com/qq/001faIUs4M2zna.mp3'></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id='gitalk-container' class="comment link"
+        data-ae='false'
+        data-ci=''
+        data-cs=''
+        data-r=''
+        data-o=''
+        data-a=''
+        data-d='false'
+    >查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/diaspora.js"></script>
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+</html>

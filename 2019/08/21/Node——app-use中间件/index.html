@@ -1,0 +1,177 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Node——app.use中间件 - Hexo</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate">
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="1. Express中路由和中间件路由：就是如何处理HTTP请求中的路径部分中间件：就是在收到请求后和发送响应之前这个阶段执行的一些函数1.1 应用及中间件123456789101112131415,"> 
+    <meta name="author" content="John Doe"> 
+    <link rel="alternative" href="atom.xml" title="Hexo" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <link rel="stylesheet" href="/css/diaspora.css">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-8691406134231910",
+              enable_page_level_ads: true
+         });
+    </script>
+    <script async custom-element="amp-auto-ads" src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+    </script>
+</head>
+</html>
+<body class="loading">
+    <span id="config-title" style="display:none">Hexo</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="icon-home image-icon" href="javascript:;" data-url="http://yoursite.com"></a>
+    <div title="播放/暂停" class="icon-play"></div>
+    <h3 class="subtitle">Node——app.use中间件</h3>
+    <div class="social">
+        <!--<div class="like-icon">-->
+            <!--<a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+        <!--</div>-->
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">Node——app.use中间件</h1>
+        <div class="stuff">
+            <span>八月 21, 2019</span>
+            
+  <ul class="post-tags-list"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/node-js/">node.js</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h3 id="1-Express中路由和中间件"><a href="#1-Express中路由和中间件" class="headerlink" title="1. Express中路由和中间件"></a>1. Express中路由和中间件</h3><h6 id="路由：就是如何处理HTTP请求中的路径部分"><a href="#路由：就是如何处理HTTP请求中的路径部分" class="headerlink" title="路由：就是如何处理HTTP请求中的路径部分"></a>路由：就是如何处理HTTP请求中的路径部分</h6><h6 id="中间件：就是在收到请求后和发送响应之前这个阶段执行的一些函数"><a href="#中间件：就是在收到请求后和发送响应之前这个阶段执行的一些函数" class="headerlink" title="中间件：就是在收到请求后和发送响应之前这个阶段执行的一些函数"></a>中间件：就是在收到请求后和发送响应之前这个阶段执行的一些函数</h6><h5 id="1-1-应用及中间件"><a href="#1-1-应用及中间件" class="headerlink" title="1.1 应用及中间件"></a>1.1 应用及中间件</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// next方法的作用就是将请求传递到下一个中间件</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">  当请求进来，会从第一个中间件开始进行匹配</span></span><br><span class="line"><span class="comment">     如果匹配，则进来</span></span><br><span class="line"><span class="comment">     如果请求进入中间件之后，没有调用 next 则代码会停在当前中间件</span></span><br><span class="line"><span class="comment">     如果调用了 next 则继续向后找到第一个匹配的中间件</span></span><br><span class="line"><span class="comment">     如果不匹配，则继续判断匹配下一个中间件</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="comment">// 不关心请求路径的请求</span></span><br><span class="line"><span class="comment">// 不管以什么路径请求只要有next()传递</span></span><br><span class="line">app.use(<span class="function">(<span class="params">req,res,next</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'1'</span>) <span class="comment">// 1</span></span><br><span class="line">    next()</span><br><span class="line">&#125;)</span><br><span class="line">app.use(<span class="function">(<span class="params">req,res,next</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'2'</span>)  <span class="comment">// 2</span></span><br><span class="line">    next()</span><br><span class="line">&#125;)</span><br><span class="line">app.use(<span class="function">(<span class="params">req,res.next</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'3'</span>)  <span class="comment">// 3</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 关心请求路径的请求</span></span><br><span class="line">app.use(<span class="function">(<span class="params">req, res, next</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'1'</span>)</span><br><span class="line">  next()</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">app.use(<span class="string">'/b'</span>, (req, res, next) =&gt; &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'b'</span>)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 以 /a 开头的路径中间件</span></span><br><span class="line">app.use(<span class="string">'/a'</span>, (req, res, next) =&gt; &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'a'</span>)</span><br><span class="line">  next()</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">app.use(<span class="function">(<span class="params">req, res, next</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'2'</span>)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 当在浏览器中以 /a 开头的请求时，会输出 1 a 2</span></span><br><span class="line"><span class="comment">// 当在浏览器中以 /b 开头的请求时，会输出 1 b,这里不会输出 2 因为当请求/b开头的请求后没有next()方法传递就会停留在那个请求中</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="1-2-错误处理中间件"><a href="#1-2-错误处理中间件" class="headerlink" title="1.2 错误处理中间件"></a>1.2 错误处理中间件</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">app.use(<span class="string">'/user'</span>,(req,res,next) =&gt; &#123;</span><br><span class="line">   <span class="keyword">try</span> &#123;</span><br><span class="line">       <span class="built_in">console</span>.log(has error)</span><br><span class="line">       next()</span><br><span class="line">   &#125; <span class="keyword">catch</span> (err) &#123;</span><br><span class="line">       <span class="built_in">console</span>.log(<span class="string">'error'</span>)</span><br><span class="line">       next(err)</span><br><span class="line">   &#125;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// 全局错误处理中间件</span></span><br><span class="line">app.use(<span class="function">(<span class="params">err,req,res,next</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(err.stack)</span><br><span class="line">    res.status(<span class="number">500</span>).send(<span class="string">'error message'</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>)</span><br><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>)</span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> app = express()</span><br><span class="line"></span><br><span class="line">app.get(<span class="string">'/a'</span>,(req,res,next) =&gt; &#123;</span><br><span class="line">  fs.readFile(path.join(__dirname,<span class="string">'./datas.txt'</span>),<span class="string">'utf8'</span>,(err,data) =&gt; &#123;</span><br><span class="line">    <span class="keyword">if</span> (err) &#123;</span><br><span class="line">      <span class="keyword">return</span> next(err)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">console</span>.log(data)</span><br><span class="line">    next()</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">app.get(<span class="string">'/a'</span>, (req,res,next) =&gt; &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'/a'</span>)</span><br><span class="line">  res.send(<span class="string">'/a'</span>)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 当不匹配任何请求路径时 会进去此错误处理</span></span><br><span class="line">app.use(<span class="function">(<span class="params">req,res,next</span>) =&gt;</span> &#123;</span><br><span class="line">  res.send(<span class="string">'404 not Found'</span>)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 全局错误处理中间件</span></span><br><span class="line">app.use(<span class="function">(<span class="params">err,req,res,next</span>) =&gt;</span> &#123;</span><br><span class="line">  res.status(<span class="number">500</span>).send(err.message)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">app.listen(<span class="number">3000</span>, () =&gt; &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'running...'</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h5 id="1-3-express中的router"><a href="#1-3-express中的router" class="headerlink" title="1.3 express中的router"></a>1.3 express中的router</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//app.js</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> public = <span class="built_in">require</span>(<span class="string">'./router/public'</span>)</span><br><span class="line"><span class="keyword">const</span> user = <span class="built_in">require</span>(<span class="string">'./router/user'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> app = express()</span><br><span class="line"></span><br><span class="line">app.use(<span class="string">'/public'</span>, public) <span class="comment">// 当请求以/public开头的路径时才会进来</span></span><br><span class="line"></span><br><span class="line">app.use(<span class="string">'/user'</span>, user) <span class="comment">// 当请求以/uer开头的路径时才会进来</span></span><br><span class="line"></span><br><span class="line">app.listen(<span class="number">3000</span>,() =&gt; &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'running...'</span>)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// router</span></span><br><span class="line"><span class="comment">// 1.user.js</span></span><br><span class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>)</span><br><span class="line"><span class="keyword">const</span> router = express.Router()</span><br><span class="line"></span><br><span class="line">router.get(<span class="string">'/a'</span>, (req,res) =&gt; &#123;</span><br><span class="line">  res.send(<span class="string">'hello node'</span>)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = router</span><br><span class="line"></span><br><span class="line"><span class="comment">// 2.public.js</span></span><br><span class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>)</span><br><span class="line"><span class="keyword">const</span> router = express.Router()</span><br><span class="line"></span><br><span class="line">router.get(<span class="string">'/b'</span>, (req,res) =&gt; &#123;</span><br><span class="line">  res.send(<span class="string">'hello world'</span>)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = router</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>app.router() 要挂载在所有第三方中间件的后面，因为前面配置的中间件是app.router()中请求处理函数的依赖</strong></li>
+</ul>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="true">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title='0' data-url='http://link.hhtjim.com/163/5146554.mp3'></li>
+                        
+                    
+                        
+                            <li title='1' data-url='http://link.hhtjim.com/qq/001faIUs4M2zna.mp3'></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id='gitalk-container' class="comment link"
+        data-ae='false'
+        data-ci=''
+        data-cs=''
+        data-r=''
+        data-o=''
+        data-a=''
+        data-d='false'
+    >查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/diaspora.js"></script>
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+</html>

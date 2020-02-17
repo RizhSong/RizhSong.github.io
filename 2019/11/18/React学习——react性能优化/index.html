@@ -1,0 +1,211 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>React学习——react性能优化 - Hexo</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate">
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="React性能优化
+react凭借virtual DOM和diff算法拥有高效的性能，除此之外也有很多其他的方法和技巧可以进一步提升react性能。
+1. 使用React.Memo()来缓存组件
+父,"> 
+    <meta name="author" content="John Doe"> 
+    <link rel="alternative" href="atom.xml" title="Hexo" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <link rel="stylesheet" href="/css/diaspora.css">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-8691406134231910",
+              enable_page_level_ads: true
+         });
+    </script>
+    <script async custom-element="amp-auto-ads" src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+    </script>
+</head>
+</html>
+<body class="loading">
+    <span id="config-title" style="display:none">Hexo</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="icon-home image-icon" href="javascript:;" data-url="http://yoursite.com"></a>
+    <div title="播放/暂停" class="icon-play"></div>
+    <h3 class="subtitle">React学习——react性能优化</h3>
+    <div class="social">
+        <!--<div class="like-icon">-->
+            <!--<a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+        <!--</div>-->
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">React学习——react性能优化</h1>
+        <div class="stuff">
+            <span>十一月 18, 2019</span>
+            
+  <ul class="post-tags-list"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/react/">react</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h3 id="React性能优化"><a href="#React性能优化" class="headerlink" title="React性能优化"></a>React性能优化</h3><blockquote>
+<h4 id="react凭借virtual-DOM和diff算法拥有高效的性能，除此之外也有很多其他的方法和技巧可以进一步提升react性能。"><a href="#react凭借virtual-DOM和diff算法拥有高效的性能，除此之外也有很多其他的方法和技巧可以进一步提升react性能。" class="headerlink" title="react凭借virtual DOM和diff算法拥有高效的性能，除此之外也有很多其他的方法和技巧可以进一步提升react性能。"></a>react凭借virtual DOM和diff算法拥有高效的性能，除此之外也有很多其他的方法和技巧可以进一步提升react性能。</h4></blockquote>
+<h4 id="1-使用React-Memo-来缓存组件"><a href="#1-使用React-Memo-来缓存组件" class="headerlink" title="1. 使用React.Memo()来缓存组件"></a>1. 使用<code>React.Memo()</code>来缓存组件</h4><blockquote>
+<p>父组件的每次状态更新，都会导致子组件重新渲染，即使传入子组件的状态没有变化，当类组件的输入属性相同时可以使用<code>pureComponent</code>或<code>shouldComponentUdate</code>来避免组件的渲染，函数组件中我们可以使用<code>React.memo</code>来缓存组件，这样只有当传入组件的状态值发生变化时才会重新渲染。如果传入相同的值，则返回缓存的组件。示例如下:</p>
+</blockquote>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> React.memo(props) =&gt; &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">        &lt;div&gt;&#123;props.value&#125;&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    );</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="React-memo（浅比较）"><a href="#React-memo（浅比较）" class="headerlink" title="React.memo（浅比较）"></a><code>React.memo（浅比较）</code></h5><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> AreEqual <span class="keyword">from</span> <span class="string">'./component/AreEqual'</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">App</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(props) &#123;</span><br><span class="line">    <span class="keyword">super</span>(props);</span><br><span class="line">    <span class="keyword">this</span>.state = &#123;</span><br><span class="line">      val: <span class="number">1</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  handleClick = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">this</span>.setState(&#123;</span><br><span class="line">      val: <span class="keyword">this</span>.state.val</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;button onClick=&#123;<span class="keyword">this</span>.handleClick&#125;&gt;点击&lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp">        &lt;AreEqual &#123;...this.state&#125; /</span>&gt;</span><br><span class="line">      &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    );</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">export default App;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">areEqual</span>(<span class="params">prevProps, nextProps</span>) </span>&#123;</span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * 如果把nextProps传入render方法的返回结果与将</span></span><br><span class="line"><span class="comment">   * preProps传入render方法的返回结果一致则返回true</span></span><br><span class="line"><span class="comment">   * 否则返回false</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="keyword">if</span> (prevProps.val === nextProps.val) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">AreEqual</span>(<span class="params">props</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"渲染了"</span>);</span><br><span class="line">  <span class="keyword">const</span> &#123; val &#125; = props;</span><br><span class="line">  <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml">    &#123;val&#125;</span></span><br><span class="line"><span class="xml">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// React.memo()两个参数 第一个是纯函数，第二个是比较函数</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> React.memo(AreEqual, areEqual);</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-React-PureComponent"><a href="#2-React-PureComponent" class="headerlink" title="2. React.PureComponent"></a>2. <code>React.PureComponent</code></h4><blockquote>
+<p>作用：</p>
+<ol>
+<li><code>React.PureComponent</code>和<code>React.Component</code>类似，都是定义一个组件类。</li>
+<li>不同的是<code>React.Component</code>没有实现<code>shouldComponentUpdate()</code>，而<code>React.PureComponent</code>通过props和state的浅比较实现了。</li>
+<li><code>React.PureComponent</code>是作用在类中，<code>React.memo</code>是作用在函数中</li>
+</ol>
+</blockquote>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Children</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">PureComponent</span> </span>&#123;</span><br><span class="line">    render() &#123;</span><br><span class="line">        &lt;div&gt;&#123;<span class="keyword">this</span>.props.name&#125;&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">export default class App extends React.Component &#123;</span></span><br><span class="line"><span class="regexp">    render() &#123;</span></span><br><span class="line"><span class="regexp">        &lt;div&gt;</span></span><br><span class="line"><span class="regexp">          &lt;Children name=&#123;'这是React.pureComponent的使用方法'&#125; /</span>&gt;</span><br><span class="line">        &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="3-使用useMemo缓存大量的计算"><a href="#3-使用useMemo缓存大量的计算" class="headerlink" title="3. 使用useMemo缓存大量的计算"></a>3. 使用<code>useMemo</code>缓存大量的计算</h4><blockquote>
+<p>有时渲染是不可避免的，但如果您的组件是一个功能组件，重新渲染会导致每次都调用大型计算函数，这是非常消耗性能的，我们可以使用新的<code>useMemo</code>钩子来“记忆”这个计算函数的计算结果。这样只有传入的参数发生变化后，该计算函数才会重新调用计算新的结果。<br>通过这种方式，您可以使用从先前渲染计算的结果来挽救昂贵的计算耗时。总体目标是减少JavaScript在呈现组件期间必须执行的工作量，以便主线程被阻塞的时间更短。</p>
+</blockquote>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 避免这样做</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Component</span>(<span class="params">props</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> someProp = heavyCalculation(props.item);</span><br><span class="line">  <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">AnotherComponent</span> <span class="attr">someProp</span>=<span class="string">&#123;someProp&#125;</span> /&gt;</span> </span></span><br><span class="line"><span class="xml">&#125;</span></span><br><span class="line"><span class="xml">  </span></span><br><span class="line"><span class="xml">// 只有 `props.item` 改变时someProp的值才会被重新计算</span></span><br><span class="line"><span class="xml">function Component(props) &#123;</span></span><br><span class="line"><span class="xml">  const someProp = useMemo(() =&gt; heavyCalculation(props.item), [props.item]);</span></span><br><span class="line">  return &lt;AnotherComponent someProp=&#123;someProp&#125; /&gt; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-使用React-PureComponent-shouldComponentUpdate"><a href="#4-使用React-PureComponent-shouldComponentUpdate" class="headerlink" title="4.使用React.PureComponent, shouldComponentUpdate"></a>4.使用<code>React.PureComponent</code>, <code>shouldComponentUpdate</code></h4><blockquote>
+<p>父组件状态的每次更新，都会导致子组件的重新渲染，即使是传入相同props。但是这里的重新渲染不是说会更新DOM,而是每次都会调用diif算法来判断是否需要更新DOM。这对于大型组件例如组件树来说是非常消耗性能的。<br>在这里我们就可以使用<code>React.PureComponent</code> ,<code>shouldComponentUpdate</code>生命周期来确保只有当组件props状态改变时才会重新渲染。如下例子:</p>
+</blockquote>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> <span class="title">ParentComponent</span>(<span class="params">props</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;SomeComponent someProp=&#123;props.somePropValue&#125; /&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;AnotherComponent someOtherProp=&#123;props.someOtherPropValue&#125; /&gt;</span><br><span class="line">    &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">   &lt;/</span>div&gt;</span><br><span class="line"> )</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> <span class="title">SomeComponent</span>(<span class="params">props</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    &lt;div&gt;&#123;props.someProp&#125;&lt;<span class="regexp">/div&gt;  </span></span><br><span class="line"><span class="regexp">  )</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">/</span><span class="regexp">/ 只要props.somePropValue 发生变化，不论props.someOtherPropValue是否发生变化该组件都会发生变化</span></span><br><span class="line"><span class="regexp">export default function AnotherComponent(props) &#123;</span></span><br><span class="line"><span class="regexp">  return (</span></span><br><span class="line"><span class="regexp">    &lt;div&gt;&#123;props.someOtherProp&#125;&lt;/</span>div&gt;  </span><br><span class="line">  )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用 <code>React.PureComponent</code>、<code>shouldComponentUpdate</code>性能优化</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 第一种优化</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AnotherComponent</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">PureComponent</span> </span>&#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>&#123;this.props.someOtherProp&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>   </span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//第二种优化</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AnotherComponent</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">  shouldComponentUpdate(nextProps) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.props !== nextProps</span><br><span class="line">  &#125;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>&#123;this.props.someOtherProp&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>   </span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><code>PureComponent</code>会进行浅比较来判断组件是否应该重新渲染，对于传入的基本类型props，只要值相同，浅比较就会认为相同，对于传入的引用类型props，浅比较只会认为传入的props是不是同一个引用，如果不是，哪怕这两个对象中的内容完全一样，也会被认为是不同的props。<br>需要注意的是在对于那些可以忽略渲染时间的组件或者是状态一直变化的组件则要谨慎使用<code>PureComponent</code>，因为进行浅比较也会花费时间，这种优化更适用于大型的展示组件上。大型组件也可以拆分成多个小组件，并使用memo来包裹小组件，也可以提升性能。</p>
+</blockquote>
+<h5 id="补充：PureComponent浅比较部分核心源码"><a href="#补充：PureComponent浅比较部分核心源码" class="headerlink" title="补充：PureComponent浅比较部分核心源码"></a>补充：<code>PureComponent</code>浅比较部分核心源码</h5><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">shallowEqual</span> (<span class="params">objA: mixed, objB: mixed</span>): <span class="title">boolean</span> </span>&#123;</span><br><span class="line">  <span class="comment">// 下面的 is 相当于 === 的功能，只是对 + 0 和 - 0，以及 NaN 和 NaN 的情况进行了特殊处理</span></span><br><span class="line">  <span class="comment">// 第一关：基础数据类型直接比较出结果</span></span><br><span class="line">  <span class="keyword">if</span> (is (objA, objB)) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 第二关：只要有一个不是对象数据类型就返回 false</span></span><br><span class="line">  <span class="keyword">if</span> (</span><br><span class="line">    <span class="keyword">typeof</span> objA !== <span class="string">'object'</span> ||</span><br><span class="line">    objA === <span class="literal">null</span> ||</span><br><span class="line">    <span class="keyword">typeof</span> objB !== <span class="string">'object'</span> ||</span><br><span class="line">    objB === <span class="literal">null</span></span><br><span class="line">  ) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 第三关：在这里已经可以保证两个都是对象数据类型，比较两者的属性数量</span></span><br><span class="line">  <span class="keyword">const</span> keysA = <span class="built_in">Object</span>.keys (objA);</span><br><span class="line">  <span class="keyword">const</span> keysB = <span class="built_in">Object</span>.keys (objB);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (keysA.length !== keysB.length) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 第四关：比较两者的属性是否相等，值是否相等</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; keysA.length; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (</span><br><span class="line">      !hasOwnProperty.call (objB, keysA [i]) ||</span><br><span class="line">      !is (objA [keysA [i]], objB [keysA [i]])</span><br><span class="line">    ) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="注意：比较终究是浅比较，当出现嵌套情况就会失灵"><a href="#注意：比较终究是浅比较，当出现嵌套情况就会失灵" class="headerlink" title="注意：比较终究是浅比较，当出现嵌套情况就会失灵"></a>注意：比较终究是浅比较，当出现嵌套情况就会失灵</h5><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">state: &#123;<span class="attr">a</span> : [<span class="string">"1"</span>]&#125; -&gt; state: &#123;<span class="attr">a</span>: [<span class="string">"1"</span>, <span class="string">"2"</span>]&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>这种方式最大的弊端是由于 <code>JS</code> 引用赋值的原因，这种方式仅仅适用于无状态组件或者状态数据非常简单的组件，对于大量的应用组件无能为力</p>
+</blockquote>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="true">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title='0' data-url='http://link.hhtjim.com/163/5146554.mp3'></li>
+                        
+                    
+                        
+                            <li title='1' data-url='http://link.hhtjim.com/qq/001faIUs4M2zna.mp3'></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id='gitalk-container' class="comment link"
+        data-ae='false'
+        data-ci=''
+        data-cs=''
+        data-r=''
+        data-o=''
+        data-a=''
+        data-d='false'
+    >查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/diaspora.js"></script>
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+</html>

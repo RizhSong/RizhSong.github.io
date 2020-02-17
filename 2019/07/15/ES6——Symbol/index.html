@@ -1,0 +1,190 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>ES6——Symbol - Hexo</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate">
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="ES6—Symbol
+ES6 引入了一种新的原始数据类型 Symbol，表示独一无二的值。
+
+1.  Symbol 值通过 Symbol 函数生成，使用 typeof，结果为 &amp;quot;symbo,"> 
+    <meta name="author" content="John Doe"> 
+    <link rel="alternative" href="atom.xml" title="Hexo" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <link rel="stylesheet" href="/css/diaspora.css">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-8691406134231910",
+              enable_page_level_ads: true
+         });
+    </script>
+    <script async custom-element="amp-auto-ads" src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+    </script>
+</head>
+</html>
+<body class="loading">
+    <span id="config-title" style="display:none">Hexo</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="icon-home image-icon" href="javascript:;" data-url="http://yoursite.com"></a>
+    <div title="播放/暂停" class="icon-play"></div>
+    <h3 class="subtitle">ES6——Symbol</h3>
+    <div class="social">
+        <!--<div class="like-icon">-->
+            <!--<a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+        <!--</div>-->
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">ES6——Symbol</h1>
+        <div class="stuff">
+            <span>七月 15, 2019</span>
+            
+  <ul class="post-tags-list"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/ES6/">ES6</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h3 id="ES6—Symbol"><a href="#ES6—Symbol" class="headerlink" title="ES6—Symbol"></a>ES6—Symbol</h3><blockquote>
+<p>ES6 引入了一种新的原始数据类型 Symbol，表示独一无二的值。</p>
+</blockquote>
+<h4 id="1-Symbol-值通过-Symbol-函数生成，使用-typeof，结果为-quot-symbol-quot"><a href="#1-Symbol-值通过-Symbol-函数生成，使用-typeof，结果为-quot-symbol-quot" class="headerlink" title="1.  Symbol 值通过 Symbol 函数生成，使用 typeof，结果为 &quot;symbol&quot;"></a>1.  <code>Symbol</code> 值通过 <code>Symbol</code> 函数生成，使用 <code>typeof</code>，结果为 <code>&quot;symbol&quot;</code></h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> s = <span class="built_in">Symbol</span>();</span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> s); <span class="comment">// "symbol"</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="2-Symbol-函数前不能使用-new-命令，否则会报错。这是因为生成的-Symbol是一个原始类型的值，不是对象。"><a href="#2-Symbol-函数前不能使用-new-命令，否则会报错。这是因为生成的-Symbol是一个原始类型的值，不是对象。" class="headerlink" title="2. Symbol 函数前不能使用 new 命令，否则会报错。这是因为生成的 Symbol是一个原始类型的值，不是对象。"></a>2. <code>Symbol</code> 函数前不能使用 <code>new 命令</code>，否则会报错。这是因为生成的 <code>Symbol</code>是一个原始类型的值，不是对象。</h4><h4 id="3-instanceof-的结果为-false"><a href="#3-instanceof-的结果为-false" class="headerlink" title="3. instanceof 的结果为 false"></a>3. <code>instanceof</code> 的结果为 false</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> s = <span class="built_in">Symbol</span>(<span class="string">'foo'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(s <span class="keyword">instanceof</span> <span class="built_in">Symbol</span>); <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="4-Symbol-函数可以接受一个字符串作为参数，表示对-Symbol-实例的描述，主要是为了在控制台显示，或者转为字符串时，比较容易区分"><a href="#4-Symbol-函数可以接受一个字符串作为参数，表示对-Symbol-实例的描述，主要是为了在控制台显示，或者转为字符串时，比较容易区分" class="headerlink" title="4. Symbol 函数可以接受一个字符串作为参数，表示对 Symbol 实例的描述，主要是为了在控制台显示，或者转为字符串时，比较容易区分"></a>4. <code>Symbol</code> 函数可以接受一个字符串作为参数，表示对 <code>Symbol</code> 实例的描述，主要是为了在控制台显示，或者转为字符串时，比较容易区分</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> s1 = <span class="built_in">Symbol</span>(<span class="string">'foo'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(s1); <span class="comment">// Symbol(foo)</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="5-如果-Symbol-的参数是一个对象，就会调用该对象的-toString-方法，将其转为字符串，然后才生成一个-Symbol-值。"><a href="#5-如果-Symbol-的参数是一个对象，就会调用该对象的-toString-方法，将其转为字符串，然后才生成一个-Symbol-值。" class="headerlink" title="5. 如果 Symbol 的参数是一个对象，就会调用该对象的 toString 方法，将其转为字符串，然后才生成一个 Symbol 值。"></a>5. 如果 <code>Symbol</code> 的参数是一个对象，就会调用该对象的 <code>toString</code> 方法，将其转为字符串，然后才生成一个 Symbol 值。</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = &#123;</span><br><span class="line">  toString() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'abc'</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">const</span> sym = <span class="built_in">Symbol</span>(obj);</span><br><span class="line"><span class="built_in">console</span>.log(sym); <span class="comment">// Symbol(abc)</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="6-Symbol-函数的参数只是表示对当前-Symbol-值的描述，相同参数的-Symbol-函数的返回值是不相等的"><a href="#6-Symbol-函数的参数只是表示对当前-Symbol-值的描述，相同参数的-Symbol-函数的返回值是不相等的" class="headerlink" title="6. Symbol 函数的参数只是表示对当前 Symbol 值的描述，相同参数的 Symbol 函数的返回值是不相等的"></a>6. <code>Symbol</code> 函数的参数只是表示对当前 <code>Symbol</code> 值的描述，相同参数的 <code>Symbol</code> 函数的返回值是不相等的</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 没有参数的情况</span></span><br><span class="line"><span class="keyword">var</span> s1 = <span class="built_in">Symbol</span>();</span><br><span class="line"><span class="keyword">var</span> s2 = <span class="built_in">Symbol</span>();</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(s1 === s2); <span class="comment">// false</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 有参数的情况</span></span><br><span class="line"><span class="keyword">var</span> s1 = <span class="built_in">Symbol</span>(<span class="string">'foo'</span>);</span><br><span class="line"><span class="keyword">var</span> s2 = <span class="built_in">Symbol</span>(<span class="string">'foo'</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(s1 === s2); <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="7-Symbol-值不能与其他类型的值进行运算，会报错"><a href="#7-Symbol-值不能与其他类型的值进行运算，会报错" class="headerlink" title="7. Symbol 值不能与其他类型的值进行运算，会报错"></a>7. <code>Symbol</code> 值不能与其他类型的值进行运算，会报错</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> sym = <span class="built_in">Symbol</span>(<span class="string">'My symbol'</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"your symbol is "</span> + sym); <span class="comment">// TypeError: can't convert symbol to string</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="8-Symbol-值可以显式转为字符串"><a href="#8-Symbol-值可以显式转为字符串" class="headerlink" title="8. Symbol 值可以显式转为字符串"></a>8. <code>Symbol</code> 值可以显式转为字符串</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> sym = <span class="built_in">Symbol</span>(<span class="string">'My symbol'</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">String</span>(sym)); <span class="comment">// 'Symbol(My symbol)'</span></span><br><span class="line"><span class="built_in">console</span>.log(sym.toString()); <span class="comment">// 'Symbol(My symbol)'</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="9-Symbol-值可以作为标识符，用于对象的属性名，可以保证不会出现同名的属性"><a href="#9-Symbol-值可以作为标识符，用于对象的属性名，可以保证不会出现同名的属性" class="headerlink" title="9. Symbol 值可以作为标识符，用于对象的属性名，可以保证不会出现同名的属性"></a>9. <code>Symbol</code> 值可以作为标识符，用于对象的属性名，可以保证不会出现同名的属性</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> mySymbol = <span class="built_in">Symbol</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 第一种写法</span></span><br><span class="line"><span class="keyword">var</span> a = &#123;&#125;;</span><br><span class="line">a[mySymbol] = <span class="string">'Hello!'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 第二种写法</span></span><br><span class="line"><span class="keyword">var</span> a = &#123;</span><br><span class="line">  [mySymbol]: <span class="string">'Hello!'</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 第三种写法</span></span><br><span class="line"><span class="keyword">var</span> a = &#123;&#125;;</span><br><span class="line"><span class="built_in">Object</span>.defineProperty(a, mySymbol, &#123; <span class="attr">value</span>: <span class="string">'Hello!'</span> &#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 以上写法都得到同样结果</span></span><br><span class="line"><span class="built_in">console</span>.log(a[mySymbol]); <span class="comment">// "Hello!"</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="10-Symbol作为属性名，该属性不会出现在-for-in、for-of-循环中，也不会被-Object-keys-、Object-getOwnPropertyNames-、JSON-stringify-返回。但是，它也不是私有属性，有一个-Object-getOwnPropertySymbols-方法，可以获取指定对象的所有-Symbol-属性名。"><a href="#10-Symbol作为属性名，该属性不会出现在-for-in、for-of-循环中，也不会被-Object-keys-、Object-getOwnPropertyNames-、JSON-stringify-返回。但是，它也不是私有属性，有一个-Object-getOwnPropertySymbols-方法，可以获取指定对象的所有-Symbol-属性名。" class="headerlink" title="10. Symbol作为属性名，该属性不会出现在 for...in、for...of 循环中，也不会被 Object.keys()、Object.getOwnPropertyNames()、JSON.stringify() 返回。但是，它也不是私有属性，有一个 Object.getOwnPropertySymbols 方法，可以获取指定对象的所有 Symbol 属性名。"></a>10. <code>Symbol</code>作为属性名，该属性不会出现在 <code>for...in</code>、<code>for...of</code> 循环中，也不会被 <code>Object.keys()</code>、<code>Object.getOwnPropertyNames()</code>、<code>JSON.stringify()</code> 返回。但是，它也不是私有属性，有一个 <code>Object.getOwnPropertySymbols</code> 方法，可以获取指定对象的所有 <code>Symbol</code> 属性名。</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;&#125;;</span><br><span class="line"><span class="keyword">var</span> a = <span class="built_in">Symbol</span>(<span class="string">'a'</span>);</span><br><span class="line"><span class="keyword">var</span> b = <span class="built_in">Symbol</span>(<span class="string">'b'</span>);</span><br><span class="line"></span><br><span class="line">obj[a] = <span class="string">'Hello'</span>;</span><br><span class="line">obj[b] = <span class="string">'World'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> objectSymbols = <span class="built_in">Object</span>.getOwnPropertySymbols(obj);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(objectSymbols);</span><br><span class="line"><span class="comment">// [Symbol(a), Symbol(b)]</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="11-如果我们希望使用同一个-Symbol-值，可以使用-Symbol-for。它接受一个字符串作为参数，然后搜索有没有以该参数作为名称的-Symbol值。如果有，就返回这个-Symbol-值，否则就新建并返回一个以该字符串为名称的-Symbol-值。"><a href="#11-如果我们希望使用同一个-Symbol-值，可以使用-Symbol-for。它接受一个字符串作为参数，然后搜索有没有以该参数作为名称的-Symbol值。如果有，就返回这个-Symbol-值，否则就新建并返回一个以该字符串为名称的-Symbol-值。" class="headerlink" title="11. 如果我们希望使用同一个 Symbol 值，可以使用 Symbol.for。它接受一个字符串作为参数，然后搜索有没有以该参数作为名称的 Symbol值。如果有，就返回这个 Symbol 值，否则就新建并返回一个以该字符串为名称的 Symbol 值。"></a>11. 如果我们希望使用同一个 <code>Symbol</code> 值，可以使用 <code>Symbol.for</code>。它接受一个字符串作为参数，然后搜索有没有以该参数作为名称的 <code>Symbol</code>值。如果有，就返回这个 <code>Symbol</code> 值，否则就新建并返回一个以该字符串为名称的 <code>Symbol</code> 值。</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> s1 = <span class="built_in">Symbol</span>.for(<span class="string">'foo'</span>);</span><br><span class="line"><span class="keyword">var</span> s2 = <span class="built_in">Symbol</span>.for(<span class="string">'foo'</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(s1 === s2); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="12-Symbol-keyFor-方法返回一个已登记的-Symbol-类型值的-key"><a href="#12-Symbol-keyFor-方法返回一个已登记的-Symbol-类型值的-key" class="headerlink" title="12. Symbol.keyFor 方法返回一个已登记的 Symbol 类型值的 key"></a>12. <code>Symbol.keyFor</code> 方法返回一个已登记的 <code>Symbol</code> 类型值的 <code>key</code></h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> s1 = <span class="built_in">Symbol</span>.for(<span class="string">"foo"</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Symbol</span>.keyFor(s1)); <span class="comment">// "foo"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> s2 = <span class="built_in">Symbol</span>(<span class="string">"foo"</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Symbol</span>.keyFor(s2) ); <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure>
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="true">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title='0' data-url='http://link.hhtjim.com/163/5146554.mp3'></li>
+                        
+                    
+                        
+                            <li title='1' data-url='http://link.hhtjim.com/qq/001faIUs4M2zna.mp3'></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id='gitalk-container' class="comment link"
+        data-ae='false'
+        data-ci=''
+        data-cs=''
+        data-r=''
+        data-o=''
+        data-a=''
+        data-d='false'
+    >查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/diaspora.js"></script>
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+</html>

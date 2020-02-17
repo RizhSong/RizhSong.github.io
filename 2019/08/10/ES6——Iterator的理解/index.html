@@ -1,0 +1,303 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>ES6——Iterator的理解 - Hexo</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate">
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="ES6—Iterator的理解
+Iterator可以说是ES6内相当重大的一个特性
+
+1. 从一个变量说起1const arr = [&#39;红&#39;, &#39;绿&#39;, &#39;蓝&#39;];
+
+如果要获取它的每一项数据，可以,"> 
+    <meta name="author" content="John Doe"> 
+    <link rel="alternative" href="atom.xml" title="Hexo" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <link rel="stylesheet" href="/css/diaspora.css">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-8691406134231910",
+              enable_page_level_ads: true
+         });
+    </script>
+    <script async custom-element="amp-auto-ads" src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+    </script>
+</head>
+</html>
+<body class="loading">
+    <span id="config-title" style="display:none">Hexo</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="icon-home image-icon" href="javascript:;" data-url="http://yoursite.com"></a>
+    <div title="播放/暂停" class="icon-play"></div>
+    <h3 class="subtitle">ES6——Iterator的理解</h3>
+    <div class="social">
+        <!--<div class="like-icon">-->
+            <!--<a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+        <!--</div>-->
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">ES6——Iterator的理解</h1>
+        <div class="stuff">
+            <span>八月 10, 2019</span>
+            
+  <ul class="post-tags-list"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/ES6/">ES6</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h3 id="ES6—Iterator的理解"><a href="#ES6—Iterator的理解" class="headerlink" title="ES6—Iterator的理解"></a>ES6—<code>Iterator</code>的理解</h3><blockquote>
+<p><code>Iterator</code>可以说是ES6内相当重大的一个特性</p>
+</blockquote>
+<h4 id="1-从一个变量说起"><a href="#1-从一个变量说起" class="headerlink" title="1. 从一个变量说起"></a>1. 从一个变量说起</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="string">'红'</span>, <span class="string">'绿'</span>, <span class="string">'蓝'</span>];</span><br></pre></td></tr></table></figure>
+
+<p>如果要获取它的每一项数据，可以使用普通的<code>for</code>循环或者<code>forEach</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(arr[i]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">arr.forEach(<span class="function"><span class="params">item</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(item);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h5 id="当变量是字符串的时候"><a href="#当变量是字符串的时候" class="headerlink" title="当变量是字符串的时候"></a>当变量是字符串的时候</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> str = <span class="string">'1234567890'</span>;</span><br></pre></td></tr></table></figure>
+
+<p>可以使用<code>for...in</code>,也可以使用<code>for</code>循环</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> s <span class="keyword">in</span> str) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(str[s]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; str.length; i++) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(str[i]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 或者转换成数组</span></span><br><span class="line"><span class="built_in">Array</span>.prototype.slice.call(str);</span><br></pre></td></tr></table></figure>
+
+<p><code>for in</code> 不是用来获取数据的，他会遍历对象上所有可枚举的属性，包括自身的和原型链上的</p>
+<h5 id="看下面给定的一个map对象，然后输出它的每一项数据"><a href="#看下面给定的一个map对象，然后输出它的每一项数据" class="headerlink" title="看下面给定的一个map对象，然后输出它的每一项数据"></a>看下面给定的一个<code>map</code>对象，然后输出它的每一项数据</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> map = <span class="keyword">new</span> <span class="built_in">Map</span>();</span><br><span class="line">map.set(<span class="string">'zhu'</span>, <span class="string">'18'</span>);</span><br><span class="line">map.set(<span class="string">'zhang'</span>, <span class="string">'20'</span>);</span><br><span class="line">map.set(<span class="string">'wang'</span>, <span class="string">'23'</span>);</span><br></pre></td></tr></table></figure>
+
+<p>用<code>map</code>方法中的<code>forEach</code>循环遍历</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">map.forEach(<span class="function">(<span class="params">val, key</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(val, key);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h5 id="发现问题"><a href="#发现问题" class="headerlink" title="发现问题"></a>发现问题</h5><p>在上一步几个简单的问题中，我们的操作都是获得他们的每一项数据。</p>
+<p>当然方法有很多种，实现方式也有很多，<code>for 循环</code>，<code>forEach</code>，<code>for in</code> 等</p>
+<p>但是有没有发现一个问题，或者我们站在一个更高的维度去看待，其实这些方法都不能通用，也就是说上面的这几种集合数据不能使用统一的遍历方法来进行数据获取</p>
+<h4 id="2-ES6-for-of循环"><a href="#2-ES6-for-of循环" class="headerlink" title="2. ES6 for...of循环"></a>2. ES6 <code>for...of</code>循环</h4><blockquote>
+<p>这个可以对不同数据结构进行统一遍历的方式就是 <code>es6</code>的 <code>for of</code> 循环</p>
+<p><code>for of</code> 循环 和 古老的<code>for 循环</code>很像呀。不就是个新增语法么</p>
+</blockquote>
+<h5 id="并不是所有的对象都能使用-for-of，只有实现了Iterator接口的对象才能够使用-for-of-来进行遍历取值"><a href="#并不是所有的对象都能使用-for-of，只有实现了Iterator接口的对象才能够使用-for-of-来进行遍历取值" class="headerlink" title="并不是所有的对象都能使用 for of，只有实现了Iterator接口的对象才能够使用 for of 来进行遍历取值"></a>并不是所有的对象都能使用 <code>for of</code>，只有实现了<code>Iterator</code>接口的对象才能够使用 <code>for of</code> 来进行遍历取值</h5><h4 id="3-Iterator-迭代器"><a href="#3-Iterator-迭代器" class="headerlink" title="3. Iterator 迭代器"></a>3. <code>Iterator</code> 迭代器</h4><blockquote>
+<p><code>Iterator</code> 是一种接口，目的是为不同的数据结构提供统一的数据访问机制。也可以理解为 <code>Iterator</code> 接口主要为 <code>for of</code> 服务的，供<code>for...of</code>进行消费</p>
+</blockquote>
+<h5 id="既然他是一种接口，那我们应该怎样实现这个接口呢？实现规则是什么样的呢？"><a href="#既然他是一种接口，那我们应该怎样实现这个接口呢？实现规则是什么样的呢？" class="headerlink" title="既然他是一种接口，那我们应该怎样实现这个接口呢？实现规则是什么样的呢？"></a>既然他是一种接口，那我们应该怎样实现这个接口呢？实现规则是什么样的呢？</h5><blockquote>
+<p>因为 <code>javascript</code> 语言里没有接口的概念，这里我们可以理解成它是一种特殊的对象 - 迭代器对象，返回此对象的方法叫做迭代器方法</p>
+</blockquote>
+<p>首先他作为一个对象，此对象具有一个<code>next</code>方法，每次调用 <code>next</code> 方法都会返回一个结果值。</p>
+<p>这个结果值是一个 <code>object</code>，包含两个属性，<code>value</code> 和 <code>done</code>。</p>
+<p><code>value</code>表示具体的返回值，<code>done</code> 是布尔类型的，表示集合是否遍历完成或者是否后续还有可用数据，没有可用数据则返回 <code>true</code>，否则返回 <code>false</code>。</p>
+<p>另外内部会维护一个指针，用来指向当前集合的位置，每调用一次 <code>next</code> 方法，指针都会向后移动一个位置(可以想象成数组的索引)</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getIterator</span>(<span class="params">list</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> i = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    next: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="keyword">let</span> done = (i &gt;= list.length);</span><br><span class="line">      <span class="keyword">let</span> value = !done ? list[i++] : <span class="literal">undefined</span>;</span><br><span class="line">      <span class="keyword">return</span> &#123;</span><br><span class="line">        done: done,</span><br><span class="line">        value: value</span><br><span class="line">      &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> it = getIterator([<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>]);</span><br><span class="line"><span class="built_in">console</span>.log(it.next()); <span class="comment">// &#123;value: "a", done: false&#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(it.next()); <span class="comment">// &#123;value: "b", done: false&#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(it.next()); <span class="comment">// &#123;value: "c", done: false&#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(it.next()); <span class="comment">// "&#123; value: undefined, done: true &#125;"</span></span><br><span class="line"><span class="built_in">console</span>.log(it.next()); <span class="comment">// "&#123; value: undefined, done: true &#125;"</span></span><br><span class="line"><span class="built_in">console</span>.log(it.next()); <span class="comment">// "&#123; value: undefined, done: true &#125;"</span></span><br></pre></td></tr></table></figure>
+
+<p>上面代码便是根据迭代器的基本概念衍生出来的一个模拟实现</p>
+<ul>
+<li><code>getIterator</code>方法返回一个对象 - 可迭代对象</li>
+<li>对象具有一个<code>next</code> 方法，<code>next</code> 方法内部通过闭包来保存指针 <code>i</code> 的值，每次调用 <code>next</code> 方法 <code>i</code> 的值都会<code>+1</code></li>
+<li>然后根据 <code>i</code> 的值从数组内取出数据作为 <code>value</code>，然后通过索引判断得到 <code>done</code>的值</li>
+<li>当 <code>i=3</code>的时候，超过数组的最大索引，无可用数据返回，此时done 为<code>true</code>，遍历完成</li>
+</ul>
+<h5 id="可迭代对象"><a href="#可迭代对象" class="headerlink" title="可迭代对象"></a>可迭代对象</h5><p>到这里我们已经大概了解了 <code>Iterator</code>, 以及如何创建一个迭代器对象。但是它和 <code>for of</code> 有什么关系呢？</p>
+<h4 id="4-for-of-运行机制"><a href="#4-for-of-运行机制" class="headerlink" title="4. for of 运行机制"></a>4. for of 运行机制</h4><blockquote>
+<p>当 <code>for of</code>执行的时候，循环过程中引擎就会自动调用这个<code>对象上的迭代器方法</code>， 依次执行迭代器对象的 <code>next</code> 方法,将 <code>next</code> 返回值赋值给 <code>for of</code> 内的变量，从而得到具体的值</p>
+</blockquote>
+<h5 id="实现可迭代对象"><a href="#实现可迭代对象" class="headerlink" title="实现可迭代对象"></a>实现可迭代对象</h5><blockquote>
+<p>对象上怎么会有迭代器方法呢？</p>
+</blockquote>
+<p><code>ES6</code>里规定，只要在对象的属性上部署了<code>Iterator</code>接口，具体形式为给对象添加<code>Symbol.iterator</code>属性，此属性指向一个迭代器方法，这个迭代器会返回一个特殊的对象 - 迭代器对象。</p>
+<p>而部署这个属性并且实现了迭代器方法后的对象叫做<code>可迭代对象</code></p>
+<p>此时，这个对象就是可迭代的，也就是可以被 <code>for of</code> 遍历</p>
+<blockquote>
+<p>Symbol.iterator，它是一个表达式，返回Symbol对象的iterator属性，这是一个预定义好的、类型为 Symbol 的特殊值。</p>
+</blockquote>
+<p>例如：普通对象是不能被 <code>for of</code> 遍历的，直接使用会报错：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = &#123;&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> k <span class="keyword">of</span> obj)&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 报错 obj is not iterable</span></span><br></pre></td></tr></table></figure>
+
+<p>如何让一个对象变成可迭代对象，按照协议也就是规定来实现即可</p>
+<h5 id="iterableObj-对象上部署-Symbol-iterator属性，然后为其创建一个迭代器方法，迭代器的规则上面我们已经说过啦"><a href="#iterableObj-对象上部署-Symbol-iterator属性，然后为其创建一个迭代器方法，迭代器的规则上面我们已经说过啦" class="headerlink" title="iterableObj 对象上部署 Symbol.iterator属性，然后为其创建一个迭代器方法，迭代器的规则上面我们已经说过啦"></a><code>iterableObj</code> 对象上部署 <code>Symbol.iterator</code>属性，然后为其创建一个迭代器方法，迭代器的规则上面我们已经说过啦</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> iterableObj = &#123;</span><br><span class="line">  items: [<span class="number">100</span>, <span class="number">200</span>, <span class="number">300</span>],</span><br><span class="line">  [<span class="built_in">Symbol</span>.iterator]: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> self = <span class="keyword">this</span>;</span><br><span class="line">    <span class="keyword">let</span> i = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      next: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">let</span> done = (i &gt;= self.items.length);</span><br><span class="line">        <span class="keyword">let</span> value = !done ? self.items[i++] : <span class="literal">undefined</span>;</span><br><span class="line">        <span class="keyword">return</span> &#123;</span><br><span class="line">          done: done,</span><br><span class="line">          value: value</span><br><span class="line">        &#125;;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//遍历它</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> item <span class="keyword">of</span> iterableObj) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(item); <span class="comment">//100,200,300</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上面这个对象就是可迭代对象了，可以被 <code>for of</code> 消费了</p>
+<h4 id="5-Iterator-原生应用场景"><a href="#5-Iterator-原生应用场景" class="headerlink" title="5. Iterator 原生应用场景"></a>5. <code>Iterator</code> 原生应用场景</h4><p>再回到最开始使用 <code>for of</code> 来进行遍历<strong>字符串、数组、map</strong>，我们并没有为他们部署<code>Iterator</code>接口，仍然可以使用 <code>for of</code> 遍历。</p>
+<p>这是因为在 <code>ES6</code>中有些对象已经默认部署了此接口，不需要做任何处理，就可以使用 <code>for of</code> 来进行遍历取值。</p>
+<ol>
+<li><p>数组</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">100</span>, <span class="number">200</span>, <span class="number">300</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> iteratorObj = arr[<span class="built_in">Symbol</span>.iterator]();</span><br><span class="line"><span class="built_in">console</span>.log(iteratorObj); <span class="comment">// Object [Array Iterator] &#123;&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(iteratorObj.next()); <span class="comment">// &#123; value: 100, done: false &#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(iteratorObj.next()); <span class="comment">// &#123; value: 200, done: false &#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(iteratorObj.next()); <span class="comment">// &#123; value: 300, done: false &#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(iteratorObj.next()); <span class="comment">// &#123; value: undefined, done: true &#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>字符串</p>
+<p>因为字符串本身的值是有序的，并且具有类数组的特性，支持通过索引访问，所以也默认部署了<code>iterator</code>接口</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> str=<span class="string">'abc'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> strIteratorObj = str[<span class="built_in">Symbol</span>.iterator]();<span class="comment">//得到迭代器</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(strIteratorObj.next()); <span class="comment">// &#123; value: 'a', done: false &#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(strIteratorObj.next()); <span class="comment">// &#123; value: 'b', done: false &#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(strIteratorObj.next()); <span class="comment">// &#123; value: 'c', done: false &#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(strIteratorObj.next()); <span class="comment">// &#123; value: undefined, done: true &#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>arguments</code>类数组</p>
+<p>函数内的<code>arguments</code> 是一个类数组，他也支持 <code>for of</code>，因为他内部也部署了<code>Iterator</code> 接口</p>
+<p>我们都知道对象是默认没有部署这个接口的，所以<code>arguments</code>这个属性没有在原型上，而在对象自身的属性上</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">   <span class="keyword">const</span> obj = <span class="built_in">arguments</span>[<span class="built_in">Symbol</span>.iterator](); <span class="comment">// 得到可迭代对象</span></span><br><span class="line">   <span class="built_in">console</span>.log(<span class="built_in">arguments</span>.hasOwnProperty(<span class="built_in">Symbol</span>.iterator)); <span class="comment">// true</span></span><br><span class="line">   <span class="built_in">console</span>.log(<span class="built_in">arguments</span>); <span class="comment">// [0, 1, 3]</span></span><br><span class="line">   <span class="built_in">console</span>.log(obj.next()); <span class="comment">// &#123;value: 0, done: false&#125;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">test(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>);</span><br></pre></td></tr></table></figure>
+
+<p>总结来说，已默认部署 Iterator 接口的对象主要包括数组、字符串、Set、Map 、类似数组的对象（比如arguments对象、DOM NodeList 对象）</p>
+</li>
+</ol>
+<h4 id="6-Iterator-另外一个作用"><a href="#6-Iterator-另外一个作用" class="headerlink" title="6. Iterator 另外一个作用"></a>6. <code>Iterator 另外一个作用</code></h4><blockquote>
+<p><code>Iterator</code>除了可以为不同的数据结构提供一种统一的数据访问方式，还有没有发现其他的作用？</p>
+<p>那就是数据可定制性，因为我们可以随意的控制迭代器的 <code>value</code> 值</p>
+</blockquote>
+<p>例如：数组本身就是一个可迭代的，我们可以覆盖它的默认迭代器</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">100</span>, <span class="number">200</span>, <span class="number">300</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> item <span class="keyword">of</span> arr) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(item); <span class="comment">// 100 200 300</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 自己实现</span></span><br><span class="line"><span class="keyword">const</span> arr = [<span class="number">100</span>, <span class="number">200</span>, <span class="number">300</span>];</span><br><span class="line">arr[<span class="built_in">Symbol</span>.iterator] = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> self = <span class="keyword">this</span>;</span><br><span class="line">  <span class="keyword">let</span> i = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    next: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="keyword">let</span> done = (i &gt;= self.length);</span><br><span class="line">      <span class="keyword">let</span> value = !done ? self[i++] : <span class="literal">undefined</span>;</span><br><span class="line">      <span class="keyword">return</span> &#123;</span><br><span class="line">        done: done,</span><br><span class="line">        value: value</span><br><span class="line">      &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> item <span class="keyword">of</span> arr) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(item);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="对象为什么没有默认部署"><a href="#对象为什么没有默认部署" class="headerlink" title="对象为什么没有默认部署"></a>对象为什么没有默认部署</h5><blockquote>
+<p>对象可能有各种属性，不像数组的值是有序的。</p>
+<p>所以遍历的时候根本不知道如何确定他们的先后顺序，所以需要我们根据情况手动实现</p>
+</blockquote>
+<h4 id="7-扩展"><a href="#7-扩展" class="headerlink" title="7. 扩展"></a>7. 扩展</h4><h5 id="for-of-中断"><a href="#for-of-中断" class="headerlink" title="for of 中断"></a><code>for of</code> 中断</h5><p>普通的 <code>for</code> 循环是可以随时中断的，那 <code>for of</code> 是否可以呢？</p>
+<p>答案是肯定的，<code>for of</code>机制兼顾了<code>for</code>和<code>forEach</code>。</p>
+<p>迭代器除了必须<code>next</code> 方法外，还有两个可选的方法 <code>return</code>和<code>throw</code>方法</p>
+<p>如果 <code>for of</code> 循环提前退出，则会自动调用 <code>return</code> 方法，需要注意的是 <code>return</code> 方法必须有返回值，且返回值必须是 一个<code>object</code>。</p>
+<h4 id="8-解构赋值"><a href="#8-解构赋值" class="headerlink" title="8. 解构赋值"></a>8. 解构赋值</h4><blockquote>
+<p>对可迭代对象进行解构赋值的时候，会默认调用<code>Symbol.iterator</code>方法</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//字符串</span></span><br><span class="line"><span class="keyword">let</span> str = <span class="string">'12345'</span>;</span><br><span class="line"><span class="keyword">let</span> [a, b] = str;</span><br><span class="line"><span class="built_in">console</span>.log(a, b); <span class="comment">// 1 2</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//map</span></span><br><span class="line"><span class="keyword">const</span> map = <span class="keyword">new</span> <span class="built_in">Map</span>();</span><br><span class="line">map.set(<span class="string">'1'</span>, <span class="string">'11'</span>);</span><br><span class="line">map.set(<span class="string">'2'</span>, <span class="string">'12'</span>);</span><br><span class="line">map.set(<span class="string">'3'</span>, <span class="string">'13'</span>);</span><br><span class="line">map.set(<span class="string">'4'</span>, <span class="string">'14'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> [d, e] = map;</span><br><span class="line"><span class="built_in">console</span>.log([...map]);</span><br><span class="line"><span class="built_in">console</span>.log(d, e); <span class="comment">// ["1", "11"] ["2", "12"]</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>同样如果对一个普通对象进行解构，则会报错。</strong></p>
+<p><strong>因为普通对象不是可迭代对象</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> [d,e]=&#123;<span class="attr">name</span>:<span class="string">'zhang'</span>&#125;; <span class="comment">// 报错</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="从一个自定义的可迭代对象进行解构赋值"><a href="#从一个自定义的可迭代对象进行解构赋值" class="headerlink" title="从一个自定义的可迭代对象进行解构赋值"></a>从一个自定义的可迭代对象进行解构赋值</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> iterableObj = &#123;</span><br><span class="line">  items: [<span class="string">'红'</span>, <span class="string">'绿'</span>, <span class="string">'蓝'</span>],</span><br><span class="line">  [<span class="built_in">Symbol</span>.iterator]: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> self = <span class="keyword">this</span>;</span><br><span class="line">    <span class="keyword">let</span> i = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      next: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">let</span> done = (i &gt;= self.items.length);</span><br><span class="line">        <span class="keyword">let</span> value = !done ? self.items[i++] : <span class="literal">undefined</span>;</span><br><span class="line">        <span class="keyword">return</span> &#123;</span><br><span class="line">          done: done,</span><br><span class="line">          value: value</span><br><span class="line">        &#125;;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> [d, e] = iterableObj;</span><br><span class="line"><span class="built_in">console</span>.log(d, e); <span class="comment">//红 绿</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>解构赋值的变量的值就是迭代器对象的 next 方法的返回值，且是按顺序返回</strong></p>
+<h4 id="9-扩展运算符"><a href="#9-扩展运算符" class="headerlink" title="9. 扩展运算符"></a>9. 扩展运算符</h4><blockquote>
+<p>扩展运算符的执行(…)也会默认调用它的<code>Symbol.iterator</code>方法，可以将当前迭代对象转换为数组</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//字符串</span></span><br><span class="line"><span class="keyword">let</span> str = <span class="string">'1234'</span>;</span><br><span class="line"><span class="built_in">console</span>.log([...str]); <span class="comment">//[1,2,3,4]  转换为数组</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//map 对象</span></span><br><span class="line"><span class="keyword">const</span> map = <span class="keyword">new</span> <span class="built_in">Map</span>([</span><br><span class="line">  [<span class="number">1</span>, <span class="number">2</span>],</span><br><span class="line">  [<span class="number">3</span>, <span class="number">4</span>]</span><br><span class="line">]);</span><br><span class="line">[...map] <span class="comment">//[[1,2],[3,4]]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//set 对象</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">set</span> = new Set([1, 2, 3]);</span><br><span class="line">[...<span class="keyword">set</span>] //[1,2,3]</span><br></pre></td></tr></table></figure>
+
+<p><strong>普通对象是不可以用扩展运算符的</strong></p>
+<h4 id="10-yield-关键字"><a href="#10-yield-关键字" class="headerlink" title="10. yield* 关键字"></a>10. <code>yield*</code> 关键字</h4><blockquote>
+<p>yield*后面跟的是一个可遍历的结构，执行时也会调用迭代器函数</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> foo = <span class="function"><span class="keyword">function</span>* (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">yield</span> <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">yield</span>* [<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>];</span><br><span class="line">    <span class="keyword">yield</span> <span class="number">5</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h4 id="11-判断对象是否可迭代"><a href="#11-判断对象是否可迭代" class="headerlink" title="11. 判断对象是否可迭代"></a>11. 判断对象是否可迭代</h4><blockquote>
+<p>既然可迭代对象的规则必须在对象上部署<code>Symbol.iterator</code>属性，那么我们基本上就可以通过此属来判断对象是否为可迭代对象，然后就可以知道是否能使用 <code>for of</code> 取值了。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isIterable</span>(<span class="params">object</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">typeof</span> object[<span class="built_in">Symbol</span>.iterator] === <span class="string">"function"</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(isIterable(<span class="string">'abcdefg'</span>)); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(isIterable([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(isIterable(<span class="string">"Hello"</span>)); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(isIterable(<span class="keyword">new</span> <span class="built_in">Map</span>())); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(isIterable(<span class="keyword">new</span> <span class="built_in">Set</span>())); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(isIterable(<span class="keyword">new</span> <span class="built_in">WeakMap</span>())); <span class="comment">// false</span></span><br><span class="line"><span class="built_in">console</span>.log(isIterable(<span class="keyword">new</span> <span class="built_in">WeakSet</span>())); <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h5><p><code>ES6</code>的出现带来了很多新的数据结构，比如 <code>Map</code> ,<code>Set</code> ，所以为了数据获取的方便，增加了一种统一获取数据的方式 <code>for of</code> 。 而 <code>for of</code> 执行的时候引擎会自动调用对象的迭代器来取值。</p>
+<p>不是所有的对象都支持这种方式，必须是实现了<code>Iterator</code>接口的才可以，这样的对象我们称他们为可迭代对象。</p>
+<p>迭代器实现方式根据可迭代协议，迭代器协议实现即可。</p>
+<p>除了统一数据访问方式，还可以自定义得到的数据内容，随便怎样，只要是你需要的。</p>
+<p>迭代器是一个方法， 用来返回迭代器对象。</p>
+<p>可迭代对象是部署了 <code>Iterator</code> 接口的对象，同时拥有正确的迭代器方法。</p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="true">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title='0' data-url='http://link.hhtjim.com/163/5146554.mp3'></li>
+                        
+                    
+                        
+                            <li title='1' data-url='http://link.hhtjim.com/qq/001faIUs4M2zna.mp3'></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id='gitalk-container' class="comment link"
+        data-ae='false'
+        data-ci=''
+        data-cs=''
+        data-r=''
+        data-o=''
+        data-a=''
+        data-d='false'
+    >查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/diaspora.js"></script>
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+</html>
