@@ -66,11 +66,11 @@
 
 <h4 id="（2）安装vue-cli成功后，通过cd命令进入你想放置项目的文件夹，在命令提示窗口执行创建vue-cli工程项目的命令："><a href="#（2）安装vue-cli成功后，通过cd命令进入你想放置项目的文件夹，在命令提示窗口执行创建vue-cli工程项目的命令：" class="headerlink" title="（2）安装vue-cli成功后，通过cd命令进入你想放置项目的文件夹，在命令提示窗口执行创建vue-cli工程项目的命令："></a>（2）安装vue-cli成功后，通过cd命令进入你想放置项目的文件夹，在命令提示窗口执行创建vue-cli工程项目的命令：</h4><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vue <span class="keyword">init</span> webpack</span><br></pre></td></tr></table></figure>
 
-<p><img src="E:%5CBlog%5Csource%5Cimage%5CVue1%5C%E6%8D%95%E8%8E%B7.PNG" alt></p>
+<p><img src="/2020/02/17/vue-相关知识1/E:%5CBlog%5Csource%5Cimage%5CVue1%5C%E6%8D%95%E8%8E%B7.PNG" alt></p>
 <h4 id="（3）生成文件目录后，使用-cnpm-安装依赖："><a href="#（3）生成文件目录后，使用-cnpm-安装依赖：" class="headerlink" title="（3）生成文件目录后，使用 cnpm 安装依赖："></a>（3）生成文件目录后，使用 cnpm 安装依赖：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cnpm install</span><br></pre></td></tr></table></figure>
 
-<h4 id="（4）最后需要执行命令：npm-start-来启动项目，启动完成后会自动弹出默认网页："><a href="#（4）最后需要执行命令：npm-start-来启动项目，启动完成后会自动弹出默认网页：" class="headerlink" title="（4）最后需要执行命令：npm start 来启动项目，启动完成后会自动弹出默认网页："></a>（4）最后需要执行命令：npm start 来启动项目，启动完成后会自动弹出默认网页：</h4><p><img src="E:%5CBlog%5Csource%5Cimage%5CVue1%5C%E6%8D%95%E8%8E%B71.PNG" alt></p>
-<h4 id="5-打开网页-默认网页如下"><a href="#5-打开网页-默认网页如下" class="headerlink" title="(5)打开网页,默认网页如下"></a>(5)打开网页,默认网页如下</h4><p><img src="E:%5CBlog%5Csource%5Cimage%5CVue1%5C%E6%8D%95%E8%8E%B72.PNG" alt></p>
+<h4 id="（4）最后需要执行命令：npm-start-来启动项目，启动完成后会自动弹出默认网页："><a href="#（4）最后需要执行命令：npm-start-来启动项目，启动完成后会自动弹出默认网页：" class="headerlink" title="（4）最后需要执行命令：npm start 来启动项目，启动完成后会自动弹出默认网页："></a>（4）最后需要执行命令：npm start 来启动项目，启动完成后会自动弹出默认网页：</h4><p><img src="/2020/02/17/vue-相关知识1/E:%5CBlog%5Csource%5Cimage%5CVue1%5C%E6%8D%95%E8%8E%B71.PNG" alt></p>
+<h4 id="5-打开网页-默认网页如下"><a href="#5-打开网页-默认网页如下" class="headerlink" title="(5)打开网页,默认网页如下"></a>(5)打开网页,默认网页如下</h4><p><img src="/2020/02/17/vue-相关知识1/E:%5CBlog%5Csource%5Cimage%5CVue1%5C%E6%8D%95%E8%8E%B72.PNG" alt></p>
 <h3 id="2-vuex的几种属性及作用。"><a href="#2-vuex的几种属性及作用。" class="headerlink" title="2.vuex的几种属性及作用。"></a>2.vuex的几种属性及作用。</h3><p>Vuex用来管理多个组件的共享状态。方便父子组件及组件之间的数据传递。主要有state 、getters 、mutations、actions 。</p>
 <p>state =&gt; 基本数据<br>getters =&gt; 从基本数据派生的数据<br>mutations =&gt; 提交mutation是更改Vuex中的store中的状态的唯一方法，同步！<br>actions =&gt; actions类似于 mutation，不同在于：<br>           action提交的是mutation，而不是直接变更状态；<br>           action可以包含任意异步操作。</p>
 <h3 id="3-路由之间跳转的方式"><a href="#3-路由之间跳转的方式" class="headerlink" title="3.路由之间跳转的方式"></a>3.路由之间跳转的方式</h3><p>//1.router-link方式<br>//不带参数：<br><router-link :to="{name:'home'}"> </router-link></p>
@@ -81,8 +81,8 @@
 <p>//params传参:<br>this.$router.push({name:’home’,params: {id:’1’}})</p>
 <p>//query类似get,跳转之后页面url后面会拼接参数,类似?id=1,非重要性的可以这样传,密码之类还是用params刷新页面id还在;<br>//params类似post,跳转之后页面url后面不会拼接参数,但是刷新页面id会消失。</p>
 <h3 id="4-vue的生命周期及生命周期函数"><a href="#4-vue的生命周期及生命周期函数" class="headerlink" title="4.vue的生命周期及生命周期函数"></a>4.vue的生命周期及生命周期函数</h3><h4 id="1-生命周期图示"><a href="#1-生命周期图示" class="headerlink" title="(1) 生命周期图示"></a>(1) 生命周期图示</h4><p>下图展示了实例的生命周期。你不需要立马弄明白所有的东西，不过随着你的不断学习和使用，它的参考价值会越来越高</p>
-<p><img src="E:%5CBlog%5Csource%5Cimage%5CVue1%5Clifecycle.png" alt></p>
-<h4 id="2-生命周期的8个钩子函数"><a href="#2-生命周期的8个钩子函数" class="headerlink" title="(2) 生命周期的8个钩子函数"></a>(2) 生命周期的8个钩子函数</h4><p><img src="E:%5CBlog%5Csource%5Cimage%5CVue1%5C%E6%8D%95%E8%8E%B73.PNG" alt></p>
+<p><img src="/2020/02/17/vue-相关知识1/E:%5CBlog%5Csource%5Cimage%5CVue1%5Clifecycle.png" alt></p>
+<h4 id="2-生命周期的8个钩子函数"><a href="#2-生命周期的8个钩子函数" class="headerlink" title="(2) 生命周期的8个钩子函数"></a>(2) 生命周期的8个钩子函数</h4><p><img src="/2020/02/17/vue-相关知识1/E:%5CBlog%5Csource%5Cimage%5CVue1%5C%E6%8D%95%E8%8E%B73.PNG" alt></p>
 
             <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
             <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="true">
