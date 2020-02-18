@@ -208,7 +208,7 @@ vuevue的整体思想仍然式拥抱html(结构)+css(表现)+js(行为),">
 <p>组件的生命周期一般包括：初始化、挂载、更新、卸载四大阶段，接下来分别看下vue和react的生命周期</p>
 </blockquote>
 <h5 id="vue-4"><a href="#vue-4" class="headerlink" title="vue"></a>vue</h5><p>vue生命周期图示:</p>
-<p><img src="/2019/10/25/React学习———react与vue比较下/Blog/HexoBlog/source/image/Vue_React%E5%AF%B9%E6%AF%94/vue%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.png" alt="vue生命周期"></p>
+<p><img src="https://rizhsong.github.io/image/Vue_React%E5%AF%B9%E6%AF%94/vue%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.png" alt="vue生命周期"></p>
 <p>vue生命周期包含:</p>
 <ul>
 <li>beforeCreate<br>实例组件刚创建，元素DOM和数据都还没有初始化，暂时不能在这个周期里面进行任何操作。</li>
@@ -225,7 +225,7 @@ vuevue的整体思想仍然式拥抱html(结构)+css(表现)+js(行为),">
 <li>beforeDestroy<br>组件销毁之前执行，在这个周期里仍然可以访问data和method，多组件间通信需要发布信息时可以在该阶段完成。</li>
 <li>destroyed<br>当离开组件对应页面时组件销毁时触发，主要用于取消一些副作用（取消事件监听、取消定时器、取消不必要的请求等）</li>
 </ul>
-<h5 id="react-4"><a href="#react-4" class="headerlink" title="react"></a>react</h5><h5 id="16-3以前的生命周期"><a href="#16-3以前的生命周期" class="headerlink" title="16.3以前的生命周期"></a>16.3以前的生命周期</h5><p><img src="/2019/10/25/React学习———react与vue比较下/Blog/HexoBlog/source/image/Vue_React%E5%AF%B9%E6%AF%94/react%E8%80%81%E7%89%88%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.png" alt="react老版生命周期"></p>
+<h5 id="react-4"><a href="#react-4" class="headerlink" title="react"></a>react</h5><h5 id="16-3以前的生命周期"><a href="#16-3以前的生命周期" class="headerlink" title="16.3以前的生命周期"></a>16.3以前的生命周期</h5><p><img src="https://rizhsong.github.io/image/Vue_React%E5%AF%B9%E6%AF%94/react%E8%80%81%E7%89%88%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.png" alt="react老版生命周期"></p>
 <p>（1）初始化</p>
 <ul>
 <li>constructor<br>是class组件的默认方法，常用来初始化state或者设置属性等。</li>
@@ -284,7 +284,7 @@ vuevue的整体思想仍然式拥抱html(结构)+css(表现)+js(行为),">
 <li>getSnapshotBeforeUpdate(prevProps, prevState)</li>
 </ul>
 <p>生命周期如下：</p>
-<p><img src="/2019/10/25/React学习———react与vue比较下/Blog/HexoBlog/source/image/Vue_React%E5%AF%B9%E6%AF%94/react%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.png" alt="react生命周期"></p>
+<p><img src="https://rizhsong.github.io/image/Vue_React%E5%AF%B9%E6%AF%94/react%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.png" alt="react生命周期"></p>
 <blockquote>
 <p>总结：<br>初始化阶段保持不变 </p>
 <p>挂载阶段: getDerivedStateFromProps =&gt; render =&gt; componentDidMount </p>
